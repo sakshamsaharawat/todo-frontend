@@ -1,0 +1,55 @@
+.today-main {
+    margin-left: 5px;
+}
+
+.today-notification {
+    font-size: 30px;
+    margin-left: 30px;
+    color: black;
+    border: 1px solid whitesmoke;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.today-main-title {
+    font-size: 30px;
+    color: black;
+    margin-left: 20px;
+    font-weight: 1000 !important;
+    margin-top: 8px;
+}
+
+.today-todo-list-container {
+    border-bottom: 2px solid whitesmoke;
+    align-items: center;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.today-todo-content {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+.today-todo-sub-content {
+    display: flex;
+    margin-left: 15px;
+    align-items: center;
+}
+
+.today-todo-text {
+    display: flex;
+    align-items: center;
+    margin-left: 48px;
+}
+
+.today-todo-option {
+    display: flex;
+    margin-right: 20px;
+    align-items: center;
+}

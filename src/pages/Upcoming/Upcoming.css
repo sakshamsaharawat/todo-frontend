@@ -1,0 +1,87 @@
+.main-container {
+    border: 2px rgb(222, 21, 21);
+    /* padding-left: 10px; */
+    margin-left: 20px;
+    margin-top: 30px;
+
+}
+
+.box {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.upcoming-notification {
+    font-size: 30px;
+    margin-left: 30px;
+    color: black;
+    border: 1px solid whitesmoke;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.main-title {
+    font-size: 30px;
+    color: black;
+    margin-left: 20px;
+    font-weight: 1000 !important;
+    margin-top: 8px;
+}
+
+.todo-list-container div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.todo {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid whitesmoke;
+    border: 2px solid red;
+}
+
+.todo-content {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.todo-sub-content {
+    margin-left: 15px;
+}
+
+.todo-option {
+    display: flex;
+    margin-right: 20px;
+    align-items: center;
+}
+
+.todo-text {
+    margin-left: 48px;
+}
+
+.sub-todo-list-container {
+    display: flex;
+    height: 300px;
+    margin-top: 15px;
+    gap: 15px;
+
+}
+
+.todo-list-container {
+    border-bottom: 2px solid whitesmoke;
+    align-items: center;
+    cursor: pointer;
+}
+
+.todo-list-date p {
+    font-size: 13px;
+}
+
+.todo-list-container h3 {
+    color: black;
+}
