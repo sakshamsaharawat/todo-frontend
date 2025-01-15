@@ -18,7 +18,7 @@ const Today: React.FC = () => {
               style={{ fontSize: '13px' }} />
           </div>
           {todoData.map((item) => (
-            <div className='today-todo-list-container'>
+            <div className='today-todo-list-container' style={{ border: "2px solid red"}}>
               <div className='today-todo-content'>
                 <div className='today-todo-sub-content'>
                   <div style={{display: 'flex'}}>

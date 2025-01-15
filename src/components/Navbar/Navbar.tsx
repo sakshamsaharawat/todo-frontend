@@ -5,13 +5,14 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AddIcon from '@mui/icons-material/Add';
 import { Box, CssBaseline, IconButton, InputBase, List } from '@mui/material';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { Calendar, StickyWall, Today, Upcoming } from '../../pages/index';
+import { Calendar, StickyWall, TaskDrawer, Today, Upcoming } from '../../pages/index';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import './Navbar.css'
 import LogoutIcon from '@mui/icons-material/Logout';
 import TuneIcon from '@mui/icons-material/Tune';
+import { Task } from '@mui/icons-material';
 
 const menu: { name: string, path: string, icon: any }[] = [
     { name: "Upcoming", path: "/upcoming", icon: <KeyboardDoubleArrowRightIcon style={{ fontSize: "15px" }} /> },
@@ -105,7 +106,7 @@ const Navbar: React.FC = () => {
                             <p style={{ marginLeft: '2px', fontSize: '13px' }}>Add New list</p>
                         </div>
                     </div>
-                </div>
+                </div> 
                 <div style={{ marginTop: '20px' }}>
                     <h6 className='heading-color'>TAGS</h6>
                     <div className='todo-menu-tag'>
@@ -161,7 +162,7 @@ const Navbar: React.FC = () => {
                     <Routes>
                         <Route path="/upcoming" element={<Upcoming />} />
                         <Route path="/today" element={<Today />} />
-                        <Route path="/calendar" element={<Calendar />} />
+                        <Route path="/calendar" element={<TaskDrawer />} />
                         <Route path="/sticky-wall" element={<StickyWall />} />
                     </Routes>
                 </div>

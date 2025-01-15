@@ -57,7 +57,7 @@ const Upcoming: React.FC = () => {
           ))}
         </section>
         <section className='sub-todo-list-container'>
-          <section style={{ width: "50%", border: "2px solid whitesmoke", padding: "20px" }} className='todo-list-container' >
+          <section className='this-weak-tomoarrow-container' >
             <h3>Tomorrow</h3>
             <Box className="box">
               <TextField fullWidth label=" + Add New Task" id="add-new-task" />
@@ -80,7 +80,7 @@ const Upcoming: React.FC = () => {
               </div>
             ))}
           </section>
-          <section style={{ width: "50%", border: "2px solid whitesmoke", padding: "20px" }} className='todo-list-container'>
+          <section className='this-weak-tomoarrow-container'>
             <h3>This Week</h3>
             <Box className="box">
               <TextField fullWidth label="Add New Task" id="add-new-task" />

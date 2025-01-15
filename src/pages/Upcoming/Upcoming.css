@@ -35,6 +35,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 13px;
+    flex-wrap: wrap;
 }
 
 .todo {
@@ -76,6 +77,8 @@
     border-bottom: 2px solid whitesmoke;
     align-items: center;
     cursor: pointer;
+    flex-wrap: wrap;
+
 }
 
 .todo-list-date p {
@@ -84,4 +87,15 @@
 
 .todo-list-container h3 {
     color: black;
+}
+
+.this-weak-tomoarrow-container {
+    align-items: center;
+    cursor: pointer;
+    flex-wrap: wrap;
+    overflow: scroll;
+    width: 50%;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+    padding: 20px
 }
