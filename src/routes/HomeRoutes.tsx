@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar/Navbar'
-import { Home, TaskDrawer } from '../pages'
 import { Route, Routes } from 'react-router-dom'
+import { TaskDrawer } from '../pages'
 
 const HomeRoutes: React.FC = () => {
   return (
@@ -9,11 +9,11 @@ const HomeRoutes: React.FC = () => {
       <div style={{ padding: "15px" }}>
         <Navbar />
       </div>
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        {/* <Route path="/task" element={<TaskDrawer />} /> */}
-
-      </Routes>
+      <div>
+        {/* <Routes>
+          <Route path="/task" element={<TaskDrawer isOpen={true} toggleDrawer={() => { }} />} />
+        </Routes> */}
+      </div>
     </>
 
   )

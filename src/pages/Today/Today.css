@@ -1,5 +1,7 @@
+
 .today-main {
-    margin-left: 5px;
+    margin-top: 20px;
+    padding: 10px;
 }
 
 .today-notification {
@@ -22,6 +24,13 @@
     margin-top: 8px;
 }
 
+.today-section {
+    /* padding-left: 10px; */
+    /* padding-right: 20px; */
+    border-radius: 10px;
+    /* border: 1px solid red; */
+}
+
 .today-todo-list-container {
     border-bottom: 2px solid whitesmoke;
     align-items: center;
@@ -42,14 +51,42 @@
     align-items: center;
 }
 
-.today-todo-text {
+.today-todo-sub-content p {
+    margin-left: 20px;
+}
+
+.today-main-list {
     display: flex;
     align-items: center;
     margin-left: 48px;
+}
+
+.today-main-list-title {
+    margin-top: 5px;
 }
 
 .today-todo-option {
     display: flex;
     margin-right: 20px;
     align-items: center;
+}
+
+.today-todo-option-task {
+    background-color: whitesmoke;
+    height: 12px;
+    width: 18px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.today-main-list-color-box {
+    height: 12px;
+    width: 12px;
+    border-radius: 3px
+}
+
+.today-main-list-sub-title {
+    margin-left: 5px;
 }

@@ -14,7 +14,7 @@
     padding: 15px;
     background-color: #f4f4f4;
     height: 100vh;
-    position: fixed,
+    /* position: fixed; */
 }
 
 .task-description {
@@ -27,6 +27,7 @@
     background-color: #f4f4f4;
     border: 2px solid #ececec;
     font-size: 13px;
+    outline: none;
 }
 
 .task-input {
@@ -38,6 +39,7 @@
     background-color: #f4f4f4;
     border: 2px solid #ececec;
     font-size: 13px;
+    outline: none;
 }
 
 .task-content {
@@ -97,6 +99,10 @@
     background-color: #f4f4f4;
     border: 2px solid #ececec;
     font-size: 13px;
+}
+
+.subtask-content-task {
+    margin-left: 20px
 }
 
 .task-footer {

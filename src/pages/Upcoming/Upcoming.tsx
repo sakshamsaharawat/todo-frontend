@@ -7,97 +7,95 @@ import { todoData } from '../../data/todoData';
 
 
 const Upcoming: React.FC = () => {
-  console.log("data---", todoData)
   return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <h1 className='main-title'>Upcoming</h1>
+    <div className='upcoming-main-component'>
+      <div className="upcoming-main-title">
+        <h1 className='main-heading'>Upcoming</h1>
         <div className='upcoming-notification'>12</div>
       </div>
       <div className="main-container">
-        <section style={{ border: "2px solid whitesmoke", paddingLeft: '20px', paddingRight: "20px", borderRadius: '10px' }}>
-          <h3 style={{ marginTop: '15px' }}>Today</h3>
-          <Box className="box">
-            <TextField fullWidth label="+ Add New Task" id="add-new-task"
-              style={{ fontSize: '13px' }} />
-          </Box>
+        <section className='today-main-section'>
+          <h3 className='todo-heading'>Today</h3>
+          <div className="today-add-input">
+            <TextField fullWidth label="+ Add New Task" id="add-new-task" />
+          </div>
           {todoData.map((item) => (
-            <div className='todo-list-container'>
+            <div className='today-main-todo'>
               <div className='todo-content'>
                 <div className='todo-sub-content'>
-                  <div>
+                  <div className='todo-checkbox'>
                     <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
                   </div>
-                  <div style={{ marginLeft: '20px' }}>
+                  <div className='today-content-title'>
                     <p>{item?.title}</p>
                   </div>
                 </div>
                 <div>
-                  <ArrowForwardIosIcon style={{ height: "15px" }} />
+                  <ArrowForwardIosIcon className='todo-icon' />
                 </div>
               </div>
-              <div className='todo-text'>
-                <div style={{ marginTop: "5px" }}>
+              <div>
+                <div className='todo-main-list'>
                   {item?.date && <div className='todo-option'>
-                    <CalendarMonthIcon style={{ height: '15px' }} />
+                    <CalendarMonthIcon className='todo-icon' />
                     <p>{item.date}</p>
                   </div>}
                   {item?.list_subtasks && <div className='todo-option'>
-                    <span style={{ backgroundColor: 'whitesmoke', height: "12px", width: "18px", borderRadius: "3px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <span className='todo-option-substask-task'>
                       {item.list_subtasks.task}</span>
-                    <span style={{ marginLeft: '5px' }}>{item.list_subtasks.task_title}</span>
+                    <span className='todo-option-substask-list-title'>{item.list_subtasks.task_title}</span>
                   </div>}
                   {item.list_type && <div className='todo-option'>
-                    <span style={{ backgroundColor: item.list_type.color_code, height: "12px", width: "12px", borderRadius: "3px" }}></span>
-                    <span style={{ marginLeft: "5px" }}>{item.list_type.title}</span>
+                    <span className='todo-option-substask-list' style={{ backgroundColor: item.list_type.color_code }}></span>
+                    <span className='todo-option-substask-list-title'>{item.list_type.title}</span>
                   </div>}
                 </div>
               </div>
             </div>
           ))}
         </section>
-        <section className='sub-todo-list-container'>
+        <section className='today-sub-section'>
           <section className='this-weak-tomoarrow-container' >
-            <h3>Tomorrow</h3>
-            <Box className="box">
+            <h3 className='todo-heading'>Tomorrow</h3>
+            <div>
               <TextField fullWidth label=" + Add New Task" id="add-new-task" />
-            </Box>
+            </div>
             {todoData.map((item) => (
-              <div className='todo-list-container'>
+              <div className='today-main-todo'>
                 <div className='todo-content'>
                   <div className='todo-sub-content'>
                     <div>
                       <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
                     </div>
-                    <div style={{ marginLeft: '20px' }}>
+                    <div className='today-content-title'>
                       <p>{item.title}</p>
                     </div>
                   </div>
-                  <div>
-                    <ArrowForwardIosIcon style={{ height: "15px" }} />
+                  <div >
+                    <ArrowForwardIosIcon className='todo-icon' />
                   </div>
                 </div>
               </div>
             ))}
           </section>
           <section className='this-weak-tomoarrow-container'>
-            <h3>This Week</h3>
+            <h3 className='todo-heading'>This Week</h3>
             <Box className="box">
               <TextField fullWidth label="Add New Task" id="add-new-task" />
             </Box>
             {todoData.map((item) => (
-              <div className='todo-list-container'>
+              <div className='today-main-todo'>
                 <div className='todo-content'>
                   <div className='todo-sub-content'>
                     <div>
                       <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
                     </div>
-                    <div style={{ marginLeft: '20px' }}>
+                    <div className='today-content-title'>
                       <p>{item.title}</p>
                     </div>
                   </div>
                   <div>
-                    <ArrowForwardIosIcon style={{ height: "15px" }} />
+                    <ArrowForwardIosIcon className='todo-icon' />
                   </div>
                 </div>
               </div>

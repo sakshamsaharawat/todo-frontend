@@ -1,12 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('/src/styles/global.css');
 
 * {
     padding: 0;
     margin: 0;
-    color: #747373;
+    color: #6c6a6a;
     box-sizing: border-box;
-    font-weight: 600;
+    font-weight: 500;
 }
-
