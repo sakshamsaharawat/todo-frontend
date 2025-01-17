@@ -1,8 +1,5 @@
 import React from 'react'
 import Navbar from '../components/Navbar/Navbar'
-import { Route, Routes } from 'react-router-dom'
-import { TaskDrawer } from '../pages'
-
 const HomeRoutes: React.FC = () => {
   return (
     <>
@@ -10,9 +7,6 @@ const HomeRoutes: React.FC = () => {
         <Navbar />
       </div>
       <div>
-        {/* <Routes>
-          <Route path="/task" element={<TaskDrawer isOpen={true} toggleDrawer={() => { }} />} />
-        </Routes> */}
       </div>
     </>
 

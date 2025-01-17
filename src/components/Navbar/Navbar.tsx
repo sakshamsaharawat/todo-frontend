@@ -5,13 +5,14 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AddIcon from '@mui/icons-material/Add';
 import { CssBaseline, IconButton, InputBase, List } from '@mui/material';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { Calendar, StickyWall, Today, Upcoming } from '../../pages/index';
+import { StickyWall, Today, Upcoming } from '../../pages/index';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import './Navbar.css';
 import LogoutIcon from '@mui/icons-material/Logout';
 import TuneIcon from '@mui/icons-material/Tune';
+import MyCalendar from '../../pages/Calendar/Calendar'
 
 const menu: { name: string, path: string, icon: any }[] = [
     { name: "Upcoming", path: "/", icon: <KeyboardDoubleArrowRightIcon style={{ fontSize: "15px" }} /> },
@@ -129,7 +130,7 @@ const Navbar: React.FC = () => {
                     <Routes>
                         <Route path="/" element={<Upcoming />} />
                         <Route path="/today" element={<Today />} />
-                        <Route path="/calendar" element={<Calendar />} />
+                        <Route path="/calendar" element={<MyCalendar />} />
                         <Route path="/sticky-wall" element={<StickyWall />} />
                     </Routes>
                 </div>

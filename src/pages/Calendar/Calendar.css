@@ -1,0 +1,14 @@
+.calendar-component {
+    margin: 5px;
+    width: 192vh;
+    position:fixed;
+    overflow-x: hidden; 
+    color: black;
+    box-sizing: border-box;
+
+}
+.main-calendar {
+    /* border: 2px solid red !important; */
+    overflow-x: hidden; 
+    height: 95vh;
+}
