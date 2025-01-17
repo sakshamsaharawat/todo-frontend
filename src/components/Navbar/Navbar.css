@@ -1,12 +1,5 @@
-.main-component-navbar-content-area {
-    display: flex;
-}
-
 .navbar-drawer {
     overflow: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     background-color: #f4f4f4;
     padding: 20px;
     width: 15%;
@@ -16,78 +9,10 @@
     position: fixed;
 }
 
-.navbar-main-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .main-content-area {
     margin-left: 15.50%;
     width: 100%;
     height: 100%;
-}
-
-.menu-search {
-    display: flex;
-    align-items: center;
-    border: 1px solid rgb(220, 217, 217);
-    margin-top: 8px;
-    padding-left: 5px;
-    border-radius: 5px;
-}
-
-.heading-color {
-    color: #484848
-}
-
-.navbar-task-content {
-    padding: 3px 0px;
-    margin-bottom: 2px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.navbar-task-sub-content {
-    display: flex;
-    font-size: 13px;
-    margin-left: 5px;
-}
-
-.navbar-task-sub-content-name {
-    padding-left: 8px;
-}
-
-.menu-todo-task {
-    margin-top: 15px;
-    border-bottom: 1px solid rgb(220, 217, 217);
-}
-
-.menu-todo-task {
-    color: #525252
-}
-
-.menu-todo-section {
-    margin: 0px 0px;
-    border-bottom: 1px solid rgb(220, 217, 217);
-    padding: 3px 0px;
-}
-
-.menu-list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 5px;
-    margin-top: 5px;
-}
-
-.menu-list-option {
-    display: flex;
-    align-items: center;
-    margin-left: 5px;
-    margin-top: 2px;
 }
 
 .menu-list-option-content {
@@ -97,61 +22,12 @@
     border-radius: 3px
 }
 
-.menu-list p {
-    margin-left: 10px;
-    font-size: 13px;
-}
-
-
-.menu-tags {
-    margin-top: 20px
-}
-
-.menu-tags-options {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 10px;
-}
-
 .menu-tags-options p {
     padding: 2px 5px;
-    margin-right: 5px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    font-size: 13px;
-}
-
-.menu-footer {
-    font-size: 13px;
-    margin-left: 5px
-}
-
-.menu-footer-icon {
-    margin-right: 10px;
-    font-size: 13px;
-}
-
-.menu-footer-option {
-    display: flex
 }
 
 .menu-notification {
     border-radius: 3px;
-    font-size: 12px;
     width: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: #ebebeb
-}
-
-.menu-list-addicon {
-    display: flex;
-    align-items: center;
-    font-size: 13px;
-}
-
-.menu-list-addicon p {
-    margin-left: 2px;
 }

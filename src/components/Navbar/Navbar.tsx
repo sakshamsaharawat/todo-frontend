@@ -1,5 +1,4 @@
 import React from 'react';
-import Inventory2Icon from '@mui/icons-material/Inventory2';
 import PeopleIcon from '@mui/icons-material/People';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AddIcon from '@mui/icons-material/Add';
@@ -12,29 +11,30 @@ import MenuIcon from '@mui/icons-material/Menu';
 import './Navbar.css';
 import LogoutIcon from '@mui/icons-material/Logout';
 import TuneIcon from '@mui/icons-material/Tune';
-import MyCalendar from '../../pages/Calendar/Calendar'
+import MyCalendar from '../../pages/Calendar/Calendar';
+import ListIcon from '@mui/icons-material/List';
 
 const menu: { name: string, path: string, icon: any }[] = [
-    { name: "Upcoming", path: "/", icon: <KeyboardDoubleArrowRightIcon style={{ fontSize: "15px" }} /> },
-    { name: "Today", path: "/today", icon: <Inventory2Icon style={{ fontSize: "15px" }} /> },
-    { name: "Calendar", path: "/calendar", icon: <PeopleIcon style={{ fontSize: "15px" }} /> },
-    { name: "Sticky Wall", path: "/sticky-wall", icon: <MenuBookIcon style={{ fontSize: "15px" }} /> },
+    { name: "Upcoming", path: "/", icon: <KeyboardDoubleArrowRightIcon className='todo-icon' /> },
+    { name: "Today", path: "/today", icon: <ListIcon className='todo-icon' /> },
+    { name: "Calendar", path: "/calendar", icon: <PeopleIcon className='todo-icon' /> },
+    { name: "Sticky Wall", path: "/sticky-wall", icon: <MenuBookIcon className='todo-icon' /> },
 ]
 
 const Navbar: React.FC = () => {
     const navigate = useNavigate();
 
     const drawer = (
-        <div className='navbar-drawer'>
+        <div className='navbar-drawer d-flex f-dC justify-content-space-between'>
             <div>
                 <div>
-                    <div className='navbar-main-heading'>
+                    <div className='d-flex justify-content-center justify-content-space-between'>
                         <h3 className='heading-color'>
                             Menu
                         </h3>
                         <MenuIcon />
                     </div>
-                    <div className='menu-search'>
+                    <div className='menu-search d-flex justify-content-center mt-2 b b-ws border-radius-5'>
                         <IconButton type="button" aria-label="search">
                             <SearchIcon />
                         </IconButton>
@@ -44,75 +44,77 @@ const Navbar: React.FC = () => {
                         />
                     </div>
                 </div>
-                <div className='menu-todo-task'>
+                <div className='b-bottom-ws mt-3'>
                     <List>
-                        <h6>TASKS</h6>
+                        <h6 className='heading-color'>TASKS</h6>
                         {menu.map((item) => (
-                            <div className='navbar-task-content'
+                            <div className='d-flex just justify-content-space-between mt-1 cursor-pointer
+                               justify-content-center'
                                 key={item.name}
                                 onClick={() => navigate(item.path)}
                             >
-                                <div className='navbar-task-sub-content'>
+                                <div className='d-flex ml-1 font-size'>
                                     <p>{item.icon}</p>
-                                    <p className='navbar-task-sub-content-name'>{item.name}</p>
+                                    <p className='ml-2'>{item.name}</p>
                                 </div>
-                                <div className='menu-notification'>12</div>
+                                <div className='menu-notification d-flex justify-content-center align-item-center font-size'>12</div>
                             </div>
                         ))}
                     </List>
                 </div>
-                <div className='menu-todo-section'>
-                    <h6 className='heading-color'>LISTS</h6>
-                    <div className='menu-list'>
-                        <div className='menu-list-option'>
+                <div className='b-bottom-ws'>
+                    <h6 className='heading-color mt-2'>LISTS</h6>
+                    <div className='d-flex justify-content-space-between align-item-center mt-1 font-size'>
+                        <div className='d-flex align-item-center mt-1 ml-1'>
                             <div className='menu-list-option-content'></div>
-                            <p>Personal</p>
+                            <p className='ml-2'>Personal</p>
                         </div>
-                        <div className='menu-notification'>12</div>
+                        <div className='menu-notification d-flex justify-content-center align-item-center font-size d-flex
+                            justify-content-center align-item-center font-size'>12</div>
                     </div>
-                    <div className='menu-list'>
-                        <div className='menu-list-option'>
+                    <div className='d-flex justify-content-space-between align-item-center mt-1 font-size'>
+                        <div className='d-flex align-item-center mt-1 ml-1'>
                             <div className='menu-list-option-content' style={{ backgroundColor: '#66dcec' }}></div>
-                            <p>Work</p>
+                            <p className='ml-2'>Work</p>
                         </div>
-                        <div className='menu-notification'>12</div>
+                        <div className='menu-notification d-flex justify-content-center align-item-center font-size'>12</div>
                     </div>
-                    <div className='menu-list'>
-                        <div className='menu-list-option'>
+                    <div className='d-flex justify-content-space-between align-item-center mt-1 font-size'>
+                        <div className='d-flex align-item-center mt-1 ml-1'>
                             <div className='menu-list-option-content' style={{ backgroundColor: '#ffd43b' }}></div>
-                            <p>List 1</p>
+                            <p className='ml-2'>List 1</p>
                         </div>
-                        <div className='menu-notification'>12</div>
+                        <div className='menu-notification d-flex justify-content-center align-item-center font-size'>12</div>
                     </div>
                     <div>
-                        <div className='menu-list-addicon'>
-                            <div>
-                                <AddIcon />
+                        <div className='d-flex font-size align-item-center mt-1 mb-2'>
+                            <div className='align-item-center'>
+                                <AddIcon className='todo-icon' />
                             </div>
-                            <p >Add New list</p>
+                            <p>Add New list</p>
                         </div>
                     </div>
                 </div>
-                <div className="menu-tags">
+                <div className="mt-2">
                     <h6 className='heading-color'>TAGS</h6>
-                    <div className='menu-tags-options'>
-                        <p style={{ backgroundColor: "#d1eaed" }}>Tag 1</p>
-                        <p style={{ backgroundColor: "#ffdada" }}>Tag 2</p>
-                        <p style={{ backgroundColor: "#ebebeb" }}> + Add Tag</p>
+                    <div className='menu-tags-options d-flex align-item-center f-wrap font-size mt-1'>
+                        <p className='ml-1 border-radius-5' style={{ backgroundColor: "#d1eaed" }}>Tag 1</p>
+                        <p className='ml-1 border-radius-5' style={{ backgroundColor: "#ffdada" }}>Tag 2</p>
+                        <p className='ml-1 border-radius-5' style={{ backgroundColor: "#ebebeb" }}> + Add Tag</p>
                     </div>
                 </div>
             </div>
             <div>
-                <div className="menu-footer">
-                    <div className='menu-footer-option'>
-                        <div className='menu-footer-icon'>
-                            <TuneIcon />
+                <div className="font-size">
+                    <div className='d-flex'>
+                        <div >
+                            <TuneIcon className='todo-icon mr-1' />
                         </div>
                         <p>Settings</p>
                     </div>
-                    <div className='menu-footer-option'>
-                        <div className='menu-footer-icon'>
-                            <LogoutIcon />
+                    <div className='d-flex'>
+                        <div>
+                            <LogoutIcon className='todo-icon mr-1' />
                         </div>
                         <p>Sign out</p>
                     </div>
@@ -123,7 +125,7 @@ const Navbar: React.FC = () => {
 
     return (
         <>
-            <div className="main-component-navbar-content-area">
+            <div className='d-flex'>
                 <CssBaseline />
                 <div>{drawer}</div>
                 <div className="main-content-area">
@@ -135,7 +137,6 @@ const Navbar: React.FC = () => {
                     </Routes>
                 </div>
             </div>
-
         </>
     )
 }

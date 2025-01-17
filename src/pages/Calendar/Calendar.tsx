@@ -8,7 +8,7 @@ const localizer = momentLocalizer(moment)
 const events = [
   {
     title: "Session 1: Marketing Sprint",
-    start: new Date(2025, 1, 16, 9, 0), // February 16, 2022, 9:00 AM
+    start: new Date(2025, 1, 16, 9, 0), 
     end: new Date(2025, 1, 16, 10, 0),
   },
   {
