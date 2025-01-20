@@ -1,42 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
-import './Task.css'
-
+import './Task.css';
 
 type TaskDrawerProps = {
   isOpen: boolean;
   toggleDrawer: (isOpen: boolean) => void;
-  taskDetails?: any; // Update with your task details type
+  taskDetails?: any;
 };
 
-const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetails }) => {
+const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer }) => {
   const [selectedValue, setSelectedValue] = useState<string>('');
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
   };
 
-
-
   return (
     <Drawer anchor="right" open={isOpen} onClose={() => toggleDrawer(false)}>
       <div
-        className="main-task"
-        style={{ width: "350px" }}
+        className="main-task p-3"
       >
-        <div className="task-header">
-          <h3 className="task-heading">Task Details:</h3>
+        <div className="d-flex align-item-center justify-content-space-between p-1">
+          <h3 className="heading-color">Task Details:</h3>
           <CloseIcon
-            style={{ cursor: 'pointer' }}
+            className='cursor-pointer'
             onClick={() => toggleDrawer(false)}
           />
         </div>
-        <input className="task-input" type='text' placeholder='Renew driver licence' />
-        <textarea className='task-description' placeholder='Description' />
-        <div className='task-content'>
-          <label style={{ marginRight: "80px" }}>List</label>
-          <select
+        <input className="task-input mt-1 border-radius-5" type='text' placeholder='Renew driver licence' />
+        <textarea className='task-description p-1 mt-2 border-radius-5 font-size' placeholder='Description' />
+        <div className='mt-2 font-size'>
+          <label className='task-list'>List</label>
+          <select className='font-size cursor-pointer border-radius-5'
             name="list"
             id="list"
             value={selectedValue}
@@ -46,9 +42,9 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
             <option value="work">Work</option>
             <option value="list">List</option>
           </select>
-          <div className='task-content'>
-            <label style={{ marginRight: "47px", }}>Due date</label>
-            <select
+          <div className='task-content mt-1'>
+            <label className='mr-5'>Due date</label>
+            <select className='font-size cursor-pointer border-radius-5'
               name="duedate"
               id="date"
               value={selectedValue}
@@ -60,34 +56,34 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
             </select>
           </div>
         </div>
-        <div className='task-tags'>
+        <div className='task-tags d-flex mt-2 font-size'>
           <p>Tags</p>
-          <div className='sub-task-tags'>
-            <span className='tag'>Tag 1</span>
-            <span className='add-task-tags'> + Add Tag </span>
+          <div className='sub-task-tags d-flex f-wrap'>
+            <span className='tag mr-1 font-size border-radius-5 mb-1'>Tag 1</span>
+            <span className='add-task-tags ml-1'> + Add Tag</span>
           </div>
         </div>
-        <div className='main-subtask'>
-          <h3 className='task-heading'>Subtasks:</h3>
+        <div className='mt-3'>
+          <h3 className='heading-color'>Subtasks:</h3>
           <div>
-            <input className="subtask-input" type='text' placeholder='+ Add New Subtask' />
+            <input className="subtask-input ml-2 mt-1 font-size border-radius-5" type='text' placeholder='+ Add New Subtask' />
           </div>
-          <div className='subtask-content'>
+          <div className='mt-2 ml-4 d-flex align-item-center font-size'>
             <div className='d-flex'>
               <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
             </div>
-            <div className='subtask-content-task'>
+            <div className='ml-4'>
               <p> Substask</p>
             </div>
           </div>
         </div>
-        <div className='task-footer'>
-          <div className='delete-task-btn'>
+        <div className='task-footer d-flex'>
+          <button type="button" className='delete-task-btn border-radius-5'>
             Delete Task
-          </div>
-          <div className='change-task-btn'>
+          </button>
+          <button type="button" className='change-task-btn border-radius-5'>
             Save changes
-          </div>
+          </button>
         </div>
       </div>
     </Drawer>

@@ -13,64 +13,19 @@
 
 .today-main-section {
     border: 2px solid whitesmoke;
-    padding: 20px;
     border-radius: 10px;
 }
 
 .today-add-input {
     border: 1px solid whitesmoke;
-
-    outline: none!important;
-    margin-top: 10px;
-    font-size: 13px;
+    outline: none !important;
     width: 100%;
-    height:40px
-}
-
-.today-main-todo {
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 2px solid whitesmoke;
-    font-size: 13px;
-    flex-wrap: wrap;
-}
-
-.todo-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-    margin-left: 5px;
-}
-
-.todo-sub-content {
-    margin-left: 15px;
-    display: flex;
-}
-
-.todo-checkbox {
-    display: flex;
-}
-
-.today-content-title {
-    margin-left: 20px;
-}
-
-.todo-icon {
-    height: 15px !important;
+    height: 40px;
+    padding-left:20px ;
 }
 
 .todo-main-list {
-    display: flex;
-    align-items: center;
     margin-left: 50px;
-    margin-top: 2px;
-}
-
-.todo-option {
-    display: flex;
-    margin-right: 20px;
-    align-items: center;
 }
 
 .todo-option-substask-task {
@@ -78,9 +33,6 @@
     height: 12px;
     width: 18px;
     border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .todo-option-substask-list {
@@ -89,32 +41,22 @@
     border-radius: 3px;
 }
 
-.todo-option-substask-list-title {
-    margin-left: 5px;
-}
-
 .today-sub-section {
-    display: flex;
     height: 300px;
-    margin-top: 15px;
     gap: 15px;
+    padding-left: 15px;
 }
 
-.this-weak-tomoarrow-container {
-    align-items: center;
-    cursor: pointer;
-    flex-wrap: wrap;
+.this-week-tomoarrow-container {
     overflow-y: scroll;
     width: 50%;
     border: 2px solid whitesmoke;
     border-radius: 10px;
-    padding-left: 20px;
-    padding-right: 10px;
 }
 
-.todo-list-container {
-    border-bottom: 2px solid whitesmoke;
-    align-items: center;
-    cursor: pointer;
-    flex-wrap: wrap;
+.today-sub-section-title {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: white;
 }

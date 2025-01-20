@@ -1,5 +1,6 @@
-import React from 'react'
-import Navbar from '../components/Navbar/Navbar'
+import React from 'react';
+import Navbar from '../components/Navbar/Navbar';
+
 const HomeRoutes: React.FC = () => {
   return (
     <>
@@ -9,8 +10,7 @@ const HomeRoutes: React.FC = () => {
       <div>
       </div>
     </>
-
   )
 }
 
-export default HomeRoutes
+export default HomeRoutes;
