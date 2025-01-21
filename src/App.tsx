@@ -1,14 +1,13 @@
-import { Route,Routes } from 'react-router-dom';
 import './App.css';
+import Navbar from './components/Navbar/Navbar';
 import { HomeRoutes } from './routes';
 
 function App() {
   return (
-    <div>
-      <div>
-      <Routes>
-        <Route path="*" element={<HomeRoutes />}></Route>
-        </Routes>
+    <div >
+      <div className='main-component p-2 ' style={{ display: "grid", gridTemplateColumns: "auto 1fr"}}>
+        <Navbar />
+        <HomeRoutes />
       </div>
     </div>
   )

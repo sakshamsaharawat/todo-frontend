@@ -1,11 +1,8 @@
 .calendar-component {
     margin: 5px;
-    width: 192vh;
-    position:fixed;
     overflow-x: hidden; 
     color: black;
     box-sizing: border-box;
-
 }
 
 .main-calendar {

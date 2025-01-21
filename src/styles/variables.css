@@ -1,0 +1,11 @@
+.main-heading-color {
+    font-size: 30px;
+    font-weight: 1000 !important;
+    color: #212529;
+}
+.sub-heading-color {
+    color: #464646
+}
+.navbar-background-color {
+    background-color: #f4f4f4;
+}

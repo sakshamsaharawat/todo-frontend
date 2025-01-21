@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
 import './Task.css';
+import { TodoItem } from '../../types/types-todo';
 
 type TaskDrawerProps = {
   isOpen: boolean;
   toggleDrawer: (isOpen: boolean) => void;
-  taskDetails?: any;
+  taskDetails: TodoItem;
 };
 
-const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer }) => {
+const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetails }) => {
   const [selectedValue, setSelectedValue] = useState<string>('');
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
   };
-
   return (
     <Drawer anchor="right" open={isOpen} onClose={() => toggleDrawer(false)}>
       <div
-        className="main-task p-3"
+        className="main-task p-3 navbar-background-color "
       >
         <div className="d-flex align-item-center justify-content-space-between p-1">
           <h3 className="heading-color">Task Details:</h3>
@@ -28,8 +28,9 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer }) => {
             onClick={() => toggleDrawer(false)}
           />
         </div>
-        <input className="task-input mt-1 border-radius-5" type='text' placeholder='Renew driver licence' />
-        <textarea className='task-description p-1 mt-2 border-radius-5 font-size' placeholder='Description' />
+        <input className="task-input mt-1 border-radius-5" type='text' value={taskDetails?.title} />
+        <textarea className='task-description p-1 mt-2 border-radius-5 font-size'
+          placeholder='Description' value={taskDetails?.description} />
         <div className='mt-2 font-size'>
           <label className='task-list'>List</label>
           <select className='font-size cursor-pointer border-radius-5'
@@ -38,7 +39,7 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer }) => {
             value={selectedValue}
             onChange={handleChange}
           >
-            <option value="personal">Personal</option>
+            <option value={taskDetails?.list_type?.title} label={taskDetails?.list_type?.title}></option>
             <option value="work">Work</option>
             <option value="list">List</option>
           </select>
@@ -50,7 +51,7 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer }) => {
               value={selectedValue}
               onChange={handleChange}
             >
-              <option value="01-01-25">01-01-25</option>
+              <option value={taskDetails?.date}>{taskDetails?.date}</option>
               <option value="16-01-25">16-01-25</option>
               <option value="26-01-25">26-01-25</option>
             </select>
@@ -59,8 +60,13 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer }) => {
         <div className='task-tags d-flex mt-2 font-size'>
           <p>Tags</p>
           <div className='sub-task-tags d-flex f-wrap'>
-            <span className='tag mr-1 font-size border-radius-5 mb-1'>Tag 1</span>
-            <span className='add-task-tags ml-1'> + Add Tag</span>
+            {taskDetails?.tag?.map((tag, index) => (
+              <span key={index} className='tag mr-1 font-size border-radius-5 mb-1'
+                style={{ backgroundColor: tag?.color_code }}
+              >
+                {tag?.tag_title}</span>
+            ))}
+            <span className='add-task-tags ml-1 border-radius-5 d-flex align-item-center'> + Add Tag</span>
           </div>
         </div>
         <div className='mt-3'>

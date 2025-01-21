@@ -8,7 +8,7 @@ const StickyWall: React.FC = () => {
     const navigate = useNavigate()
     return (
         <div>
-            <h1 className="sticky-wall-heading">Sticky Wall</h1>
+            <h1 className="main-heading-color ml-4">Sticky Wall</h1>
             <section className="sticky-wall-main d-flex f-wrap ml-3">
                 {StickyWallData.map((item) => (
                     <div

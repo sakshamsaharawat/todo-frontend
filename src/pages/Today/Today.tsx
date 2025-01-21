@@ -19,18 +19,18 @@ const Today: React.FC = () => {
     if (!isOpen) setSelectedTask(null);
   };
   return (
-    <div className='today-main-component'>
+    <div>
       <div className='d-flex align-item-center'>
-        <h1 className='today-main-title ml-4 mt-2'>Today</h1>
+        <h1 className='main-heading-color ml-4 mt-2'>Today</h1>
         <div className='today-notification d-flex justify-content-center mt-1 border-radius-5'>5</div>
       </div>
       <div className='p-2 mt-4'>
+        <div className="box">
+          <input placeholder="+ Add New Task" id="add-new-task" className='today-add-input' />
+        </div>
         <section className='today-section'>
-          <div className="box">
-            <input placeholder="+ Add New Task" id="add-new-task" className='today-add-input' />
-          </div>
           {todoData.map((item) => (
-            <div className='font-size b-bottom-ws cursor-pointer align-items-center'
+            <div className='today-todo-component font-size b-bottom-ws cursor-pointer align-items-center'
               onClick={() => handleOpenTask(item)}
             >
               <div className='today-todo-content d-flex align-items-center mt-2 justify-content-space-between'>
@@ -53,7 +53,7 @@ const Today: React.FC = () => {
                     <p>{item.date}</p>
                   </div>}
                   {item?.list_subtasks && <div className='d-flex align-item-center ml-1'>
-                    <span className='today-todo-option-task d-flex align-item-center justify-content-center'></span>
+                    <span className='today-todo-option-task d-flex align-item-center justify-content-center'>{item?.list_subtasks?.task}</span>
                     <span className='ml-1'>{item.list_subtasks.task_title}</span>
                   </div>}
                   {item?.list_type && <div className='d-flex align-item-center ml-1'>

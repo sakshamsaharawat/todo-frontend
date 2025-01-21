@@ -6,9 +6,9 @@ import { todoData } from '../../data/todoData';
 
 const Upcoming: React.FC = () => {
   return (
-    <div className='upcoming-main-component'>
+    <div className='upcoming-main-component' style={{maxHeight: "100vh"}}>
       <div className="d-flex align-item-center">
-        <h1 className='main-heading ml-4'>Upcoming</h1>
+        <h1 className='main-heading-color ml-4'>Upcoming</h1>
         <div className='upcoming-notification d-flex justify-content-center mt-1 border-radius-5 b-ws heading-color'>12</div>
       </div>
       <div className="mt-6">
@@ -58,7 +58,7 @@ const Upcoming: React.FC = () => {
           <section className='this-week-tomoarrow-container cursor-pointer'>
             <div className='p-4'>
               <div className='today-sub-section-title'>
-                <h3 className='heading-color'>Tomorrow</h3>
+                <h3 className='sub-heading-color'>Tomorrow</h3>
                 <div>
                   <input placeholder="+ Add New Task" id="add-new-task" className='today-add-input' />
                 </div>
@@ -87,7 +87,7 @@ const Upcoming: React.FC = () => {
           <section className='this-week-tomoarrow-container cursor-pointer'>
             <div className='p-4 border'>
               <div className='today-sub-section-title'>
-                <h3 className='heading-color'>This Week</h3>
+                <h3 className='sub-heading-color'>This Week</h3>
                 <div className="box">
                   <input placeholder="+ Add New Task" id="add-new-task" className='today-add-input' />
                 </div>

@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PeopleIcon from '@mui/icons-material/People';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AddIcon from '@mui/icons-material/Add';
 import { CssBaseline, IconButton, InputBase, List } from '@mui/material';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import { StickyWall, Today, Upcoming } from '../../pages/index';
+import { useNavigate } from 'react-router-dom';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import './Navbar.css';
 import LogoutIcon from '@mui/icons-material/Logout';
 import TuneIcon from '@mui/icons-material/Tune';
-import MyCalendar from '../../pages/Calendar/Calendar';
 import ListIcon from '@mui/icons-material/List';
 
 const menu: { name: string, path: string, icon: any }[] = [
@@ -23,16 +21,21 @@ const menu: { name: string, path: string, icon: any }[] = [
 
 const Navbar: React.FC = () => {
     const navigate = useNavigate();
+    const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+
+    const toggleDrawer = () => {
+        setIsDrawerOpen(!isDrawerOpen)
+    }
 
     const drawer = (
-        <div className='navbar-drawer d-flex f-dC justify-content-space-between'>
+        <div className='navbar-drawer d-flex f-dC justify-content-space-between navbar-background-color'>
             <div>
                 <div>
                     <div className='d-flex justify-content-center justify-content-space-between'>
-                        <h3 className='heading-color'>
+                        <h3 className='sub-heading-color'>
                             Menu
                         </h3>
-                        <MenuIcon />
+                        <MenuIcon onClick={toggleDrawer} className='cursor-pointer' />
                     </div>
                     <div className='menu-search d-flex justify-content-center mt-2 b b-ws border-radius-5'>
                         <IconButton type="button" aria-label="search">
@@ -46,7 +49,7 @@ const Navbar: React.FC = () => {
                 </div>
                 <div className='b-bottom-ws mt-3'>
                     <List>
-                        <h6 className='heading-color'>TASKS</h6>
+                        <h6 className='sub-heading-color'>TASKS</h6>
                         {menu.map((item) => (
                             <div className='d-flex just justify-content-space-between mt-1 cursor-pointer
                                justify-content-center'
@@ -63,7 +66,7 @@ const Navbar: React.FC = () => {
                     </List>
                 </div>
                 <div className='b-bottom-ws'>
-                    <h6 className='heading-color mt-2'>LISTS</h6>
+                    <h6 className='sub-heading-color mt-2'>LISTS</h6>
                     <div className='d-flex justify-content-space-between align-item-center mt-1 font-size'>
                         <div className='d-flex align-item-center mt-1 ml-1'>
                             <div className='menu-list-option-content'></div>
@@ -96,7 +99,7 @@ const Navbar: React.FC = () => {
                     </div>
                 </div>
                 <div className="mt-2">
-                    <h6 className='heading-color'>TAGS</h6>
+                    <h6 className='sub-heading-color'>TAGS</h6>
                     <div className='menu-tags-options d-flex align-item-center f-wrap font-size mt-1'>
                         <p className='ml-1 border-radius-5' style={{ backgroundColor: "#d1eaed" }}>Tag 1</p>
                         <p className='ml-1 border-radius-5' style={{ backgroundColor: "#ffdada" }}>Tag 2</p>
@@ -104,20 +107,18 @@ const Navbar: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                <div className="font-size">
-                    <div className='d-flex'>
-                        <div >
-                            <TuneIcon className='todo-icon mr-1' />
-                        </div>
-                        <p>Settings</p>
+            <div className="font-size">
+                <div className='d-flex'>
+                    <div >
+                        <TuneIcon className='todo-icon mr-1' />
                     </div>
-                    <div className='d-flex'>
-                        <div>
-                            <LogoutIcon className='todo-icon mr-1' />
-                        </div>
-                        <p>Sign out</p>
+                    <p>Settings</p>
+                </div>
+                <div className='d-flex'>
+                    <div>
+                        <LogoutIcon className='todo-icon mr-1' />
                     </div>
+                    <p>Sign out</p>
                 </div>
             </div>
         </div>
@@ -125,19 +126,15 @@ const Navbar: React.FC = () => {
 
     return (
         <>
-            <div className='d-flex'>
+            <div>
                 <CssBaseline />
-                <div>{drawer}</div>
-                <div className="main-content-area">
-                    <Routes>
-                        <Route path="/" element={<Upcoming />} />
-                        <Route path="/today" element={<Today />} />
-                        <Route path="/calendar" element={<MyCalendar />} />
-                        <Route path="/sticky-wall" element={<StickyWall />} />
-                    </Routes>
-                </div>
+                {isDrawerOpen ? (
+                    <div>{drawer}</div>
+                ) : (
+                    <div><MenuIcon onClick={toggleDrawer} className='menu-icon-toggle cursor-pointer' /></div>
+                )}
             </div>
         </>
     )
 }
-export default Navbar
+export default Navbar;
