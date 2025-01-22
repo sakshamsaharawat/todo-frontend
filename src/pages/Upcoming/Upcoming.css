@@ -57,4 +57,5 @@
 
 .upcoming-main-component {
     overflow-y: auto;
+    height: 100vh;
 }
