@@ -14,9 +14,9 @@ import ListIcon from '@mui/icons-material/List';
 
 const menu: { name: string, path: string, icon: any }[] = [
     { name: "Upcoming", path: "/", icon: <KeyboardDoubleArrowRightIcon className='todo-icon' /> },
-    { name: "Today", path: "/today", icon: <ListIcon className='todo-icon' /> },
-    { name: "Calendar", path: "/calendar", icon: <PeopleIcon className='todo-icon' /> },
-    { name: "Sticky Wall", path: "/sticky-wall", icon: <MenuBookIcon className='todo-icon' /> },
+    { name: "Today", path: "/todo/today", icon: <ListIcon className='todo-icon' /> },
+    { name: "Calendar", path: "/todo/calendar", icon: <PeopleIcon className='todo-icon' /> },
+    { name: "Sticky Wall", path: "/todo/sticky-wall", icon: <MenuBookIcon className='todo-icon' /> },
 ]
 
 const Navbar: React.FC = () => {

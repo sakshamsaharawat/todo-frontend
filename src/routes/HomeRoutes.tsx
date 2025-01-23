@@ -1,20 +1,17 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { MyCalendar, StickyWall, Today, Upcoming } from '../pages';
+import { Route, Routes } from 'react-router-dom'
+import { Home, SignUp } from '../pages'
+import Login from '../pages/Login/Login'
 
 const HomeRoutes: React.FC = () => {
   return (
-    <>
-      <div>
-        <Routes>
-          <Route path="/" element={<Upcoming />} />
-          <Route path="/today" element={<Today />} />
-          <Route path="/calendar" element={<MyCalendar />} />
-          <Route path="/sticky-wall" element={<StickyWall />} />
-        </Routes>
-      </div>
-    </>
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path='/signup' element={<SignUp/>}></Route>
+      </Routes>
+    </div>
   )
 }
 
-export default HomeRoutes;
+export default HomeRoutes

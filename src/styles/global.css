@@ -85,6 +85,10 @@
     font-size: 13px !important;
 }
 
+.font-weight-6 {
+    font-weight: bold !important;
+}
+
 .todo-icon {
     height: 15px !important;
 }
@@ -132,6 +136,14 @@
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.position-relative {
+    position: relative;
 }
 
 .b-bottom-ws {

@@ -3,9 +3,22 @@
     font-weight: 1000 !important;
     color: #212529;
 }
+
 .sub-heading-color {
     color: #464646
 }
+
 .navbar-background-color {
     background-color: #f4f4f4;
+}
+
+.black-color {
+    color: black;
+}
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --font-size-large: 1.5rem;
+    --error-color: red;
 }

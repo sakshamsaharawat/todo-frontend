@@ -1,14 +1,15 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
+import TodoRoutes from './routes/TodoRoutes';
 import { HomeRoutes } from './routes';
 
 function App() {
   return (
-    <div >
-      <div className='main-component p-2 ' style={{ display: "grid", gridTemplateColumns: "auto 1fr"}}>
-        <Navbar />
-        <HomeRoutes />
-      </div>
+    <div>
+      <Routes>
+        <Route path="/todo*" element={<TodoRoutes />} />
+        <Route path="/*" element={<HomeRoutes />} />
+      </Routes>
     </div>
   )
 }

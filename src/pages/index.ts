@@ -5,3 +5,5 @@ export { default as StickyWall } from './StickyWall/StickyWall';
 export { default as List } from './List/List';
 export { default as TaskDrawer } from './Task/Task';
 export { default as MyCalendar } from './Calendar/Calendar';
+export { default as login } from './Login/Login';
+export { default as SignUp } from './SignUp/SignUp';
