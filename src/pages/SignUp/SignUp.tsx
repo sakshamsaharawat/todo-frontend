@@ -1,61 +1,29 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './SignUp.css';
+import { useFormik } from 'formik';
+import { signupValidation } from '../../validations/signup.validate';
 
 const SignUp: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   console.log("showPassword", showPassword)
   console.log("setShowPassword", setShowPassword)
-  const [errors, setError] = useState<{ firstName?: string; lastName?: string; email?: string; password?: string }>({});
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: ''
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    },
+    validationSchema: signupValidation,
+    onSubmit: (values) => {
+      console.log("User data:", values);
+      alert("Login Successfully!");
+    },
   });
 
-  const handleInputChange = (e: any): void => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  const handleValidation = () => {
-    const newErrors: { firstName?: string; lastName?: string; email?: string; password?: string } = {};
-
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = "Firstname is required.";
-    } else if (formData.firstName.length < 3) {
-      newErrors.firstName = "Enter a valid Firstname.";
-    }
-    if (!formData.lastName) {
-      newErrors.lastName = "Lastname is required.";
-    } else if (formData.lastName.length < 3) {
-      newErrors.lastName = "Enter a valid Lastname.";
-    }
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required.";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email.trim())) {
-      newErrors.email = "Enter a valid email address.";
-    }
-    if (!formData.password.trim()) {
-      newErrors.password = "Password cannot be empty or just spaces.";
-    } else if (/\s/.test(formData.password.trim())) {
-      newErrors.password = "Password cannot contain spaces.";
-    } else if (formData.password.length < 4) {
-      newErrors.password = "Password must be at least 4 characters long.";
-    }
-
-    setError(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-  const handleSumbit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (handleValidation()) {
-      console.log("user Data", formData)
-      alert("Sign Up Successfully!")
-    }
-  };
-
   return (
-    <form onSubmit={handleSumbit}>
+    <form onSubmit={formik.handleSubmit}>
       <div className='main-signup-component d-flex justify-content-center align-item-center'>
         <div className='sub-signup-component border-radius-10 b-ws p-5'>
           <div>
@@ -64,41 +32,47 @@ const SignUp: React.FC = () => {
               name='firstName'
               type='text'
               placeholder='Enter your first name'
-              value={formData.firstName}
-              onChange={handleInputChange}
+              value={formik.values.firstName}
+              onChange={formik.handleChange}
               className='signup-input mt-3 border-radius-5 p-2 b-ws'
             />
-            {errors.firstName && <p className='text-error border-error'>{errors.firstName}</p>}
+            {formik.touched.firstName && formik.errors.firstName && (
+              <span className='text-error'>{formik.errors.firstName}</span>
+            )}
           </div>
           <div>
             <input
               name="lastName"
               type='text'
               placeholder='Enter your last name'
-              value={formData.lastName}
-              onChange={handleInputChange}
+              value={formik.values.lastName}
+              onChange={formik.handleChange}
               className='signup-input mt-3 border-radius-5 p-2 b-ws'
             />
-            {errors.lastName && <p className='text-error border-error'>{errors.lastName}</p>}
+            {formik.touched.lastName && formik.errors.lastName && (
+              <span className='text-error'>{formik.errors.lastName}</span>
+            )}
           </div>
           <div>
             <input
               name="email"
               type='text'
               placeholder='Enter your email'
-              value={formData.email}
-              onChange={handleInputChange}
+              value={formik.values.email}
+              onChange={formik.handleChange}
               className='login-input mt-3 border-radius-5 p-2 b-ws'
             />
-            {errors.email && <p className='text-error border-error'>{errors.email}</p>}
+            {formik.touched.email && formik.errors.email && (
+              <span className='text-error'>{formik.errors.email}</span>
+            )}
           </div>
           <div className="position-relative">
             <input
               name="password"
               type={showPassword ? 'text' : 'password'}
               placeholder="Enter your password"
-              value={formData.password}
-              onChange={handleInputChange}
+              value={formik.values.password}
+              onChange={formik.handleChange}
               className="signup-input mt-3 border-radius-5 p-2 b-ws"
             />
             <button
@@ -109,7 +83,9 @@ const SignUp: React.FC = () => {
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
-            {errors.password && <p className="text-error border-error">{errors.password}</p>}
+            {formik.touched.password && formik.errors.password && (
+              <span className='text-error'>{formik.errors.password}</span>
+            )}
           </div>
           <button className='signup-btn mt-4 border-radius-5 d-flex justify-content-center align-item-center'>
             Sign up
