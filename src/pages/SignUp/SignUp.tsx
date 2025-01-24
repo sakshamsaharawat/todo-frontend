@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './SignUp.css';
 
-
 const SignUp: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
+  console.log("showPassword", showPassword)
+  console.log("setShowPassword", setShowPassword)
   const [errors, setError] = useState<{ firstName?: string; lastName?: string; email?: string; password?: string }>({});
   const [formData, setFormData] = useState({
     firstName: "",
