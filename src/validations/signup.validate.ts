@@ -1,12 +1,12 @@
 import * as Yup from "yup";
 
 export const signupValidation = Yup.object({
-    firstName: Yup.string()
+    first_name: Yup.string()
         .trim()
         .required("First Name is required")
         .matches(/^\S*$/, "First Name cannot contain spaces.")
         .min(3, "First Name must be at least 3 characters'"),
-    lastName: Yup.string()
+    last_name: Yup.string()
         .trim()
         .required("Last Name is required")
         .matches(/^\S*$/, "Last Name cannot contain spaces.")

@@ -3,22 +3,33 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './SignUp.css';
 import { useFormik } from 'formik';
 import { signupValidation } from '../../validations/signup.validate';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { register } from '../../State/Auth/Action';
+import { RootState } from '../../State/Auth/store';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
+
 
 const SignUp: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
-  console.log("showPassword", showPassword)
-  console.log("setShowPassword", setShowPassword)
+  const { auth } = useSelector((store: RootState) => store)
+  // console.log("user", auth)
+  const navigate = useNavigate();
+  const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       email: "",
       password: "",
     },
-    validationSchema: signupValidation,
+    validationSchema: signupValidation, 
     onSubmit: (values) => {
-      console.log("User data:", values);
+      console.log("Values", values);
+      dispatch(register(values))
       alert("Login Successfully!");
+      // navigate("/todo/upcoming")
     },
   });
 
@@ -29,28 +40,28 @@ const SignUp: React.FC = () => {
           <div>
             <h1 className='black-color font-weight-6'> Sign up</h1>
             <input
-              name='firstName'
+              name='first_name'
               type='text'
               placeholder='Enter your first name'
-              value={formik.values.firstName}
+              value={formik.values.first_name}
               onChange={formik.handleChange}
               className='signup-input mt-3 border-radius-5 p-2 b-ws'
             />
-            {formik.touched.firstName && formik.errors.firstName && (
-              <span className='text-error'>{formik.errors.firstName}</span>
+            {formik.touched.first_name && formik.errors.first_name && (
+              <span className='text-error'>{formik.errors.first_name}</span>
             )}
           </div>
           <div>
             <input
-              name="lastName"
+              name="last_name"
               type='text'
               placeholder='Enter your last name'
-              value={formik.values.lastName}
+              value={formik.values.last_name}
               onChange={formik.handleChange}
               className='signup-input mt-3 border-radius-5 p-2 b-ws'
             />
-            {formik.touched.lastName && formik.errors.lastName && (
-              <span className='text-error'>{formik.errors.lastName}</span>
+            {formik.touched.last_name && formik.errors.last_name && (
+              <span className='text-error'>{formik.errors.last_name}</span>
             )}
           </div>
           <div>
@@ -87,9 +98,14 @@ const SignUp: React.FC = () => {
               <span className='text-error'>{formik.errors.password}</span>
             )}
           </div>
-          <button className='signup-btn mt-4 border-radius-5 d-flex justify-content-center align-item-center'>
+          <button
+           type="submit" 
+            className='signup-btn mt-4 border-radius-5 d-flex justify-content-center align-item-center'>
             Sign up
           </button>
+          <p className='mt-4 d-flex justify-content-center align-item-center font-size'>
+            Already have an account ? <a href='/login'>Sign in</a>
+          </p>
         </div>
       </div>
     </form>
