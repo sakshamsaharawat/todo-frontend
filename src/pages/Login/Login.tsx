@@ -3,8 +3,15 @@ import './Login.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useFormik } from "formik";
 import { loginValidation } from '../../validations/login.validate';
+import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '../../store';
+import { AnyAction } from 'redux';
+import { useDispatch } from 'react-redux';
+import { getUser, login } from '../../State/Auth/Action';
+import { toast } from 'react-toastify';
 
 const Login: React.FC = () => {
+    const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
     const formik = useFormik({
         initialValues: {
@@ -12,9 +19,19 @@ const Login: React.FC = () => {
             password: "",
         },
         validationSchema: loginValidation,
-        onSubmit: (values) => {
-            console.log("User data:", values);
-            alert("Login Successfully!");
+        onSubmit: async (values) => {
+            try {
+                const result = await dispatch(login(values))
+                if (result.success) {
+                    toast.success("login successfully")
+                    dispatch(getUser(result.token))
+                } else {
+                    throw new Error("Login failed. Please try again.");
+                }
+            } catch (error: any) {
+                console.error(error);
+                toast.error(error.message || "Login failed.");
+            }
         },
     });
 
@@ -70,6 +87,7 @@ const Login: React.FC = () => {
                         <p className='mt-4 d-flex justify-content-center align-item-center font-size'>
                             Dont't have an account? <a href='/signup'>Sign up</a>
                         </p>
+
                     </div>
                 </div>
             </div>

@@ -6,15 +6,17 @@ import { signupValidation } from '../../validations/signup.validate';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../State/Auth/Action';
-import { RootState } from '../../State/Auth/store';
+import { RootState } from '../../store';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
+import { toast } from 'react-toastify';
+
 
 
 const SignUp: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { auth } = useSelector((store: RootState) => store)
-  // console.log("user", auth)
+  console.log("user", auth)
   const navigate = useNavigate();
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const formik = useFormik({
@@ -24,12 +26,22 @@ const SignUp: React.FC = () => {
       email: "",
       password: "",
     },
-    validationSchema: signupValidation, 
-    onSubmit: (values) => {
+    validationSchema: signupValidation,
+    onSubmit: async (values) => {
       console.log("Values", values);
-      dispatch(register(values))
-      alert("Login Successfully!");
-      // navigate("/todo/upcoming")
+      try {
+        const result = await dispatch(register(values));
+        if (result.success) {
+          toast.success("User register successfully.")
+          navigate("/todo/upcoming")
+        } else {
+          console.log("Registration failed:", result.message)
+          toast.error(result.message || "Registration failed. Please try again.")
+        }
+      } catch (error) {
+        console.error("Unexpected error during registration:", error);
+        toast.error('An unexpected error occurred. Please try again later.')
+      }
     },
   });
 
@@ -99,7 +111,7 @@ const SignUp: React.FC = () => {
             )}
           </div>
           <button
-           type="submit" 
+            type="submit"
             className='signup-btn mt-4 border-radius-5 d-flex justify-content-center align-item-center'>
             Sign up
           </button>
