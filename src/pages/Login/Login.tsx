@@ -9,8 +9,10 @@ import { AnyAction } from 'redux';
 import { useDispatch } from 'react-redux';
 import { getUser, login } from '../../State/Auth/Action';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
+    const navigate = useNavigate();
     const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
     const formik = useFormik({
@@ -25,6 +27,7 @@ const Login: React.FC = () => {
                 if (result.success) {
                     toast.success("login successfully")
                     dispatch(getUser(result.token))
+                    navigate("/todo/upcoming")
                 } else {
                     throw new Error("Login failed. Please try again.");
                 }

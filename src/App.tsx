@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/todo*" element={<TodoRoutes />} />
+        <Route path="/todo/*" element={<TodoRoutes />} />
         <Route path="/*" element={<HomeRoutes />} />
       </Routes>
       <ToastContainer

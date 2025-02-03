@@ -26,3 +26,9 @@
 .menu-icon-toggle {
     margin-top: 20px;
 }
+
+.list-content {
+    overflow-y: auto;
+    height: 15vh;
+    scrollbar-width: none;
+}

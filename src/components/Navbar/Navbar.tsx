@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PeopleIcon from '@mui/icons-material/People';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AddIcon from '@mui/icons-material/Add';
@@ -11,6 +11,12 @@ import './Navbar.css';
 import LogoutIcon from '@mui/icons-material/Logout';
 import TuneIcon from '@mui/icons-material/Tune';
 import ListIcon from '@mui/icons-material/List';
+import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '../../store';
+import { AnyAction } from 'redux';
+import { getList } from '../../State/List/Action';
+import { useSelector } from 'react-redux';
 
 const menu: { name: string, path: string, icon: any }[] = [
     { name: "Upcoming", path: "/todo/upcoming", icon: <KeyboardDoubleArrowRightIcon className='todo-icon' /> },
@@ -20,12 +26,23 @@ const menu: { name: string, path: string, icon: any }[] = [
 ]
 
 const Navbar: React.FC = () => {
+    const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
+    const { user, jwt } = useSelector((store: any) => store.auth);
+    const { list } = useSelector((store: RootState) => store);
+    console.log("list----", list)
     const navigate = useNavigate();
     const [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
     const toggleDrawer = () => {
         setIsDrawerOpen(!isDrawerOpen)
     }
+    useEffect(() => {
+        if (jwt && user?._id) {
+            console.log("user._id----", user._id)
+            dispatch(getList());
+        }
+    }, [dispatch, user, jwt, navigate]);
+
 
     const drawer = (
         <div className='navbar-drawer d-flex f-dC justify-content-space-between navbar-background-color'>
@@ -67,27 +84,16 @@ const Navbar: React.FC = () => {
                 </div>
                 <div className='b-bottom-ws'>
                     <h6 className='sub-heading-color mt-2'>LISTS</h6>
-                    <div className='d-flex justify-content-space-between align-item-center mt-1 font-size'>
-                        <div className='d-flex align-item-center mt-1 ml-1'>
-                            <div className='menu-list-option-content'></div>
-                            <p className='ml-2'>Personal</p>
+                    <div className='list-content'>
+                    {Array.isArray(list?.list?.data) && list.list?.data?.map((item: any) => (
+                        <div className='d-flex justify-content-space-between align-item-center mt-1 font-size'>
+                            <div className='d-flex align-item-center mt-1 ml-1'>
+                                <div className='menu-list-option-content' style={{ backgroundColor: item.color_code }}></div>
+                                <p className='ml-2'>{item?.title}</p>
+                            </div>
+                            <div className='menu-notification d-flex justify-content-center align-item-center font-size'>12</div>
                         </div>
-                        <div className='menu-notification d-flex justify-content-center align-item-center font-size d-flex
-                            justify-content-center align-item-center font-size'>12</div>
-                    </div>
-                    <div className='d-flex justify-content-space-between align-item-center mt-1 font-size'>
-                        <div className='d-flex align-item-center mt-1 ml-1'>
-                            <div className='menu-list-option-content' style={{ backgroundColor: '#66dcec' }}></div>
-                            <p className='ml-2'>Work</p>
-                        </div>
-                        <div className='menu-notification d-flex justify-content-center align-item-center font-size'>12</div>
-                    </div>
-                    <div className='d-flex justify-content-space-between align-item-center mt-1 font-size'>
-                        <div className='d-flex align-item-center mt-1 ml-1'>
-                            <div className='menu-list-option-content' style={{ backgroundColor: '#ffd43b' }}></div>
-                            <p className='ml-2'>List 1</p>
-                        </div>
-                        <div className='menu-notification d-flex justify-content-center align-item-center font-size'>12</div>
+                    ))}
                     </div>
                     <div>
                         <div className='d-flex font-size align-item-center mt-1 mb-2'>

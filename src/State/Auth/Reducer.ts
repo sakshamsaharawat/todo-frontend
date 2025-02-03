@@ -18,7 +18,10 @@ export const authReducer = (state = initialState, action: any) => {
 
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
-            return { ...state, loading: false, user: action.payload, jwt: action.payload.jwt, }
+            console.log("reducer-loign-token",action.payload.token)
+            return { ...state, loading: false, user: action.payload, jwt: action.payload.token 
+            }
+
 
         case GET_USER_SUCCESS:
             return { ...state, isLoading: false, error: null, user: action.payload };
