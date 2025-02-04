@@ -15,8 +15,8 @@ import { toast } from 'react-toastify';
 
 const SignUp: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { auth } = useSelector((store: RootState) => store)
-  console.log("user", auth)
+  const { authReducer } = useSelector((store: RootState) => store)
+  console.log("user", authReducer)
   const navigate = useNavigate();
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const formik = useFormik({

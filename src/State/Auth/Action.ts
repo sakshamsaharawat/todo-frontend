@@ -1,9 +1,9 @@
-import { UserData } from './../interface/user-interface';
-import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from './ActionType';
+import { Dispatch } from 'redux';
+import { UserData } from './interface/user-interface';
+import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE } from './ActionType';
 import axios from "axios";
 import { API_BASE_URL } from "../../config/api.config";
-import { Dispatch } from 'redux';
-import { LoginData } from '../interface/login-interface';
+import { LoginData } from './interface/login-interface';
 import { jwtDecode } from 'jwt-decode';
 
 const registerRequest = () => ({ type: REGISTER_REQUEST });
@@ -77,5 +77,23 @@ export const getUser = (jwt: string) => async (dispatch: Dispatch) => {
         dispatch(getUserFailure(error.message));
         console.error("Get User error:", error.message);
     }
-}
 
+}
+const logoutRequest = () => ({ type: LOGOUT_REQUEST })
+const logoutSuccess = () => ({ type: LOGOUT_SUCCESS })
+const logoutFailure = (error: any) => ({ type: LOGOUT_FAILURE, payload: error })
+
+export const logout = () => async (dispatch: Dispatch) => {
+    dispatch(logoutRequest());
+    try {
+        const token = localStorage.getItem("jwt");
+        console.log("Logout Token before removal:", token);
+
+        localStorage.removeItem("jwt");
+
+        dispatch(logoutSuccess());
+
+    } catch (error: any) {
+        dispatch(logoutFailure(error.message));
+    }
+};

@@ -3,6 +3,8 @@ import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
 import './Task.css';
 import { TodoItem } from '../../types/types-todo';
+import { Modal } from '@mui/material';
+import AddTask from '../AddTask/AddTask';
 
 type TaskDrawerProps = {
   isOpen: boolean;

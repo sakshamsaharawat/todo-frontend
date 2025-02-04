@@ -1,0 +1,20 @@
+.add-list-input {
+    outline-color: #cdc9c9;
+}
+
+.list-btn {
+    background-color: #ffd43b;
+    color: black;
+    width: 48%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.list-btn:hover {
+    background-color: #ffc107;
+}
+
+.color-picker {
+    width: 100% !important;
+}

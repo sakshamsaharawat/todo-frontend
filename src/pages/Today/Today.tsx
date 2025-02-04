@@ -4,10 +4,13 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { todoData } from '../../data/todoData';
 import TaskDrawer from '../Task/Task';
+import { Modal } from '@mui/material';
+import AddTask from '../AddTask/AddTask';
 
 const Today: React.FC = () => {
   const [isTaskDrawerOpen, setIsTaskDrawerOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
+  const [openTaskModal, setOpenTaskModal] = useState(false)
 
   const handleOpenTask = (task: any): void => {
     setSelectedTask(task);
@@ -26,7 +29,7 @@ const Today: React.FC = () => {
       </div>
       <div className='p-2 mt-4'>
         <div className="box">
-          <input placeholder="+ Add New Task" id="add-new-task" className='today-add-input' />
+          <input placeholder="+ Add New Task" id="add-new-task" className='today-add-input' onClick={() => setOpenTaskModal(true)} />
         </div>
         <section className='today-section'>
           {todoData.map((item) => (
@@ -71,6 +74,11 @@ const Today: React.FC = () => {
         toggleDrawer={toggleDrawer}
         taskDetails={selectedTask}
       />
+      <Modal open={openTaskModal} onClose={() => setOpenTaskModal(false)}>
+        <div className="modal-content">
+          <AddTask closeModal={() => setOpenTaskModal(false)} />
+        </div>
+      </Modal>
     </div>
   )
 }

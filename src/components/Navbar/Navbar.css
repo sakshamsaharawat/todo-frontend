@@ -17,6 +17,14 @@
     padding: 2px 5px;
 }
 
+.tags-content {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    word-wrap: break-word;  
+    overflow: auto;
+    max-height: 13vh;
+}
+
 .menu-notification {
     border-radius: 3px;
     width: 25px;
@@ -29,6 +37,25 @@
 
 .list-content {
     overflow-y: auto;
-    height: 15vh;
+    max-height: 15vh;
     scrollbar-width: none;
+}
+
+.add-list-btn:hover {
+    background-color: #ebebeb;
+
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    width: 40%;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 }

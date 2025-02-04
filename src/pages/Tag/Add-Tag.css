@@ -1,0 +1,19 @@
+.add-tag-input {
+    outline-color: #cdc9c9;
+}
+
+.tag-btn {
+    background-color: #ffd43b;
+    color: black;
+    width: 48%;
+    border: none;
+    border-radius: 5px;
+}
+
+.tag-btn:hover {
+    background-color: #ffc107;
+}
+
+.color-picker {
+    width: 100% !important;
+}
