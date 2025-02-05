@@ -14,12 +14,13 @@ export const CreateList = (listData: ListData) => async (dispatch: Dispatch) => 
     dispatch(createListRequest());
     try {
         const response = await axiosInstance.post('list/create', listData)
+        console.log("response--list",response)
         dispatch(createListSuccess(response.data.data))
         return { success: true, message: 'List created successfully.' };
 
     } catch (error: any) {
         dispatch(createListFailure(error.message))
-        console.error('List error:', error.message)
+        console.error('List error:', error.data.message)
         if (error?.status === 401) {
             return {
                 success: false,
@@ -30,7 +31,7 @@ export const CreateList = (listData: ListData) => async (dispatch: Dispatch) => 
 
         return {
             success: false,
-            message: error?.data?.message || "List creation failed.",
+            message: error?.response?.data?.message || "List creation failed.",
         };
     }
 }
@@ -50,6 +51,7 @@ export const getList = () => async (dispatch: Dispatch, getState: any) => {
             },
         });
         dispatch(getListSuccess(response.data.data));
+        console.log("response---getList",response)
     } catch (error: any) {
         dispatch(getListFailure(error.message));
         console.error("Get List error:", error.message);

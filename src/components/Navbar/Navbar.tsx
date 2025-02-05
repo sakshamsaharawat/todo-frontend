@@ -21,7 +21,6 @@ import { AddList } from '../../pages';
 import { logout } from '../../State/Auth/Action';
 import { getTag } from '../../State/Tag/Action';
 import AddTag from '../../pages/Tag/Add-Tag';
-import AddTask from '../../pages/AddTask/AddTask';
 
 const menu: { name: string, path: string, icon: any }[] = [
     { name: "Upcoming", path: "/todo/upcoming", icon: <KeyboardDoubleArrowRightIcon className='todo-icon' /> },
@@ -35,7 +34,7 @@ const Navbar: React.FC = ({ }) => {
     const { user, jwt } = useSelector((store: any) => store.authReducer);
     const { listReducer } = useSelector((store: RootState) => store);
     const { tagReducer } = useSelector((store: RootState) => store)
-    console.log("tagReducer", tagReducer)
+    console.log("listReducer--------", listReducer)
     const navigate = useNavigate();
     const [isDrawerOpen, setIsDrawerOpen] = useState(true);
     const [openModal, setOpenModal] = useState(false);
@@ -50,7 +49,7 @@ const Navbar: React.FC = ({ }) => {
     }, [dispatch, user, jwt, navigate]);
 
     useEffect(() => {
-        if (listReducer?.list?.error || tagReducer?.tag?.error) {
+        if (listReducer?.error || tagReducer?.error) {
             navigate("/login")
         }
     }, [listReducer, tagReducer]);
@@ -108,10 +107,10 @@ const Navbar: React.FC = ({ }) => {
                             <div className='b-bottom-ws'>
                                 <h6 className='sub-heading-color mt-2'>LISTS</h6>
                                 <div className='list-content'>
-                                    {Array.isArray(listReducer?.list) && listReducer.list?.map((item: any) => (
+                                    {Array.isArray(listReducer?.lists) && listReducer?.lists?.map((item: any) => (
                                         <div className='d-flex justify-content-space-between align-item-center mt-1 font-size'>
                                             <div className='d-flex align-item-center mt-1 ml-1'>
-                                                <div className='menu-list-option-content' style={{ backgroundColor: item.color_code }}></div>
+                                                <div className='menu-list-option-content' style={{ backgroundColor: item?.color_code }}></div>
                                                 <p className='ml-2 cursor-pointer'>{item?.title}</p>
                                             </div>
                                             <div className='menu-notification d-flex justify-content-center align-item-center font-size cursor-pointer'>12</div>
@@ -132,7 +131,7 @@ const Navbar: React.FC = ({ }) => {
                             <div className="mt-2">
                                 <h6 className='sub-heading-color'>TAGS</h6>
                                 <div className='tags-content d-flex mt-1 font-size'>
-                                    {Array.isArray(tagReducer?.tag) && tagReducer?.tag?.map((item: any) => (
+                                    {Array.isArray(tagReducer?.tags) && tagReducer?.tags?.map((item: any) => (
                                         <div className='menu-tags-options d-flex align-item-center f-wrap font-size mt-1 cursor-pointer'>
                                             <p className='ml-1 border-radius-5' style={{ backgroundColor: item?.color_code }}>{item?.title}</p>
                                         </div>

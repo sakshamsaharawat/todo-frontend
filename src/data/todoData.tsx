@@ -27,7 +27,6 @@ export const todoData: TodoItem[] = [
                 color_code: "#d1eaed"
             }
         ]
-
     },
     {
         title: "Renew driver's license",
@@ -63,7 +62,6 @@ export const todoData: TodoItem[] = [
                 color_code: "#ffdada"
             }
         ]
-
     },
     {
         title: "Research content ideas",
@@ -84,7 +82,6 @@ export const todoData: TodoItem[] = [
             title: "List 1",
             color_code: "#ffd43b"
         },
-
     },
     {
         title: "Research content ideas",
@@ -110,7 +107,6 @@ export const todoData: TodoItem[] = [
     {
         title: "Research content ideas",
         description: "subtasks",
-
         list_type: {
             title: "work",
             color_code: "#66dcec"

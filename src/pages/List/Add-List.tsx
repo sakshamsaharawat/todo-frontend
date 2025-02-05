@@ -25,7 +25,7 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
       title: "",
       color_code: color,
     },
-    validationSchema: AddListValidation,
+    // validationSchema: AddListValidation,
     onSubmit: async (values) => {
       console.log("Values", values);
       try {
@@ -33,10 +33,11 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
         if (result.success) {
           toast.success("List created successfully.")
           closeModal();
-          dispatch(getList());
+          // dispatch(getList());
 
         } else {
-          console.log("List creation failed:", result.message);
+          console.log("backend-error",result.message)
+         toast.error(result.message);
 
           if (result.isAuthError) {
             toast.error(result.message);
@@ -49,9 +50,14 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
             toast.error(result.message || "List creation failed. Please try again.");
           }
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Unexpected error during List creation:", error);
         toast.error("An unexpected error occurred. Please try again later.");
+        if (error.response?.data?.message) {
+          toast.error(error.response.data.message);
+        } else {
+          toast.error("An unexpected error occurred. Please try again later.");
+        }
       }
     },
   });
@@ -103,7 +109,7 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
             <button type="submit" className="list-btn mt-3 p-2">
               Add
             </button>
-            <button type="submit" className="list-btn mt-3 p-2">
+            <button onClick={()=> closeModal()} className="list-btn mt-3 p-2">
               Cancel
             </button>
           </div>

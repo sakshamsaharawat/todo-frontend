@@ -3,8 +3,6 @@ import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
 import './Task.css';
 import { TodoItem } from '../../types/types-todo';
-import { Modal } from '@mui/material';
-import AddTask from '../AddTask/AddTask';
 
 type TaskDrawerProps = {
   isOpen: boolean;
@@ -21,7 +19,7 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
   return (
     <Drawer anchor="right" open={isOpen} onClose={() => toggleDrawer(false)}>
       <div
-        className="main-task p-3 navbar-background-color "
+        className="main-task p-3 navbar-background-color"
       >
         <div className="d-flex align-item-center justify-content-space-between p-1">
           <h3 className="heading-color">Task Details:</h3>
