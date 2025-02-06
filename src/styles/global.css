@@ -186,6 +186,26 @@
     padding: 25px;
 }
 
+.pl-1 {
+    padding-left: 5px;
+}
+
+.pl-2 {
+    padding-left: 10px;
+}
+
+.pl-3 {
+    padding-left: 15px;
+}
+
+.pl-4 {
+    padding-left: 20px;
+}
+
+.pl-5 {
+    padding-left: 25px;
+}
+
 .width-full {
     width: 100%;
 }
@@ -200,4 +220,34 @@
 
 .hover:hover {
     background-color: #ebebeb;
+}
+
+.common-btn {
+    width: 40%;
+    margin-left: 1vw;
+    padding: 10px 15px;
+    background-color: #ffd43b;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.common-btn:hover {
+    background-color: #ffc107;
+}
+
+.cancel-btn {
+    width: 40%;
+    background-color: red;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background-color: darkred;
 }

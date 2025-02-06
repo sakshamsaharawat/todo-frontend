@@ -4,13 +4,12 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { todoData } from '../../data/todoData';
 import TaskDrawer from '../Task/Task';
-import { Modal } from '@mui/material';
-import AddTask from '../AddTask/AddTask';
+import { useNavigate } from 'react-router-dom';
 
 const Today: React.FC = () => {
   const [isTaskDrawerOpen, setIsTaskDrawerOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
-  const [openTaskModal, setOpenTaskModal] = useState(false)
+  const navigate = useNavigate();
 
   const handleOpenTask = (task: any): void => {
     setSelectedTask(task);
@@ -21,6 +20,10 @@ const Today: React.FC = () => {
     setIsTaskDrawerOpen(isOpen);
     if (!isOpen) setSelectedTask(null);
   };
+  const handleAddTask = () => {
+    navigate("/todo/add-task")
+  };
+
   return (
     <div>
       <div className='d-flex align-item-center'>
@@ -29,9 +32,9 @@ const Today: React.FC = () => {
       </div>
       <div className='p-2 mt-4'>
         <div className="box">
-          <input placeholder="+ Add New Task" id="add-new-task" className='today-add-input' onClick={() => setOpenTaskModal(true)} />
+          <button className='input-save-btn border-radius-5' onClick={() => handleAddTask()}>+ &nbsp; Add New Task</button>
         </div>
-        <section className='today-section'>
+        <section className='today-section mt-1'>
           {todoData.map((item) => (
             <div className='today-todo-component font-size b-bottom-ws cursor-pointer align-items-center'
               onClick={() => handleOpenTask(item)}
@@ -74,11 +77,6 @@ const Today: React.FC = () => {
         toggleDrawer={toggleDrawer}
         taskDetails={selectedTask}
       />
-      <Modal open={openTaskModal} onClose={() => setOpenTaskModal(false)}>
-        <div className="modal-content">
-          <AddTask closeModal={() => setOpenTaskModal(false)} />
-        </div>
-      </Modal>
     </div>
   )
 }

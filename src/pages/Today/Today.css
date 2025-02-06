@@ -6,11 +6,6 @@
     width: 50px;
 }
 
-.today-section {
-    padding-left: 10px;
-    height: 100vh;
-    overflow-y: scroll;
-}
 
 .today-main-list {
     margin-left: 35px;
@@ -31,4 +26,18 @@
     height: 12px;
     width: 12px;
     border-radius: 3px;
+}
+
+.input-save-btn {
+    height: 5vh;
+    width: 20%;
+    margin-left: 1vw;
+    background-color: #ffd43b;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.input-save-btn:hover {
+    background-color: #ffc107;
 }

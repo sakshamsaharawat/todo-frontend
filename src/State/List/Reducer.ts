@@ -10,47 +10,46 @@ const initialState: InitialState = {
 export const listReducer = (state: InitialState = initialState, action: any): InitialState => {
     switch (action.type) {
         case GET_LIST_REQUEST:
-            return { 
-                ...state, 
-                lists: [], 
-                isLoading: true, 
-                error: null 
+            return {
+                ...state,
+                lists: [],
+                isLoading: true,
+                error: null
             }
         case CREATE_LIST_REQUEST:
-            return { 
-                ...state, 
-                lists: state.lists, 
-                isLoading: true, 
-                error: null 
+            return {
+                ...state,
+                lists: state.lists,
+                isLoading: true,
+                error: null
             }
         case GET_LIST_SUCCESS:
             return {
                 ...state,
-                isLoading: false, 
-                lists: action.payload, 
-                
+                isLoading: false,
+                lists: action.payload,
                 error: null
             }
         case CREATE_LIST_SUCCESS:
             return {
                 ...state,
-                lists: [...state.lists, action.payload], 
-                isLoading: false, 
+                lists: [...state.lists, action.payload],
+                isLoading: false,
                 error: null
             }
         case GET_LIST_FAILURE:
-            return { 
-                ...state, 
-                error: action.payload, 
-                lists: [], 
-                isLoading: false 
+            return {
+                ...state,
+                error: action.payload,
+                lists: [],
+                isLoading: false
             }
         case CREATE_LIST_FAILURE:
-            return { 
-                ...state, 
-                error: action.payload, 
-                lists: state.lists, 
-                isLoading: false 
+            return {
+                ...state,
+                error: action.payload,
+                lists: state.lists,
+                isLoading: false
             }
         default:
             return state;

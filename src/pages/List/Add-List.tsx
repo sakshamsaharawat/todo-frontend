@@ -25,7 +25,7 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
       title: "",
       color_code: color,
     },
-    // validationSchema: AddListValidation,
+    validationSchema: AddListValidation,
     onSubmit: async (values) => {
       console.log("Values", values);
       try {
@@ -33,11 +33,9 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
         if (result.success) {
           toast.success("List created successfully.")
           closeModal();
-          // dispatch(getList());
-
         } else {
-          console.log("backend-error",result.message)
-         toast.error(result.message);
+          console.log("backend-error", result.message)
+          toast.error(result.message);
 
           if (result.isAuthError) {
             toast.error(result.message);
@@ -106,11 +104,11 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
             )}
           </div>
           <div className="d-flex justify-content-space-between">
+            <button onClick={() => closeModal()} className="list-btn mt-3 p-2">
+              Cancel
+            </button>
             <button type="submit" className="list-btn mt-3 p-2">
               Add
-            </button>
-            <button onClick={()=> closeModal()} className="list-btn mt-3 p-2">
-              Cancel
             </button>
           </div>
         </form>
