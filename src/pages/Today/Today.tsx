@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Today.css';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { todoData } from '../../data/todoData';
 import TaskDrawer from '../Task/Task';
 import { useNavigate } from 'react-router-dom';
+import { getTask } from '../../State/AddTask/Action';
+import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '../../store';
+import { AnyAction } from 'redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Today: React.FC = () => {
   const [isTaskDrawerOpen, setIsTaskDrawerOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
   const navigate = useNavigate();
+  const { taskReducer } = useSelector((store: RootState) => store);
+  console.log("taskReducer------------",taskReducer)
+
+  const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
+
 
   const handleOpenTask = (task: any): void => {
     setSelectedTask(task);
@@ -23,6 +34,9 @@ const Today: React.FC = () => {
   const handleAddTask = () => {
     navigate("/todo/add-task")
   };
+  useEffect(() => {
+    dispatch(getTask())
+  },[dispatch])
 
   return (
     <div>
