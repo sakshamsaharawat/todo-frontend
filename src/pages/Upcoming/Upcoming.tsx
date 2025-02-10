@@ -7,7 +7,7 @@ import { todoData } from '../../data/todoData';
 const Upcoming: React.FC = () => {
   return (
     <div className='upcoming-main-component'>
-      <div className="d-flex align-item-center">
+      <div className="d-flex align-item-center mt-2">
         <h1 className='main-heading-color ml-4'>Upcoming</h1>
         <div className='upcoming-notification d-flex justify-content-center mt-1 border-radius-5 b-ws heading-color'>12</div>
       </div>

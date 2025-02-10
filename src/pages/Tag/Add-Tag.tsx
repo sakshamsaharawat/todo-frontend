@@ -97,11 +97,11 @@ const AddTag: React.FC<AddTagProps> = ({ closeModal }) => {
               <span className="text-error">{formik.errors.color_code}</span>
             )}
           </div>
-          <div className="d-flex justify-content-space-between">
-            <button type="button" onClick={() => closeModal()} className="tag-btn mt-3 p-2">
+          <div className="d-flex justify-content-center width-full">
+            <button type="button" onClick={() => closeModal()} className="common-btn tag-btn mt-3 border-radius-5">
               Cancel
             </button>
-            <button type="submit" className="tag-btn mt-3 p-2">
+            <button type="submit" className="common-btn tag-btn mt-3 border-radius-5">
               Add
             </button>
           </div>

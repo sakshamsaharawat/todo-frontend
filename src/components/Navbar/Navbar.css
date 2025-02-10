@@ -4,6 +4,7 @@
     border-radius: 15px;
     height: 100vh;
     justify-content: space-between;
+    background-color: var(---navbar-background-color);
 }
 
 .menu-list-option-content {
@@ -20,7 +21,7 @@
 .tags-content {
     flex-direction: column;
     flex-wrap: nowrap;
-    word-wrap: break-word;  
+    word-wrap: break-word;
     overflow: auto;
     max-height: 13vh;
 }

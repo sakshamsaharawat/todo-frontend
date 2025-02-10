@@ -17,7 +17,7 @@ const Today: React.FC = () => {
   const [selectedTask, setSelectedTask] = useState(null);
   const navigate = useNavigate();
   const { taskReducer } = useSelector((store: RootState) => store);
-  console.log("taskReducer------------",taskReducer)
+  console.log("taskReducer------------", taskReducer)
 
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
 
@@ -36,7 +36,7 @@ const Today: React.FC = () => {
   };
   useEffect(() => {
     dispatch(getTask())
-  },[dispatch])
+  }, [dispatch])
 
   return (
     <div>
@@ -46,10 +46,10 @@ const Today: React.FC = () => {
       </div>
       <div className='p-2 mt-4'>
         <div className="box">
-          <button className='input-save-btn border-radius-5' onClick={() => handleAddTask()}>+ &nbsp; Add New Task</button>
+          <button className='common-btn input-save-btn border-radius-5' onClick={() => handleAddTask()}>+ &nbsp; Add New Task</button>
         </div>
         <section className='today-section mt-1'>
-          {todoData.map((item) => (
+          {Array.isArray(taskReducer?.tasks) && taskReducer?.tasks?.map((item) => (
             <div className='today-todo-component font-size b-bottom-ws cursor-pointer align-items-center'
               onClick={() => handleOpenTask(item)}
             >
@@ -68,17 +68,17 @@ const Today: React.FC = () => {
               </div>
               <div className='today-main-list d-flex align-item-center mb-1'>
                 <div className='align-item-center d-flex' >
-                  {item?.date && <div className='d-flex align-item-center mr-1'>
+                  {item?.due_date && <div className='d-flex align-item-center mr-1'>
                     <CalendarMonthIcon className='todo-icon' />
-                    <p>{item.date}</p>
+                    <p>{item?.due_date}</p>
                   </div>}
-                  {item?.list_subtasks && <div className='d-flex align-item-center ml-1'>
-                    <span className='today-todo-option-task d-flex align-item-center justify-content-center'>{item?.list_subtasks?.task}</span>
-                    <span className='ml-1'>{item.list_subtasks.task_title}</span>
-                  </div>}
-                  {item?.list_type && <div className='d-flex align-item-center ml-1'>
-                    <span className='today-main-list-color-box' style={{ backgroundColor: item.list_type.color_code }}></span>
-                    <span className='ml-1'>{item.list_type.title}</span>
+                  <div className='d-flex align-item-center ml-1'>
+                    <span className='today-todo-option-task d-flex align-item-center justify-content-center'>1</span>
+                    <span className='ml-1'>Subtask</span>
+                  </div>
+                  {item?.list && <div className='d-flex align-item-center ml-1'>
+                    <span className='today-main-list-color-box' style={{ backgroundColor: item?.list?.color_code }}></span>
+                    <span className='ml-1'>{item?.list?.title}</span>
                   </div>}
                 </div>
               </div>

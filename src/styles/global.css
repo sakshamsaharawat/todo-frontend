@@ -10,6 +10,10 @@
     justify-content: center;
 }
 
+.justify-content-end {
+    justify-content: end;
+}
+
 .justify-content-space-between {
     justify-content: space-between;
 }
@@ -223,31 +227,39 @@
 }
 
 .common-btn {
-    width: 40%;
+    width: 20%;
     margin-left: 1vw;
     padding: 10px 15px;
     background-color: #ffd43b;
     color: black;
     padding: 10px 15px;
     border: none;
-    border-radius: 5px;
+    border: 2px solid #ffd43b;
     cursor: pointer;
 }
 
 .common-btn:hover {
-    background-color: #ffc107;
+    background-color:white;
+    border: 2px solid #ffd43b;
 }
 
 .cancel-btn {
-    width: 40%;
+    width: 20%;
     background-color: red;
     color: black;
     padding: 10px 15px;
-    border: none;
+    border: 2px solid red;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .cancel-btn:hover {
-    background-color: darkred;
+    background-color: white;
+    border: 2px solid red;
+    color: red
+}
+
+.main-heading-color {
+    color: var(---main-heading-color);
+    font-weight: 1000 !important;
 }

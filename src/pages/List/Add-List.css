@@ -3,16 +3,7 @@
 }
 
 .list-btn {
-    background-color: #ffd43b;
-    color: black;
     width: 48%;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.list-btn:hover {
-    background-color: #ffc107;
 }
 
 .color-picker {

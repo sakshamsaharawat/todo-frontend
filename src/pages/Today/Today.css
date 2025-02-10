@@ -29,15 +29,5 @@
 }
 
 .input-save-btn {
-    height: 5vh;
     width: 20%;
-    margin-left: 1vw;
-    background-color: #ffd43b;
-    color: black;
-    border: none;
-    cursor: pointer;
-}
-
-.input-save-btn:hover {
-    background-color: #ffc107;
 }
