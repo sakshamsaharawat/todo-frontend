@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
 import './Task.css';
-import { TodoItem } from '../../types/types-todo';
+import { TaskData } from '../../State/AddTask/interface/create-task.interface';
 
 type TaskDrawerProps = {
   isOpen: boolean;
   toggleDrawer: (isOpen: boolean) => void;
-  taskDetails: TodoItem;
+  taskDetails: TaskData | null;
 };
 
 const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetails }) => {
@@ -39,7 +39,7 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
             value={selectedValue}
             onChange={handleChange}
           >
-            <option value={taskDetails?.list_type?.title} label={taskDetails?.list_type?.title}></option>
+            <option value={taskDetails?.list?.title} label={taskDetails?.list?.title}></option>
             <option value="work">Work</option>
             <option value="list">List</option>
           </select>
@@ -51,20 +51,18 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
               value={selectedValue}
               onChange={handleChange}
             >
-              <option value={taskDetails?.date}>{taskDetails?.date}</option>
-              <option value="16-01-25">16-01-25</option>
-              <option value="26-01-25">26-01-25</option>
+              <option value={taskDetails?.due_date}>{taskDetails?.due_date.split("T")[0]}</option>
             </select>
           </div>
         </div>
         <div className='task-tags d-flex mt-2 font-size'>
           <p>Tags</p>
           <div className='sub-task-tags d-flex f-wrap'>
-            {taskDetails?.tag?.map((tag, index) => (
-              <span key={index} className='tag mr-1 font-size border-radius-5 mb-1'
-                style={{ backgroundColor: tag?.color_code }}
+            {Array.isArray(taskDetails?.tags)&& taskDetails?.tags?.map((item) => (
+              <span className='tag mr-1 font-size border-radius-5 mb-1'
+                style={{ backgroundColor: item?.color_code }}
               >
-                {tag?.tag_title}</span>
+                {item.title}</span>
             ))}
             <span className='add-task-tags ml-1 border-radius-5 d-flex align-item-center'> + Add Tag</span>
           </div>

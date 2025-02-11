@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './Today.css';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { todoData } from '../../data/todoData';
 import TaskDrawer from '../Task/Task';
 import { useNavigate } from 'react-router-dom';
 import { getTask } from '../../State/AddTask/Action';
@@ -11,6 +10,7 @@ import { RootState } from '../../store';
 import { AnyAction } from 'redux';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { GET_TODAY_TASK_SUCCESS } from '../../State/AddTask/ActionTypes';
 
 const Today: React.FC = () => {
   const [isTaskDrawerOpen, setIsTaskDrawerOpen] = useState(false);
@@ -35,7 +35,10 @@ const Today: React.FC = () => {
     navigate("/todo/add-task")
   };
   useEffect(() => {
-    dispatch(getTask())
+    const today = new Date();
+    const startDate = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), 0, 0, 0, 0)).toISOString();
+    const endDate = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), 23, 59, 59, 999)).toISOString();
+    dispatch(getTask({ startDate, endDate }, GET_TODAY_TASK_SUCCESS))
   }, [dispatch])
 
   return (
@@ -45,11 +48,9 @@ const Today: React.FC = () => {
         <div className='today-notification d-flex justify-content-center mt-1 border-radius-5'>5</div>
       </div>
       <div className='p-2 mt-4'>
-        <div className="box">
-          <button className='common-btn input-save-btn border-radius-5' onClick={() => handleAddTask()}>+ &nbsp; Add New Task</button>
-        </div>
+        <button className='submit-btn input-save-btn border-radius-5' onClick={() => handleAddTask()}>+ &nbsp; Add New Task</button>
         <section className='today-section mt-1'>
-          {Array.isArray(taskReducer?.tasks) && taskReducer?.tasks?.map((item) => (
+          {Array.isArray(taskReducer?.toady_tasks) && taskReducer?.toady_tasks?.map((item) => (
             <div className='today-todo-component font-size b-bottom-ws cursor-pointer align-items-center'
               onClick={() => handleOpenTask(item)}
             >
@@ -70,7 +71,7 @@ const Today: React.FC = () => {
                 <div className='align-item-center d-flex' >
                   {item?.due_date && <div className='d-flex align-item-center mr-1'>
                     <CalendarMonthIcon className='todo-icon' />
-                    <p>{item?.due_date}</p>
+                    <p>{item?.due_date.split("T")[0]}</p>
                   </div>}
                   <div className='d-flex align-item-center ml-1'>
                     <span className='today-todo-option-task d-flex align-item-center justify-content-center'>1</span>

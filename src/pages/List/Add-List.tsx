@@ -104,10 +104,10 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
             )}
           </div>
           <div className="d-flex justify-content-space-between">
-            <button onClick={() => closeModal()} className="common-btn list-btn mt-3 border-radius-5">
+            <button onClick={() => closeModal()} className="submit-btn list-btn mt-3 border-radius-5">
               Cancel
             </button>
-            <button type="submit" className="list-btn common-btn mt-3 border-radius-5">
+            <button type="submit" className="list-btn submit-btn mt-3 border-radius-5">
               Add
             </button>
           </div>

@@ -5,8 +5,8 @@ export interface TaskData {
     title: string
     description: string
     due_date: string
-    tag_ids: string[] | TagItem[],
-    list_id: string  | ListItem,
-    tags: TagItem[],
-    list: ListItem
+    tag_ids: string[]
+    list_id: string
+    tags: TagItem[]
+    list?: ListItem
 }

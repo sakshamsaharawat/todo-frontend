@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { CREATE_LIST_SUCCESS, } from "../List/Action.type";
-import { CREATE_TASK_FAILURE, CREATE_TASK_REQUEST, GET_TASK_FAILURE, GET_TASK_REQUEST, GET_TASK_SUCCESS } from "./ActionTypes";
+import { CREATE_TASK_FAILURE, CREATE_TASK_REQUEST, GET_TASK_FAILURE, GET_TASK_REQUEST, GET_TODAY_PENDING_TASK_SUCCESS, GET_TODAY_TASK_SUCCESS, GET_TOMORROW_TASK_SUCCESS, GET_WEEK_TASK_SUCCESS } from "./ActionTypes";
 import { TaskData } from "./interface/create-task.interface";
 import axiosInstance from '../../utils/axiosInstance';
 import { TaskResponse } from './interface/get-task.interface';
@@ -21,14 +21,14 @@ export const createTask = (taskData: TaskData) => async (dispatch: Dispatch) => 
 }
 
 const getTaskRequest = () => ({ type: GET_TASK_REQUEST })
-const getTaskSuccess = (getTaskData: TaskResponse) => ({ type: GET_TASK_SUCCESS, payload: getTaskData })
+const getTaskSuccess = (getTaskData: TaskResponse, type: string) => ({ type, payload: getTaskData });
 const getTaskFailure = (error: any) => ({ type: GET_TASK_FAILURE, payload: error })
 
-export const getTask = () => async (dispatch: Dispatch) => {
+export const getTask = (payload: { startDate: string, endDate: string }, type: string) => async (dispatch: Dispatch) => {
     dispatch(getTaskRequest())
     try {
-        const response = await axiosInstance.get("task");
-        dispatch(getTaskSuccess(response.data.data))
+        const response = await axiosInstance.get(`task?start_date=${payload.startDate}&end_date=${payload.endDate}`);
+        dispatch(getTaskSuccess(response.data.data, type));
     } catch (error: any) {
         dispatch(getTaskFailure(error.message))
     }

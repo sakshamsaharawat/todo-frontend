@@ -98,10 +98,10 @@ const AddTag: React.FC<AddTagProps> = ({ closeModal }) => {
             )}
           </div>
           <div className="d-flex justify-content-center width-full">
-            <button type="button" onClick={() => closeModal()} className="common-btn tag-btn mt-3 border-radius-5">
+            <button type="button" onClick={() => closeModal()} className="submit-btn tag-btn mt-3 border-radius-5">
               Cancel
             </button>
-            <button type="submit" className="common-btn tag-btn mt-3 border-radius-5">
+            <button type="submit" className="submit-btn tag-btn mt-3 border-radius-5">
               Add
             </button>
           </div>

@@ -226,37 +226,31 @@
     background-color: #ebebeb;
 }
 
-.common-btn {
+.submit-btn {
     width: 20%;
-    margin-left: 1vw;
+    background-color: #4dabf5;
+    color: white;
     padding: 10px 15px;
-    background-color: #ffd43b;
-    color: black;
-    padding: 10px 15px;
-    border: none;
-    border: 2px solid #ffd43b;
-    cursor: pointer;
-}
+    border: 1px solid #4dabf5;
 
-.common-btn:hover {
-    background-color:white;
-    border: 2px solid #ffd43b;
+    &:hover {
+        background-color:white;
+        border: 1px solid #4dabf5;
+        color: #4dabf5;
+    }
 }
 
 .cancel-btn {
     width: 20%;
     background-color: red;
-    color: black;
-    padding: 10px 15px;
-    border: 2px solid red;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    color: white;
+    border: 1px solid red;
 
-.cancel-btn:hover {
-    background-color: white;
-    border: 2px solid red;
-    color: red
+    &:hover {
+        background-color: white;
+        border: 1px solid red;
+        color: red;
+    }
 }
 
 .main-heading-color {

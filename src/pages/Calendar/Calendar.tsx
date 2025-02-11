@@ -4,11 +4,12 @@ import moment from 'moment';
 import "./Calendar.css";
 
 const localizer = momentLocalizer(moment)
+const formattedDate = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
 
 const events = [
   {
     title: "Session 1: Marketing Sprint",
-    start: new Date(2025, 1, 16, 9, 0), 
+    start: new Date(2025, 1, 16, 9, 0),
     end: new Date(2025, 1, 16, 10, 0)
   },
   {
@@ -24,15 +25,19 @@ const events = [
 ];
 
 const MyCalendar: React.FC = () => (
-  <div className='calendar-component'>
-    <Calendar
-    className='main-calendar'
-      localizer={localizer}
-      events={events}
-      defaultView="day"
-      views={["day", "week", "month"]}
-      defaultDate={new Date()}
-    />
+  <div className='calendar-component p-5'>
+
+    <h1 className='heading-color'>{formattedDate}</h1>
+    <div className="mt-2">
+      <Calendar
+        className='main-calendar'
+        localizer={localizer}
+        events={events}
+        defaultView="day"
+        views={["day", "week", "month"]}
+        defaultDate={new Date()}
+      />
+    </div>
   </div>
 )
 
