@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Home: React.FC = () => {
     const navigate = useNavigate()
     return (
-        <div className='home-main-component p-3' style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+        <div className='home-main-component p-3 display-grid grid-template-columns-1fr-1fr'>
             <div className='home-image-text d-flex justify-content-center border-radius-10'>
                 <h1 className='home-text position-absolute'>Orgainc  <br />Mind</h1>
                 <div className='image d-flex justify-content-center align-item-center'>

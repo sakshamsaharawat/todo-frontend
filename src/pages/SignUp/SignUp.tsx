@@ -112,7 +112,7 @@ const SignUp: React.FC = () => {
           </div>
           <button
             type="submit"
-            className='signup-btn mt-4 border-radius-5 d-flex justify-content-center align-item-center'>
+            className='submit-btn width-full mt-4 border-radius-5'>
             Sign up
           </button>
           <p className='mt-4 d-flex justify-content-center align-item-center font-size'>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { AddTaskValidation } from '../../validations/Add-task.validate';
+import React, { useState } from 'react';
+import AddTaskValidation from '../../validations/Add-task.validate';
 import { useFormik } from 'formik';
 import "./AddTask.css"
 import { useSelector } from 'react-redux';
@@ -9,10 +9,11 @@ import { AnyAction } from 'redux';
 import { useDispatch } from 'react-redux';
 import { createTask } from '../../State/AddTask/Action';
 import { toast } from 'react-toastify';
-import { TaskData } from '../../State/AddTask/interface/create-task.interface';
 import { useNavigate } from 'react-router-dom';
 import { Chip } from '@mui/material';
 import { TagItem } from '../../State/Tag/interface/get-tag.interface';
+import { CreateTask } from './interface/Add-Task.interface';
+import { taskReducer } from '../../State/AddTask/Reducer';
 
 const AddTask: React.FC = () => {
     const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
@@ -22,35 +23,33 @@ const AddTask: React.FC = () => {
     const todayIst = new Date()
     console.log("todayIst---", todayIst)
 
-    const formik = useFormik<TaskData>({
+    const formik = useFormik<CreateTask>({
         initialValues: {
             title: "",
             description: "",
             due_date: "",
             tag_ids: [],
             list_id: "",
-            tags: []
         },
-        // validationSchema: AddTaskValidation,
+        validationSchema: AddTaskValidation,
         onSubmit: async (values) => {
-            console.log("Values", values);
             dispatch(createTask(values))
-            toast.success("Task Created successfully.")
+            console.log("values---------", values)
+            toast.success("Task created successfully.")
             navigate(-1)
-            //    try {
-            //            const result = await dispatch(createTask(values));
-            //            if (result.success) {
-            //              toast.success("List created successfully.")
-
-            //            } else {
-            //              console.log("backend-error",result.message)
-            //             toast.error(result.message);
-            // }
-        }
+        },
     });
     const handleDelete = (item: TagItem): void => {
         formik.setFieldValue("tag_ids", formik.values.tag_ids.filter(tag => tag !== item._id));
     };
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedValue, setSelectedValue] = useState("");
+    const options = [
+        { label: "Red", value: "red", color: "red" },
+        { label: "Green", value: "green", color: "green" },
+        { label: "Blue", value: "blue", color: "blue" },
+        { label: "Yellow", value: "yellow", color: "yellow" }
+    ];
     return (
         <div>
             <div className='mt-2'>
@@ -67,6 +66,9 @@ const AddTask: React.FC = () => {
                             placeholder='Enter title here'
                             className='add-task-input width-full mt-2'
                         />
+                        {formik.touched.title && formik.errors.title && (
+                            <span className='text-error'>{formik.errors.title}</span>
+                        )}
                     </div>
                     <div>
                         <textarea className="add-task-description p-1 mt-2 border-radius-5 font-size"
@@ -76,6 +78,9 @@ const AddTask: React.FC = () => {
                             onChange={formik.handleChange}
                         >
                         </textarea>
+                        {formik.touched.description && formik.errors.description && (
+                            <span className='text-error'>{formik.errors.description}</span>
+                        )}
                     </div>
                     <div className='mt-1'>
                         <label>Due date</label>
@@ -87,25 +92,33 @@ const AddTask: React.FC = () => {
                             min={todayIst.toISOString().split("T")[0]}
                             onChange={formik.handleChange}
                         />
+                        {formik.touched.due_date && formik.errors.due_date && (
+                            <span className='text-error'>{formik.errors.due_date}</span>
+                        )}
                     </div>
+
                     <div className='mt-3'>
                         <label className='task-list'>List</label>
                         <select
                             className='add-list font-size cursor-pointer border-radius-5'
                             name="list_id"
                             id="list"
-                            value={formik.values.list_id}
+                            value={formik.values.list_id || ""}
                             onChange={(e) => {
                                 const selectedListId = e.target.value;
                                 formik.setFieldValue("list_id", selectedListId);
                             }}
                         >
+
+                            <option value="" style={{ border: "1px solid red" }}><span style={{ border: "1px solid red" }}>1</span>&nbsp;&nbsp;None</option>
                             {listReducer?.lists.map((item) => (
                                 <option
                                     key={item._id}
                                     value={item._id} // Store the _id in the value of the option
-                                    label={item.title} // Show the title on UI
-                                />
+                                    label={item?.title} // Show the title on UI
+                                >
+
+                                </option>
                             ))}
                         </select>
                     </div>
@@ -122,6 +135,7 @@ const AddTask: React.FC = () => {
                                         onClick={() => {
                                             formik.setFieldValue("tag_ids", [...formik.values.tag_ids, item._id]);
                                         }}
+                                        color={formik.values.tag_ids.includes(item._id) ? "primary" : "default"}
                                     />
                                 ))}
                             </div>
@@ -135,8 +149,8 @@ const AddTask: React.FC = () => {
 
                 <div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

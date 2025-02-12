@@ -211,15 +211,15 @@
 }
 
 .width-full {
-    width: 100%;
+    width: 100% !important;
 }
 
 .width-80 {
-    width: 80%;
+    width: 80% !important;
 }
 
 .width-60 {
-    width: 60%;
+    width: 60% !important;
 }
 
 .hover:hover {
@@ -228,15 +228,15 @@
 
 .submit-btn {
     width: 20%;
-    background-color: #4dabf5;
+    background-color: #007297;
     color: white;
     padding: 10px 15px;
-    border: 1px solid #4dabf5;
+    border: 1px solid #007297;
 
     &:hover {
-        background-color:white;
-        border: 1px solid #4dabf5;
-        color: #4dabf5;
+        background-color: white;
+        border: 1px solid #007297;
+        color: #007297;
     }
 }
 
@@ -256,4 +256,28 @@
 .main-heading-color {
     color: var(---main-heading-color);
     font-weight: 1000 !important;
+}
+
+.height-100vh {
+    height: 100vh;
+}
+
+.overflow-scroll {
+    overflow: scroll;
+}
+
+.display-grid {
+    display: grid;
+}
+
+.grid-template-columns-auto-1fr {
+    grid-template-columns: auto 1fr;
+}
+
+.grid-template-columns-1fr-1fr {
+    grid-template-columns: 1fr 1fr;
+}
+
+.primary-color {
+    color: var(--primary-color) !important; 
 }

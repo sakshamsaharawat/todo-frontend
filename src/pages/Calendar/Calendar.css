@@ -1,5 +1,4 @@
 .calendar-component {
-    margin: 5px;
     overflow-x: hidden; 
     color: black;
     box-sizing: border-box;
@@ -7,5 +6,5 @@
 
 .main-calendar {
     overflow-x: hidden; 
-    height: 95vh;
+   height: 100vh;
 }

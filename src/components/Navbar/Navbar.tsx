@@ -71,10 +71,10 @@ const Navbar: React.FC = ({ }) => {
                         <div>
                             <div>
                                 <div className='d-flex justify-content-center justify-content-space-between'>
-                                    <h3 className='sub-heading-color'>
+                                    <h3 className='primary-color'>
                                         Menu
                                     </h3>
-                                    <MenuIcon onClick={toggleDrawer} className='cursor-pointer' />
+                                    <MenuIcon onClick={toggleDrawer} className='cursor-pointer primary-color' />
                                 </div>
                                 <div className='menu-search d-flex justify-content-center mt-2 b b-ws border-radius-5'>
                                     <IconButton type="button" aria-label="search">
@@ -88,7 +88,7 @@ const Navbar: React.FC = ({ }) => {
                             </div>
                             <div className='b-bottom-ws mt-3'>
                                 <List>
-                                    <h6 className='sub-heading-color'>TASKS</h6>
+                                    <h6 className='primary-color'>TASKS</h6>
                                     {menu.map((item) => (
                                         <div className='d-flex just justify-content-space-between mt-1 cursor-pointer
                                        justify-content-center'
@@ -105,7 +105,7 @@ const Navbar: React.FC = ({ }) => {
                                 </List>
                             </div>
                             <div className='b-bottom-ws'>
-                                <h6 className='sub-heading-color mt-2'>LISTS</h6>
+                                <h6 className='primary-color mt-2'>LISTS</h6>
                                 <div className='list-content'>
                                     {Array.isArray(listReducer?.lists) && listReducer?.lists?.map((item: any) => (
                                         <div className='d-flex justify-content-space-between align-item-center mt-1 font-size'>
@@ -129,7 +129,7 @@ const Navbar: React.FC = ({ }) => {
                                 </div>
                             </div>
                             <div className="mt-2">
-                                <h6 className='sub-heading-color'>TAGS</h6>
+                                <h6 className='primary-color'>TAGS</h6>
                                 <div className='tags-content d-flex mt-1 font-size'>
                                     {Array.isArray(tagReducer?.tags) && tagReducer?.tags?.map((item: any) => (
                                         <div className='menu-tags-options d-flex align-item-center f-wrap font-size mt-1 cursor-pointer'>

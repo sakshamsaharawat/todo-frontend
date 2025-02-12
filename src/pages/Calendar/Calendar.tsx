@@ -25,15 +25,14 @@ const events = [
 ];
 
 const MyCalendar: React.FC = () => (
-  <div className='calendar-component p-5'>
-
+  <div className='calendar-component'>
     <h1 className='heading-color'>{formattedDate}</h1>
     <div className="mt-2">
       <Calendar
         className='main-calendar'
         localizer={localizer}
         events={events}
-        defaultView="day"
+        defaultView="month"
         views={["day", "week", "month"]}
         defaultDate={new Date()}
       />

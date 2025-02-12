@@ -7,16 +7,16 @@ import AddTask from '../pages/AddTask/AddTask';
 const TodoRoutes: React.FC = () => {
   return (
     <>
-      <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", height:"100vh" }}>
-        <Navbar  />
-        <div style={{height: "100vh", overflow:"scroll"}}>
-        <Routes>
-          <Route path="/upcoming" element={<Upcoming />} />
-          <Route path="/today" element={<Today />} />
-          <Route path="/calendar" element={<MyCalendar />} />
-          <Route path="/sticky-wall" element={<StickyWall />} />
-          <Route path="/add-task" element={<AddTask />} />
-        </Routes>
+      <div className='height-100vh display-grid grid-template-columns-auto-1fr '>
+        <Navbar />
+        <div className="p-3 height-100vh overflow-scroll">
+          <Routes>
+            <Route path="/upcoming" element={<Upcoming />} />
+            <Route path="/today" element={<Today />} />
+            <Route path="/calendar" element={<MyCalendar />} />
+            <Route path="/sticky-wall" element={<StickyWall />} />
+            <Route path="/add-task" element={<AddTask />} />
+          </Routes>
         </div>
       </div>
     </>

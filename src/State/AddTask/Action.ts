@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { CREATE_LIST_SUCCESS, } from "../List/Action.type";
-import { CREATE_TASK_FAILURE, CREATE_TASK_REQUEST, GET_TASK_FAILURE, GET_TASK_REQUEST, GET_TODAY_PENDING_TASK_SUCCESS, GET_TODAY_TASK_SUCCESS, GET_TOMORROW_TASK_SUCCESS, GET_WEEK_TASK_SUCCESS } from "./ActionTypes";
+import { CREATE_TASK_FAILURE, CREATE_TASK_REQUEST, GET_TASK_FAILURE, GET_TASK_REQUEST } from "./ActionTypes";
 import { TaskData } from "./interface/create-task.interface";
 import axiosInstance from '../../utils/axiosInstance';
 import { TaskResponse } from './interface/get-task.interface';
@@ -13,10 +13,11 @@ export const createTask = (taskData: TaskData) => async (dispatch: Dispatch) => 
     dispatch(createTaskRequest())
     try {
         const response = await axiosInstance.post("task/create", taskData);
-        dispatch(createTaskSuccess(response.data))
+        dispatch(createTaskSuccess(response.data.data))
+        console.log("response---action", response)
     } catch (error: any) {
-        console.log(error.message)
-        dispatch(createTaskFailure(error.message))
+        console.log("error.message------action", error.data.message)
+        dispatch(createTaskFailure(error.data.message[0]))
     }
 }
 

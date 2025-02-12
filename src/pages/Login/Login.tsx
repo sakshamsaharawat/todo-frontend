@@ -40,7 +40,7 @@ const Login: React.FC = () => {
 
     return (
         <form onSubmit={formik.handleSubmit}>
-            <div className='login-main-component p-3' style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+            <div className='login-main-component p-3 display-grid grid-template-columns-1fr-1fr'>
                 <div className='login-image-text border-radius-10'>
                     <h1 className='login-text position-absolute'>Orgainc  <br />Mind</h1>
                     <div className='d-flex justify-content-center align-item-center position-relative'>
@@ -84,7 +84,7 @@ const Login: React.FC = () => {
                                 <span className='text-error'>{formik.errors.password}</span>
                             )}
                         </div>
-                        <button className='login-btn mt-4 border-radius-5 d-flex justify-content-center align-item-center'>
+                        <button className='submit-btn width-full mt-4 border-radius-5'>
                             Sign in
                         </button>
                         <p className='mt-4 d-flex justify-content-center align-item-center font-size'>
