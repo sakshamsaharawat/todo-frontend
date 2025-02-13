@@ -48,7 +48,7 @@ const Today: React.FC = () => {
         <div className='today-notification d-flex justify-content-center mt-1 border-radius-5'>5</div>
       </div>
       <div className='p-2 mt-4'>
-        <button className='submit-btn input-save-btn border-radius-5' onClick={() => handleAddTask()}>+ &nbsp; Add New Task</button>
+        <button className='submit-btn input-save-btn border-radius-5 cursor-pointer' onClick={() => handleAddTask()}>+ &nbsp; Add New Task</button>
         <section className='today-section mt-1'>
           {Array.isArray(taskReducer?.toady_tasks) && taskReducer?.toady_tasks?.map((item) => (
             <div className='today-todo-component font-size b-bottom-ws cursor-pointer align-items-center'

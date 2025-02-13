@@ -17,19 +17,6 @@
     position: relative;
 }
 
-.home-btn {
-    background-color: #ffd43b;
-    color: black;
-    border: none;
-    height: 40px;
-    width: 100%;
-}
-
-.home-btn:hover {
-    background-color: #ffc107;
-    cursor: pointer;
-}
-
 .home-get-start {
     width: 100%
 }

@@ -16,7 +16,7 @@ const Home: React.FC = () => {
                     <h1 className='black-color font-weight-6 '>Productive Mind</h1>
                     <p className='font-size mt-2'>With only the features you need, Organic Mind is customized
                         <br /> for individuals seeking a stress-free way to stay focused on  <br /> their goals, projects, and tasks.</p>
-                    <button className='home-btn mt-4 border-radius-5 d-flex justify-content-center align-item-center cursor-pointer' onClick={() => navigate("/signup")}>
+                    <button className='submit-btn width-full mt-4 border-radius-5 cursor-pointer' onClick={() => navigate("/signup")}>
                         Get Started
                     </button>
                     <p className='mt-4 d-flex justify-content-center align-item-center font-size'>

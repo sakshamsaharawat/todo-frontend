@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 const Upcoming: React.FC = () => {
   const navigate = useNavigate();
   const { taskReducer } = useSelector((store: RootState) => store);
+  console.log("taskReducer-------", taskReducer)
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   useEffect(() => {
     const today = new Date();
@@ -52,7 +53,7 @@ const Upcoming: React.FC = () => {
           <div className='upcoming-notification d-flex justify-content-center mt-1 border-radius-5 b-ws heading-color'>12</div>
         </div>
         <div className="mt-6">
-          <button className='submit-btn input-save-btn border-radius-5'
+          <button className='submit-btn input-save-btn border-radius-5 cursor-pointer'
             onClick={() => handleAddTask()}>
             + &nbsp; Add New Task</button>
           <section className='today-main-section p-4 mt-2'>
@@ -62,7 +63,7 @@ const Upcoming: React.FC = () => {
                 <input placeholder="+ Add New Task" id="add-new-task" className="today-add-input mt-2 font-size" />
               </div>
             </div>
-            {Array.isArray(taskReducer.toady_tasks) && taskReducer.toady_tasks.map((item) => (
+            {Array.isArray(taskReducer?.toady_tasks) && taskReducer?.toady_tasks.map((item) => (
               <div className='align-item-center justify-content-center b-bottom-ws f-wrap font-size'>
                 <div className='d-flex align-item-center justify-content-space-between mt-2'>
                   <div className='d-flex ml-4'>
@@ -82,7 +83,7 @@ const Upcoming: React.FC = () => {
                     {item?.due_date && <div className='d-flex align-item-center'>
                       <CalendarMonthIcon className='todo-icon' />
                       {/* note:- change below date  i remember that split("T")[0] because this can create issue so u have to change that */}
-                      <p>{item.due_date.split("T")[0]}</p>
+                      <p>{item?.due_date.split("T")[0]}</p>
                     </div>}
                     {<div className='d-flex align-item-center ml-2 mr-1'>
                       <span className='todo-option-substask-task d-flex align-item-center justify-content-center'>
@@ -90,8 +91,8 @@ const Upcoming: React.FC = () => {
                       <span className='ml-1'>substask</span>
                     </div>}
                     {item?.list && <div className='d-flex align-item-center ml-1'>
-                      <span className='todo-option-substask-list' style={{ backgroundColor: item.list.color_code }}></span>
-                      <span className='ml-1'>{item.list.title}</span>
+                      <span className='todo-option-substask-list' style={{ backgroundColor: item?.list.color_code }}></span>
+                      <span className='ml-1'>{item?.list?.title}</span>
                     </div>}
                   </div>
                 </div>

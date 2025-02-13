@@ -6,11 +6,17 @@ import { useNavigate } from 'react-router-dom';
 
 const StickyWall: React.FC = () => {
     const navigate = useNavigate()
+    const handleOnClick = () => (
+        navigate("/todo/add-stickywall")
+    )
     return (
-        <div className='mt-2'>
-        <div>
-        <h1 className="main-heading-color ml-4">Sticky Wall</h1>
-        </div>
+        <div className='mt-2 sticky-main'>
+            <div className="sticky-title-btn d-flex justify-content-space-between">
+                <h1 className="main-heading-color ml-4">Sticky Wall</h1>
+                <button className='sticky-btn submit-btn cursor-pointer border-radius-5'
+                onClick={()=> handleOnClick()}
+                >Add StickyWall</button>
+            </div>
             <section className="sticky-wall-main d-flex f-wrap ml-3">
                 {StickyWallData.map((item) => (
                     <div
@@ -24,13 +30,6 @@ const StickyWall: React.FC = () => {
                         />
                     </div>
                 ))}
-                <div
-                    className="sticky-wall-content-text align-item-center justify-content-center d-flex"
-                    style={{ backgroundColor: '#ebebeb' }}
-                    onClick={() => navigate("/home")}
-                >
-                    <AddIcon className='sw-add-icon-btn' />
-                </div>
             </section>
         </div>
     )

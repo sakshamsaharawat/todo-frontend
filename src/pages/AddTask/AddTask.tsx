@@ -13,7 +13,6 @@ import { useNavigate } from 'react-router-dom';
 import { Chip } from '@mui/material';
 import { TagItem } from '../../State/Tag/interface/get-tag.interface';
 import { CreateTask } from './interface/Add-Task.interface';
-import { taskReducer } from '../../State/AddTask/Reducer';
 
 const AddTask: React.FC = () => {
     const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
@@ -30,26 +29,23 @@ const AddTask: React.FC = () => {
             due_date: "",
             tag_ids: [],
             list_id: "",
+            tags: []
         },
         validationSchema: AddTaskValidation,
         onSubmit: async (values) => {
-            dispatch(createTask(values))
-            console.log("values---------", values)
-            toast.success("Task created successfully.")
-            navigate(-1)
+            try {
+                dispatch(createTask(values)); // Ensure the action resolves
+                toast.success("Task created successfully.");
+                navigate(-1);
+            } catch (error: any) {
+                console.error("Error creating task:", error);
+                toast.error(error.message || "Failed to create task.");
+            }
         },
     });
     const handleDelete = (item: TagItem): void => {
         formik.setFieldValue("tag_ids", formik.values.tag_ids.filter(tag => tag !== item._id));
     };
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState("");
-    const options = [
-        { label: "Red", value: "red", color: "red" },
-        { label: "Green", value: "green", color: "green" },
-        { label: "Blue", value: "blue", color: "blue" },
-        { label: "Yellow", value: "yellow", color: "yellow" }
-    ];
     return (
         <div>
             <div className='mt-2'>
@@ -126,7 +122,7 @@ const AddTask: React.FC = () => {
                         <div className='d-flex'>
                             <label className=''>Tags</label>
                             <div className="tag-add-task d-flex p-2">
-                                {tagReducer?.tags.map((item) => (
+                                {tagReducer?.tags.map((item: any) => (
                                     <Chip
                                         label={item.title}
                                         onDelete={formik.values.tag_ids.includes(item._id) ? () => handleDelete(item) : undefined}

@@ -1,7 +1,7 @@
-import { TagItem } from "./get-tag.interface";
+import { stickywallItem } from "../../stickyWall/interface/get-stickywall.interface";
 
 export type InitialState = {
-    tags: TagItem[];
+    tags: stickywallItem[];
     isLoading: boolean;
     error: string | null;
 };
