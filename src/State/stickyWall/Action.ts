@@ -21,10 +21,10 @@ const getStickyWallRequest = () => ({ type: GET_STICKY_WALL_REQUEST })
 const getStickyWallSuccess = (stickyWallData: stickywallItem) => ({ type: GET_STICKY_WALL_SUCCESS, payload: stickyWallData })
 const getStickyWallFailure = (error: string) => ({ type: GET_STICKY_WALL_FAILURE, payload: error })
 
-export const getStickyWall = (stickyWallData: stickywallItem) => async (dispatch: Dispatch) => {
+export const getStickyWall = () => async (dispatch: Dispatch) => {
     dispatch(getStickyWallRequest())
     try {
-        const response = await axiosInstance.post("stickywall", stickyWallData)
+        const response = await axiosInstance.get("stickywall")
         dispatch(getStickyWallSuccess(response.data.data))
     } catch (error: any) {
         dispatch(getStickyWallFailure(error.message))

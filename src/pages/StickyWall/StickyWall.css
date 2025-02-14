@@ -19,8 +19,13 @@
     height: 40vh;
     width: 17vw;
     border-radius: 10px;
-    text-overflow: ellipsis;
-    overflow: auto;
+    overflow-y: auto; /* Prevents content from overflowing */
+    text-overflow: ellipsis; /* Adds "..." if overflow */
+    word-wrap: break-word; /* Breaks long words */
+    white-space: normal; /* Allows text to wrap */
+    display: flex;
+    flex-direction: column;
+
 }
 
 .sw-add-icon-btn {
