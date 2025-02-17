@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = store.getState().authReducer.auth.jwt || localStorage.getItem("token");
+    const token = store.getState().authReducer.jwt || localStorage.getItem("token");
     console.log("Token attached to request:", token);
 
     if (token) {
@@ -29,7 +29,7 @@ axiosInstance.interceptors.response.use(
     if (error.response) {
       if (error.response.status === 401) {
         console.warn("Unauthorized request detected. Logging out...");
-        store.dispatch(logout()); 
+        store.dispatch(logout());
         return Promise.reject({ isAuthError: true, message: "Session expired. Please log in again." });
       }
 

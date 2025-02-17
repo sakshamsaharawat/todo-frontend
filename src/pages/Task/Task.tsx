@@ -81,11 +81,11 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
             </div>
           </div>
         </div>
-        <div className='task-footer d-flex'>
-          <button type="button" className='delete-task-btn border-radius-5'>
+        <div className='task-footer d-flex justify-content-end'>
+          <button type="button" className='cancel-btn border-radius-5 width-full'>
             Delete Task
           </button>
-          <button type="button" className='change-task-btn border-radius-5'>
+          <button type="button" className='submit-btn border-radius-5 width-full'>
             Save changes
           </button>
         </div>

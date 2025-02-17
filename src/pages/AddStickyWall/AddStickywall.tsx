@@ -113,11 +113,11 @@ const AddStickywall: React.FC = () => {
                             <span className="text-error">{formik.errors.color_code}</span>
                         )}
                     </div>
-                    <div className="d-flex justify-content-space-between">
-                        <button className="submit-btn list-btn mt-3 border-radius-5">
+                    <div className="d-flex justify-content-end">
+                        <button type="button" className="cancel-btn mt-3 border-radius-5">
                             Cancel
                         </button>
-                        <button type="submit" className="list-btn submit-btn mt-3 border-radius-5">
+                        <button type="submit" className="submit-btn mt-3 ml-2 border-radius-5">
                             Add
                         </button>
                     </div>
