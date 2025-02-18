@@ -1,4 +1,4 @@
-export interface TaskData {
+export interface UpdateTaskData {
     title: string;
     description: string;
     due_date: string;

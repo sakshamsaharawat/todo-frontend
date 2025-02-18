@@ -11,10 +11,11 @@ import { AnyAction } from 'redux';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { GET_TODAY_TASK_SUCCESS } from '../../State/AddTask/ActionTypes';
+import { TaskItem } from '../../State/AddTask/interface/get-task.interface';
 
 const Today: React.FC = () => {
   const [isTaskDrawerOpen, setIsTaskDrawerOpen] = useState(false);
-  const [selectedTask, setSelectedTask] = useState(null);
+  const [selectedTask, setSelectedTask] = useState<TaskItem | null>(null);
   const navigate = useNavigate();
   const { taskReducer } = useSelector((store: RootState) => store);
   console.log("taskReducer------------", taskReducer)
@@ -49,8 +50,11 @@ const Today: React.FC = () => {
       </div>
       <div className='p-2 mt-4'>
         <button className='submit-btn input-save-btn border-radius-5 cursor-pointer' onClick={() => handleAddTask()}>+ &nbsp; Add New Task</button>
+        <div>
+
+        </div>
         <section className='today-section mt-1'>
-          {Array.isArray(taskReducer?.toady_tasks) && taskReducer?.toady_tasks?.map((item) => (
+          {Array.isArray(taskReducer?.today_tasks) && taskReducer?.today_tasks?.map((item) => (
             <div className='today-todo-component font-size b-bottom-ws cursor-pointer align-items-center'
               onClick={() => handleOpenTask(item)}
             >
@@ -87,11 +91,12 @@ const Today: React.FC = () => {
           ))}
         </section>
       </div>
-      <TaskDrawer
+      {selectedTask && <TaskDrawer
         isOpen={isTaskDrawerOpen}
         toggleDrawer={toggleDrawer}
         taskDetails={selectedTask}
-      />
+        type="Today"
+      />}
     </div>
   )
 }

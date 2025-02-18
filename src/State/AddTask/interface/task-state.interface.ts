@@ -1,9 +1,10 @@
-import { TaskData } from "./create-task.interface";
+import { TaskItem } from "./get-task.interface";
 
 export interface TaskInitialState {
-    toady_tasks: TaskData[];
-    tomorrow_task: TaskData[];
-    this_week_task: TaskData[];
+    task: TaskItem | null;
+    today_tasks: TaskItem[];
+    tomorrow_task: TaskItem[];
+    this_week_task: TaskItem[];
     isLoading: boolean;
     error: string | null;
 } 

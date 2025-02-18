@@ -63,7 +63,7 @@ const Upcoming: React.FC = () => {
                 <input placeholder="+ Add New Task" id="add-new-task" className="today-add-input mt-2 font-size" />
               </div>
             </div>
-            {Array.isArray(taskReducer?.toady_tasks) && taskReducer?.toady_tasks.map((item) => (
+            {Array.isArray(taskReducer?.today_tasks) && taskReducer?.today_tasks.map((item) => (
               <div className='align-item-center justify-content-center b-bottom-ws f-wrap font-size'>
                 <div className='d-flex align-item-center justify-content-space-between mt-2'>
                   <div className='d-flex ml-4'>
