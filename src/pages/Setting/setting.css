@@ -1,0 +1,14 @@
+.profile-title {
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 15px 20px -20px;
+}
+
+.profile-container{
+border: 2px solid red;
+gap: 10px;
+flex-wrap: wrap;
+}
+
+.profile-input {
+    height: 7vh;
+    width: 55vh;
+}

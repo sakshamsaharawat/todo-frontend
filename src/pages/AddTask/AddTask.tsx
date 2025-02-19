@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AddTaskValidation from '../../validations/Add-task.validate';
 import { useFormik } from 'formik';
 import "./AddTask.css"
@@ -20,7 +20,6 @@ const AddTask: React.FC = () => {
     const { tagReducer } = useSelector((store: RootState) => store);
     const navigate = useNavigate();
     const todayIst = new Date()
-    console.log("todayIst---", todayIst)
 
     const formik = useFormik<CreateTask>({
         initialValues: {
@@ -34,12 +33,15 @@ const AddTask: React.FC = () => {
         validationSchema: AddTaskValidation,
         onSubmit: async (values) => {
             try {
-                dispatch(createTask(values)); // Ensure the action resolves
+                const payload = { ...values };
+                if (!payload?.list_id) {
+                    delete payload?.list_id;
+                }
+                dispatch(createTask(payload));
                 toast.success("Task created successfully.");
                 navigate(-1);
             } catch (error: any) {
-                console.error("Error creating task:", error);
-                toast.error(error.message || "Failed to create task.");
+                toast.error(error.data.message[0] || "Failed to create task.");
             }
         },
     });
@@ -99,18 +101,19 @@ const AddTask: React.FC = () => {
                             className='add-list font-size cursor-pointer border-radius-5'
                             name="list_id"
                             id="list"
-                            value={formik.values.list_id || ""}
+                            value={formik.values.list_id ?? ""}
                             onChange={(e) => {
                                 const selectedListId = e.target.value;
                                 formik.setFieldValue("list_id", selectedListId);
                             }}
+                            disabled={listReducer?.lists.length === 0}
                         >
 
-                            <option value="" style={{ border: "1px solid red" }}><span style={{ border: "1px solid red" }}>1</span>&nbsp;&nbsp;None</option>
+                            <option value="">&nbsp;&nbsp;None</option>
                             {listReducer?.lists.map((item) => (
                                 <option
-                                    key={item._id}
-                                    value={item._id} // Store the _id in the value of the option
+                                    key={item?._id}
+                                    value={item?._id} // Store the _id in the value of the option
                                     label={item?.title} // Show the title on UI
                                 >
 
@@ -138,8 +141,8 @@ const AddTask: React.FC = () => {
                         </div>
                     </div>
                     <div className='d-flex justify-content-end mt-5'>
-                        <button className='cancel-btn border-radius-5' type='button'>Cancel</button>
-                        <button className='submit-btn border-radius-5 ml-2' type="submit">Save</button>
+                        <button className='add-task-btn cancel-btn border-radius-5' type='button'>Cancel</button>
+                        <button className='add-task-btn submit-btn border-radius-5 ml-2' type="submit">Save</button>
                     </div>
                 </form>
 

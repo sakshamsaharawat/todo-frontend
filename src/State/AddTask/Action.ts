@@ -6,7 +6,7 @@ import axiosInstance from '../../utils/axiosInstance';
 import { TaskResponse } from './interface/get-task.interface';
 import { UpdateTaskData } from './interface/update-task.interface';
 import { UpdateTaskPayload } from '../../pages/Task/interface/update-task.interface';
-import { DeleteTaskData } from './interface/delete-task.interface';
+import { toast } from 'react-toastify';
 
 const createTaskRequest = () => ({ type: CREATE_TASK_REQUEST })
 const createTaskSuccess = (taskData: TaskData) => ({ type: CREATE_LIST_SUCCESS, payload: taskData })
@@ -19,6 +19,7 @@ export const createTask = (taskData: TaskData) => async (dispatch: Dispatch) => 
         dispatch(createTaskSuccess(response.data.data))
     } catch (error: any) {
         dispatch(createTaskFailure(error.data.message[0]))
+        toast.error(error.data.message[0])
     }
 }
 
@@ -48,6 +49,8 @@ export const updateTask = (taskData: UpdateTaskData, id: string, type: string) =
             id
         }
         const response = await axiosInstance.post("task/update", payload);
+        console.log("response.type", response)
+        console.log("typeee",type)
         dispatch(updateTaskSuccess(response.data.data, type))
     } catch (error: any) {
         console.error(error.message)

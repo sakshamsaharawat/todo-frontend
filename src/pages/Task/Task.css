@@ -24,6 +24,7 @@
 }
 
 .sub-task-tags {
+    gap:5px;
     margin-left: 50px;
     max-height: 100px;
     overflow-y: auto;
@@ -72,4 +73,9 @@ select:focus {
     width: 325px;
     box-sizing: border-box;
     gap: 10px;
+}
+
+.task-date {
+    width: 155px;
+    height: 35px;
 }

@@ -54,3 +54,29 @@
     z-index: 10;
     background-color: white;
 }
+
+@media (max-width: 480px) {
+    .today-sub-section {
+        padding: 0;
+        height: 500px;
+        flex-direction: column;
+    }
+
+    .this-week-tomoarrow-container {
+        height: 50% !important;
+        width: 100%;
+    }
+}
+
+@media (max-width: 320px) {
+    .today-sub-section {
+        padding: 0;
+        height: 500px;
+        flex-direction: column !important;
+    }
+
+    .this-week-tomoarrow-container {
+        height: 50% !important;
+        width: 100%;
+    }
+}

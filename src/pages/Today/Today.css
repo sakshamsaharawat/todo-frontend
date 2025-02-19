@@ -6,7 +6,6 @@
     width: 50px;
 }
 
-
 .today-main-list {
     margin-left: 35px;
 }
@@ -30,4 +29,37 @@
 
 .input-save-btn {
     width: 20%;
+}
+
+.icon-main-container {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1000px) {
+    .input-save-btn {
+        width: 40%;
+    }
+
+    .today-main-container {
+        padding: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .input-save-btn {
+        width: 100%;
+    }
+
+    .today-main-container {
+        padding: 0;
+    }
+
+    .today-sub-content {
+        flex-direction: column;
+    }
+
 }

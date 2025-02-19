@@ -4,6 +4,7 @@ import { MyCalendar, StickyWall, Today, Upcoming } from '../pages';
 import Navbar from '../components/Navbar/Navbar';
 import AddTask from '../pages/AddTask/AddTask';
 import AddStickywall from '../pages/AddStickyWall/AddStickywall';
+import Setting from '../pages/Setting/Setting';
 
 const TodoRoutes: React.FC = () => {
   return (
@@ -18,6 +19,8 @@ const TodoRoutes: React.FC = () => {
             <Route path="/sticky-wall" element={<StickyWall />} />
             <Route path="/add-task" element={<AddTask />} />
             <Route path="/add-stickywall" element={<AddStickywall />} />
+            <Route path="/setting" element={<Setting />} />
+            
           </Routes>
         </div>
       </div>

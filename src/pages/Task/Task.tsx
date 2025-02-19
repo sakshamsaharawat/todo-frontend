@@ -14,15 +14,8 @@ import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { Chip } from '@mui/material';
 import { TagItem } from '../../State/Tag/interface/get-tag.interface';
-import { TaskItem } from '../../State/AddTask/interface/get-task.interface';
 import { useNavigate } from 'react-router-dom';
-
-type TaskDrawerProps = {
-  isOpen: boolean;
-  toggleDrawer: (isOpen: boolean) => void;
-  taskDetails: TaskItem;
-  type: string
-};
+import { TaskDrawerProps } from './type/task-drawer.type';
 
 const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetails, type }) => {
   const navigate = useNavigate()
@@ -76,6 +69,10 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
       toast.error(error.message || "Failed to delete task.");
     }
   }
+  const formatDateForInput = (date: any) => {
+    if (!date) return "";
+    return new Date(date).toISOString().split("T")[0];
+  };
   return (
     <Drawer anchor="right" open={isOpen} onClose={() => toggleDrawer(false)}>
       <form onSubmit={formik.handleSubmit}>
@@ -129,13 +126,13 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
               <span className='text-error'>{formik.errors.list_id}</span>
             )}
           </div>
-          <div className='mt-1'>
+          <div className='mt-2'>
             <label>Due date</label>
             <input
-              className='font-size cursor-pointer border-radius-5 ml-5'
+              className='task-date font-size cursor-pointer border-radius-5 ml-3'
               type='date'
               name="due_date"
-              value={formik.values.due_date || ""}
+              value={formatDateForInput(formik.values.due_date)}
               min={todayIst.toISOString().split("T")[0]}
               onChange={(e) => {
                 formik.setFieldValue("due_date", e.target.value);
@@ -161,7 +158,6 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
                   color={formik.values.tag_ids.includes(item._id) ? "primary" : "default"}
                 />
               ))}
-              <span className='add-task-tags ml-1 border-radius-5 d-flex align-item-center'> + Add Tag</span>
             </div>
           </div>
           <div className='mt-3'>

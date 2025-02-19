@@ -34,7 +34,6 @@ const Navbar: React.FC = ({ }) => {
     const { user, jwt } = useSelector((store: any) => store.authReducer);
     const { listReducer } = useSelector((store: RootState) => store);
     const { tagReducer } = useSelector((store: RootState) => store)
-    console.log("listReducer--------", listReducer)
     const navigate = useNavigate();
     const [isDrawerOpen, setIsDrawerOpen] = useState(true);
     const [openModal, setOpenModal] = useState(false);
@@ -62,6 +61,10 @@ const Navbar: React.FC = ({ }) => {
             console.error("logout error:", error)
         }
     }
+    const handleSetting = () => {
+        navigate("/todo/setting")
+    }
+
     return (
         <>
             <div>
@@ -143,11 +146,11 @@ const Navbar: React.FC = ({ }) => {
                             </div>
                         </div>
                         <div className="font-size">
-                            <div className='d-flex'>
+                            <div className='d-flex cursor-pointer hover'>
                                 <div >
                                     <TuneIcon className='todo-icon mr-1' />
                                 </div>
-                                <p>Settings</p>
+                                <p className="cursor-pointer hover" onClick={()=> handleSetting()}>Settings</p>
                             </div>
                             <div className='d-flex cursor-pointer hover' onClick={() => handleLogout()}>
                                 <div>

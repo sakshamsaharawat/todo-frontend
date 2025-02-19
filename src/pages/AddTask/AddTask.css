@@ -59,3 +59,13 @@
         margin-left: 0;
     }
 }
+
+@media screen and (max-width: 480px) {
+    .add-date {
+        margin: 0;
+    }
+
+    .add-task-btn {
+        width: 100%;
+    }
+}

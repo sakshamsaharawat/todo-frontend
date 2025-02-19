@@ -281,3 +281,11 @@
 .primary-color {
     color: var(--primary-color) !important; 
 }
+
+.flex-direction-column {
+    flex-direction: column;
+}
+
+.no-task-image {
+    height: 20vh;
+}
