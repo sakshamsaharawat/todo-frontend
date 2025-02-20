@@ -13,7 +13,6 @@ export const createTag = (tagData: TagData) => async (dispatch: Dispatch) => {
     dispatch(createTagRequest());
     try {
         const response = await axiosInstance.post("tag/create", tagData);
-        console.log("Tag response:", response);
         dispatch(createTagSuccess(response.data.data));
         return { success: true, message: "Tag created successfully." };
     } catch (error: any) {

@@ -36,7 +36,6 @@ const AddTag: React.FC<AddTagProps> = ({ closeModal }) => {
           dispatch(getList())
           closeModal();
         } else {
-          console.log("Tag creation failed:", result.message);
 
           if (result.isAuthError) {
             toast.error(result.message);

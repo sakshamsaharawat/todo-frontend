@@ -75,7 +75,6 @@ export const logout = () => async (dispatch: Dispatch) => {
     dispatch(logoutRequest());
     try {
         const token = localStorage.getItem("jwt");
-        console.log("Logout Token before removal:", token);
 
         localStorage.removeItem("jwt");
 

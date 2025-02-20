@@ -2,13 +2,64 @@
     box-shadow: rgba(0, 0, 0, 0.45) 0px 15px 20px -20px;
 }
 
-.profile-container{
-border: 2px solid red;
-gap: 10px;
-flex-wrap: wrap;
+.profile-container {
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .profile-input {
-    height: 7vh;
+    outline: none;
+    border: 1px solid rgb(203, 201, 201);
+    height: 6vh;
     width: 55vh;
+}
+
+.code-input {
+    border: 1px solid rgb(203, 201, 201);
+    height: 6vh;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .profile-input {
+        height: 5vh;
+        width: 45vw;
+    }
+
+    .code-input {
+        border: 1px solid rgb(203, 201, 201);
+        height: 5vh;
+        width: 25vw;
+    }
+
+    .phoneno-input {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile-container {
+        flex-wrap: wrap;
+    }
+
+    .profile-input {
+        height: 8vh;
+        width: 45vw;
+    }
+
+    .code-input {
+        border: 1px solid #cbc9c9;
+        height: auto;
+        width: 25vw;
+    }
+
+    .phoneno-input {
+        margin-left: 0;
+        gap: 5px;
+        flex-direction: column;
+    }
+
+    .input-container {
+        margin-top: 15px;
+    }
 }

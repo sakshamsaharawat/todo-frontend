@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 const StickyWall: React.FC = () => {
     const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
     const { stickywallReducer } = useSelector((store: RootState) => store)
-    console.log("stickywallReducer", stickywallReducer)
     const navigate = useNavigate()
     const handleOnClick = () => (
         navigate("/todo/add-stickywall")

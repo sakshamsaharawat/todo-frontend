@@ -10,7 +10,6 @@ export const getCalendarTask = (payload: { startDate: string, endDate: string })
     dispatch(getCalendarRequest())
     try {
         const response = await axiosInstance.get(`task?start_date=${payload.startDate}&end_date=${payload.endDate}`)
-        console.log("response-clllllll", response)
         const calendarPayload = []
         for (const task of response.data.data) {
             const taskDueDate: Date = new Date(task.due_date);

@@ -17,7 +17,6 @@ const formattedDate = new Date().toLocaleDateString('en-GB', { day: '2-digit', m
 const MyCalendar: React.FC = () => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const { calendarTaskReducer } = useSelector((store: any) => store)
-  console.log("calendarTaskReducer", calendarTaskReducer)
 
   useEffect(() => {
     const today = new Date();
@@ -29,8 +28,6 @@ const MyCalendar: React.FC = () => {
     if (view === "month") {
       const startDate = moment.utc(date).startOf("month").format("YYYY-MM-DDT00:00:00.000[Z]");
       const endDate = moment.utc(date).endOf("month").format("YYYY-MM-DDT23:59:59.999[Z]");
-      console.log("Start Date:", startDate);
-      console.log("End Date:", endDate);
       dispatch(getCalendarTask({ startDate, endDate }));
     }
   };

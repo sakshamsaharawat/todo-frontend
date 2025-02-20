@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 
 const AddList: React.FC<AddListProps> = ({ closeModal }) => {
   const { listReducer } = useSelector((store: RootState) => store);
-  console.log("listReducer---addlist", listReducer)
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const [color, setColor] = useState("");
   const navigate = useNavigate()
@@ -27,14 +26,12 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
     },
     validationSchema: AddListValidation,
     onSubmit: async (values) => {
-      console.log("Values", values);
       try {
         const result = await dispatch(CreateList(values));
         if (result.success) {
           toast.success("List created successfully.")
           closeModal();
         } else {
-          console.log("backend-error", result.message)
           toast.error(result.message);
 
           if (result.isAuthError) {

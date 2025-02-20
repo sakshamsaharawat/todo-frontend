@@ -96,7 +96,6 @@ export const taskReducer = (state: TaskInitialState = initialState, action: any)
                 }
             }
             if (action.listType === "Tomorrow") {
-                console.log("action-------Tomorrow", action)
                 return {
                     ...state,
                     tomorrow_task: state.tomorrow_task.map(item => {

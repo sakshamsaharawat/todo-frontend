@@ -10,7 +10,6 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = store.getState().authReducer.jwt || localStorage.getItem("token");
-    console.log("Token attached to request:", token);
 
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;

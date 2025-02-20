@@ -49,8 +49,6 @@ export const updateTask = (taskData: UpdateTaskData, id: string, type: string) =
             id
         }
         const response = await axiosInstance.post("task/update", payload);
-        console.log("response.type", response)
-        console.log("typeee",type)
         dispatch(updateTaskSuccess(response.data.data, type))
     } catch (error: any) {
         console.error(error.message)

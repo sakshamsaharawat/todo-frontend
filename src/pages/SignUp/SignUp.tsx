@@ -16,7 +16,6 @@ import { toast } from 'react-toastify';
 const SignUp: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { authReducer } = useSelector((store: RootState) => store)
-  console.log("user", authReducer)
   const navigate = useNavigate();
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const formik = useFormik({
@@ -28,14 +27,12 @@ const SignUp: React.FC = () => {
     },
     validationSchema: signupValidation,
     onSubmit: async (values) => {
-      console.log("Values", values);
       try {
         const result = await dispatch(register(values));
         if (result.success) {
           toast.success("User register successfully.")
           navigate("/todo/upcoming")
         } else {
-          console.log("Registration failed:", result.message)
           toast.error(result.message || "Registration failed. Please try again.")
         }
       } catch (error) {

@@ -12,7 +12,6 @@ export const CreateList = (listData: ListData) => async (dispatch: Dispatch) => 
     dispatch(createListRequest());
     try {
         const response = await axiosInstance.post('list/create', listData)
-        console.log("response--list", response)
         dispatch(createListSuccess(response.data.data))
         return { success: true, message: 'List created successfully.' };
 
