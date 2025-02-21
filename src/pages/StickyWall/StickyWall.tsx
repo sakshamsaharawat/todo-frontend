@@ -32,7 +32,6 @@ const StickyWall: React.FC = () => {
                     <div
                         className="sticky-wall-content-text font-size"
                         style={{ backgroundColor: item.color_code }}
-                    // key={item.id} 
                     >
                         <h1 className="sticky-wall-heading">{item?.title}</h1>
                         <div
@@ -44,5 +43,4 @@ const StickyWall: React.FC = () => {
         </div>
     )
 }
-
 export default StickyWall;

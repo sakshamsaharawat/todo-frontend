@@ -20,12 +20,10 @@ const TodoRoutes: React.FC = () => {
             <Route path="/add-task" element={<AddTask />} />
             <Route path="/add-stickywall" element={<AddStickywall />} />
             <Route path="/setting" element={<Setting />} />
-            
           </Routes>
         </div>
       </div>
     </>
   )
 }
-
 export default TodoRoutes;

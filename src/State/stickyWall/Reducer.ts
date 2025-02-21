@@ -52,7 +52,6 @@ export const stickywallReducer = (state: StickyWallIntialState = intialState, ac
                 isLoading: false
             }
         default:
-            return state
+            return state;
     }
-
 }

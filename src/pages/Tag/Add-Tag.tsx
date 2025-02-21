@@ -10,16 +10,13 @@ import { toast } from 'react-toastify';
 import { HexColorPicker } from 'react-colorful';
 import { AddTagProps } from './interface/tag.interface';
 import './Add-Tag.css';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getList } from '../../State/List/Action';
 
 const AddTag: React.FC<AddTagProps> = ({ closeModal }) => {
-  const { tagReducer } = useSelector((store: RootState) => store);
-  const { listReducer } = useSelector((store: RootState) => store);
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
-  const navigate = useNavigate()
-  const [color, setColor] = useState("")
+  const navigate = useNavigate();
+  const [color, setColor] = useState("");
 
   const formik = useFormik({
     initialValues: {
@@ -33,7 +30,7 @@ const AddTag: React.FC<AddTagProps> = ({ closeModal }) => {
         if (result.success) {
           toast.success("Tag created successfully.");
           dispatch(getTag());
-          dispatch(getList())
+          dispatch(getList());
           closeModal();
         } else {
 
@@ -52,11 +49,10 @@ const AddTag: React.FC<AddTagProps> = ({ closeModal }) => {
         console.error("Unexpected error during tag creation:", error);
         toast.error("An unexpected error occurred. Please try again later.");
       }
-    },
+    }
   });
 
   return (
-
     <div>
       <h1 className='heading-color d-flex align-item-center justify-content-center'>Add New Tag</h1>
       <div className='d-flex align-item-center justify-content-center'>
@@ -109,5 +105,4 @@ const AddTag: React.FC<AddTagProps> = ({ closeModal }) => {
     </div>
   )
 }
-
 export default AddTag;

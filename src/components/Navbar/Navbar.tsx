@@ -21,6 +21,7 @@ import { AddList } from '../../pages';
 import { logout } from '../../State/Auth/Action';
 import { getTag } from '../../State/Tag/Action';
 import AddTag from '../../pages/Tag/Add-Tag';
+import { toast } from 'react-toastify';
 
 const menu: { name: string, path: string, icon: any }[] = [
     { name: "Upcoming", path: "/todo/upcoming", icon: <KeyboardDoubleArrowRightIcon className='todo-icon' /> },
@@ -44,7 +45,7 @@ const Navbar: React.FC = ({ }) => {
     }
     useEffect(() => {
         dispatch(getList());
-        dispatch(getTag())
+        dispatch(getTag());
     }, [dispatch, user, jwt, navigate]);
 
     useEffect(() => {
@@ -57,8 +58,8 @@ const Navbar: React.FC = ({ }) => {
         try {
             await dispatch(logout())
             navigate("/login")
-        } catch (error) {
-            console.error("logout error:", error)
+        } catch (error: any) {
+            toast.error("logout error:", error.data.message[0])
         }
     }
     const handleSetting = () => {
@@ -150,7 +151,7 @@ const Navbar: React.FC = ({ }) => {
                                 <div >
                                     <TuneIcon className='todo-icon mr-1' />
                                 </div>
-                                <p className="cursor-pointer hover" onClick={()=> handleSetting()}>Settings</p>
+                                <p className="cursor-pointer hover" onClick={() => handleSetting()}>Settings</p>
                             </div>
                             <div className='d-flex cursor-pointer hover' onClick={() => handleLogout()}>
                                 <div>
@@ -174,7 +175,6 @@ const Navbar: React.FC = ({ }) => {
                     <AddTag closeModal={() => setOpenTagModal(false)} />
                 </div>
             </Modal>
-
         </>
     )
 }

@@ -23,11 +23,11 @@ const Login: React.FC = () => {
         validationSchema: loginValidation,
         onSubmit: async (values) => {
             try {
-                const result = await dispatch(login(values))
+                const result = await dispatch(login(values));
                 if (result.success) {
-                    toast.success("login successfully")
-                    dispatch(getUser(result.token))
-                    navigate("/todo/upcoming")
+                    toast.success("login successfully");
+                    dispatch(getUser());
+                    navigate("/todo/upcoming");
                 } else {
                     throw new Error("Login failed. Please try again.");
                 }
@@ -35,7 +35,7 @@ const Login: React.FC = () => {
                 console.error(error);
                 toast.error(error.message || "Login failed.");
             }
-        },
+        }
     });
 
     return (
@@ -50,7 +50,7 @@ const Login: React.FC = () => {
                 <div className='login-content-component d-flex justify-content-center align-item-center border-radius-10 b-ws'>
                     <div className='login-sub-content'>
                         <div>
-                            <h1 className='black-color font-weight-6'> Sign in</h1>
+                            <h1 className='black-color font-weight-6'>Sign in</h1>
                             <input
                                 name="email"
                                 type='text'
@@ -90,12 +90,10 @@ const Login: React.FC = () => {
                         <p className='mt-4 d-flex justify-content-center align-item-center font-size'>
                             Dont't have an account? <a href='/signup'>Sign up</a>
                         </p>
-
                     </div>
                 </div>
             </div>
         </form >
     )
 }
-
 export default Login;

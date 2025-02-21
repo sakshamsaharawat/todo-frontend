@@ -94,7 +94,6 @@ const AddTask: React.FC = () => {
                             <span className='text-error'>{formik.errors.due_date}</span>
                         )}
                     </div>
-
                     <div className='mt-3'>
                         <label className='task-list'>List</label>
                         <select
@@ -108,7 +107,6 @@ const AddTask: React.FC = () => {
                             }}
                             disabled={listReducer?.lists.length === 0}
                         >
-
                             <option value="">&nbsp;&nbsp;None</option>
                             {listReducer?.lists.map((item) => (
                                 <option
@@ -116,7 +114,6 @@ const AddTask: React.FC = () => {
                                     value={item?._id} // Store the _id in the value of the option
                                     label={item?.title} // Show the title on UI
                                 >
-
                                 </option>
                             ))}
                         </select>
@@ -145,12 +142,10 @@ const AddTask: React.FC = () => {
                         <button className='add-task-btn submit-btn border-radius-5 ml-2' type="submit">Save</button>
                     </div>
                 </form>
-
                 <div>
                 </div>
             </div >
         </div >
     )
 }
-
 export default AddTask;

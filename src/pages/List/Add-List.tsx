@@ -4,17 +4,15 @@ import { useFormik } from "formik";
 import { AddListValidation } from "../../validations/Add-List.validate";
 import { HexColorPicker } from "react-colorful";
 import { RootState } from "../../store";
-import { useSelector } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
 import { useDispatch } from "react-redux";
-import { CreateList, getList } from "../../State/List/Action";
+import { CreateList } from "../../State/List/Action";
 import { toast } from 'react-toastify';
 import { AddListProps } from "./interface/list.interface";
 import { useNavigate } from "react-router-dom";
 
 const AddList: React.FC<AddListProps> = ({ closeModal }) => {
-  const { listReducer } = useSelector((store: RootState) => store);
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const [color, setColor] = useState("");
   const navigate = useNavigate()
@@ -29,7 +27,7 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
       try {
         const result = await dispatch(CreateList(values));
         if (result.success) {
-          toast.success("List created successfully.")
+          toast.success("List created successfully.");
           closeModal();
         } else {
           toast.error(result.message);
@@ -75,7 +73,6 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
               <span className="text-error">{formik.errors.title}</span>
             )}
           </div>
-
           <div className="mt-3">
             <HexColorPicker
               className="color-picker"
@@ -86,7 +83,6 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
               }}
             />
           </div>
-
           <div>
             <input
               name="color_code"
@@ -113,5 +109,4 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
     </div>
   );
 };
-
 export default AddList;

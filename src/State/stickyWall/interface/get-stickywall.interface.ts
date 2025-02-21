@@ -6,9 +6,8 @@ export interface stickywallItem {
     description: string;
     isDeleted: string;
     createdAt: string;
-    updatedAt: string
+    updatedAt: string;
 }
-
 export interface StickyWallResponse {
-    data: stickywallItem[]
+    data: stickywallItem[];
 }

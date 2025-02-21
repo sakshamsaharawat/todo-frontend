@@ -110,5 +110,4 @@ const Today: React.FC = () => {
     </div>
   )
 }
-
 export default Today;

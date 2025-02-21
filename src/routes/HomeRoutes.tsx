@@ -1,6 +1,6 @@
-import { Route, Routes } from 'react-router-dom'
-import { Home, SignUp } from '../pages'
-import Login from '../pages/Login/Login'
+import { Route, Routes } from 'react-router-dom';
+import { Home, SignUp } from '../pages';
+import Login from '../pages/Login/Login';
 
 const HomeRoutes: React.FC = () => {
   return (
@@ -13,5 +13,4 @@ const HomeRoutes: React.FC = () => {
     </div>
   )
 }
-
-export default HomeRoutes
+export default HomeRoutes;

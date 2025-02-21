@@ -19,20 +19,18 @@
     height: 40vh;
     width: 17vw;
     border-radius: 10px;
-    overflow-y: auto; /* Prevents content from overflowing */
-    text-overflow: ellipsis; /* Adds "..." if overflow */
-    word-wrap: break-word; /* Breaks long words */
-    white-space: normal; /* Allows text to wrap */
+    overflow-y: auto; 
+    text-overflow: ellipsis; 
+    word-wrap: break-word; 
+    white-space: normal;
     display: flex;
     flex-direction: column;
-
 }
 
 .sw-add-icon-btn {
     font-size: 70px !important;
 }
 
-/* Responsive adjustments for smaller screens */
 @media (max-width: 1000px) {
     .sticky-wall-main {
         grid-template-columns: auto auto auto;

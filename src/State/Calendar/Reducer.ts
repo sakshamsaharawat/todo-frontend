@@ -5,7 +5,6 @@ const initialState: CalendarInitialState = {
     tasks: [],
     isLoading: false,
     error: null
-
 }
 
 export const calendarTaskReducer = (state: CalendarInitialState = initialState, action: any): CalendarInitialState => {
@@ -32,6 +31,6 @@ export const calendarTaskReducer = (state: CalendarInitialState = initialState, 
                 error: action.payload
             }
         default:
-            return state
+            return state;
     }
 }

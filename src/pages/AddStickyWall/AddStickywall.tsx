@@ -12,8 +12,6 @@ import { createStickyWall } from '../../State/stickyWall/Action';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-// import { AddStickywall } from './interface/Add-stickywall.interface';
-
 const quillModules = {
     toolbar: [
         [{ header: [1, 2, 3, false] }],
@@ -42,10 +40,9 @@ const AddStickywall: React.FC = () => {
             description: "",
             color_code: ""
         },
-        // validationSchema: AddTaskValidation,
         onSubmit: async (values) => {
             try {
-                dispatch(createStickyWall(values)); // Ensure the action resolves
+                dispatch(createStickyWall(values));
                 toast.success("StickyWall created successfully.");
                 navigate(-1);
             } catch (error: any) {
@@ -99,7 +96,6 @@ const AddStickywall: React.FC = () => {
                             }}
                         />
                     </div>
-
                     <div>
                         <input
                             name="color_code"
@@ -122,11 +118,10 @@ const AddStickywall: React.FC = () => {
                         </button>
                     </div>
                 </form>
-
                 <div>
                 </div>
-            </div >
-        </div >
+            </div>
+        </div>
     )
 }
 export default AddStickywall;

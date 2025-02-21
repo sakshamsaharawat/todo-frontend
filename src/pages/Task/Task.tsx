@@ -14,11 +14,9 @@ import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { Chip } from '@mui/material';
 import { TagItem } from '../../State/Tag/interface/get-tag.interface';
-import { useNavigate } from 'react-router-dom';
 import { TaskDrawerProps } from './type/task-drawer.type';
 
 const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetails, type }) => {
-  const navigate = useNavigate()
   const { listReducer } = useSelector((store: RootState) => store);
   const { tagReducer } = useSelector((store: RootState) => store);
 
@@ -62,9 +60,9 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
 
   const handleTaskDelete = async () => {
     try {
-      await dispatch(deleteTask(taskDetails._id, type))
-      toast.success("Task deleted successfully.")
-      toggleDrawer(false)
+      await dispatch(deleteTask(taskDetails._id, type));
+      toast.success("Task deleted successfully.");
+      toggleDrawer(false);
     } catch (error: any) {
       toast.error(error.message || "Failed to delete task.");
     }
@@ -142,7 +140,6 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
               <span className='text-error'>{formik.errors.due_date}</span>
             )}
           </div>
-
           <div className='task-tags d-flex mt-2 font-size'>
             <p>Tags</p>
             <div className='sub-task-tags d-flex f-wrap'>

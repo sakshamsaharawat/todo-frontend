@@ -13,7 +13,6 @@ const AddTaskValidation = Yup.object().shape({
     due_date: Yup.date()
         .required("Date is required")
         .typeError("Invalid date format"),
-        // .min(new Date(new Date().setHours(0, 0, 0, 0)), "Due date cannot be in the past"),
 
     tag_ids: Yup.array()
         .of(Yup.string().matches(/^[0-9a-fA-F]{24}$/, "Each tag ID must be a valid MongoDB ObjectId"))

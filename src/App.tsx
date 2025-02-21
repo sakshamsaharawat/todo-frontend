@@ -23,9 +23,7 @@ function App() {
         pauseOnHover
         theme="light"
       />
-
     </div>
   )
 }
-
 export default App;

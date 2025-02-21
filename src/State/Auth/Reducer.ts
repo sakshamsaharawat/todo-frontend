@@ -1,4 +1,4 @@
-import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType"
+import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, UPDATE_USER_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS } from "./ActionType"
 import { UserInitialState } from "./interface/user-state.interface";
 
 const initialState: UserInitialState = {
@@ -31,6 +31,13 @@ export const authReducer = (state: UserInitialState = initialState, action: any)
                 error: null
             }
 
+        case UPDATE_USER_REQUEST:
+            return {
+                ...state,
+                user: state.user,
+                isLoading: true,
+                error: null
+            }
         case REGISTER_SUCCESS:
             return {
                 ...state,
@@ -55,6 +62,13 @@ export const authReducer = (state: UserInitialState = initialState, action: any)
                 user: action.payload,
                 error: null,
             };
+        case UPDATE_USER_SUCCESS:
+            return {
+                ...state,
+                user: {...action.payload} ,
+                isLoading: false,
+                error: null
+            }
 
         case REGISTER_FAILURE:
             return {
@@ -77,7 +91,13 @@ export const authReducer = (state: UserInitialState = initialState, action: any)
                 isLoading: false,
                 error: action.payload
             }
-
+        case UPDATE_USER_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                user: state.user,
+                error: action.payload
+            }
         case LOGOUT_SUCCESS:
             localStorage.removeItem("token");
             return {
@@ -92,5 +112,3 @@ export const authReducer = (state: UserInitialState = initialState, action: any)
             return state;
     }
 }
-
-

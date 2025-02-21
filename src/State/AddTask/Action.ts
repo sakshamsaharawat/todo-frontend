@@ -8,65 +8,65 @@ import { UpdateTaskData } from './interface/update-task.interface';
 import { UpdateTaskPayload } from '../../pages/Task/interface/update-task.interface';
 import { toast } from 'react-toastify';
 
-const createTaskRequest = () => ({ type: CREATE_TASK_REQUEST })
-const createTaskSuccess = (taskData: TaskData) => ({ type: CREATE_LIST_SUCCESS, payload: taskData })
-const createTaskFailure = (error: string) => ({ type: CREATE_TASK_FAILURE, payload: error })
+const createTaskRequest = () => ({ type: CREATE_TASK_REQUEST });
+const createTaskSuccess = (taskData: TaskData) => ({ type: CREATE_LIST_SUCCESS, payload: taskData });
+const createTaskFailure = (error: string) => ({ type: CREATE_TASK_FAILURE, payload: error });
 
 export const createTask = (taskData: TaskData) => async (dispatch: Dispatch) => {
-    dispatch(createTaskRequest())
+    dispatch(createTaskRequest());
     try {
         const response = await axiosInstance.post("task/create", taskData);
-        dispatch(createTaskSuccess(response.data.data))
+        dispatch(createTaskSuccess(response.data.data));
     } catch (error: any) {
-        dispatch(createTaskFailure(error.data.message[0]))
-        toast.error(error.data.message[0])
+        dispatch(createTaskFailure(error.data.message[0]));
+        toast.error(error.data.message[0]);
     }
 }
 
-const getTaskRequest = () => ({ type: GET_TASK_REQUEST })
+const getTaskRequest = () => ({ type: GET_TASK_REQUEST });
 const getTaskSuccess = (getTaskData: TaskResponse, type: string) => ({ type, payload: getTaskData });
-const getTaskFailure = (error: any) => ({ type: GET_TASK_FAILURE, payload: error })
+const getTaskFailure = (error: any) => ({ type: GET_TASK_FAILURE, payload: error });
 
 export const getTask = (payload: { startDate: string, endDate: string }, type: string) => async (dispatch: Dispatch) => {
-    dispatch(getTaskRequest())
+    dispatch(getTaskRequest());
     try {
         const response = await axiosInstance.get(`task?start_date=${payload.startDate}&end_date=${payload.endDate}`);
         dispatch(getTaskSuccess(response.data.data, type));
     } catch (error: any) {
-        dispatch(getTaskFailure(error.message))
+        dispatch(getTaskFailure(error.message));
     }
 }
 
-const updateTaskRequest = () => ({ type: UPDATE_TASK_REQUEST })
-const updateTaskSuccess = (taskData: UpdateTaskData, type: string) => ({ type: UPDATE_TASK_SUCCESS, payload: taskData, listType: type })
-const updateTaskFailure = (error: string) => ({ type: UPDATE_TASK_FAILURE, payload: error })
+const updateTaskRequest = () => ({ type: UPDATE_TASK_REQUEST });
+const updateTaskSuccess = (taskData: UpdateTaskData, type: string) => ({ type: UPDATE_TASK_SUCCESS, payload: taskData, listType: type });
+const updateTaskFailure = (error: string) => ({ type: UPDATE_TASK_FAILURE, payload: error });
 
 export const updateTask = (taskData: UpdateTaskData, id: string, type: string) => async (dispatch: Dispatch) => {
-    dispatch(updateTaskRequest())
+    dispatch(updateTaskRequest());
     try {
         const payload: UpdateTaskPayload = {
             ...taskData,
             id
         }
         const response = await axiosInstance.post("task/update", payload);
-        dispatch(updateTaskSuccess(response.data.data, type))
+        dispatch(updateTaskSuccess(response.data.data, type));
     } catch (error: any) {
-        console.error(error.message)
-        dispatch(updateTaskFailure(error.message))
+        toast.error(error.data.message[0]);
+        dispatch(updateTaskFailure(error.message));
     }
 }
 
-const deleteTaskRequest = () => ({ type: DELETE_TASK_REQUEST })
-const deleteTaskSuccess = (id: string, type: string) => ({ type: DELETE_TASK_SUCCESS, payload: {id}, listType: type })
-const deleteTaskFailure = (error: string) => ({ type: DELETE_TASK_FAILURE, payload: error })
+const deleteTaskRequest = () => ({ type: DELETE_TASK_REQUEST });
+const deleteTaskSuccess = (id: string, type: string) => ({ type: DELETE_TASK_SUCCESS, payload: { id }, listType: type });
+const deleteTaskFailure = (error: string) => ({ type: DELETE_TASK_FAILURE, payload: error });
 
 export const deleteTask = (id: string, type: string) => async (dispatch: Dispatch) => {
-    dispatch(deleteTaskRequest())
+    dispatch(deleteTaskRequest());
     try {
         await axiosInstance.delete(`task/${id}`);
-        dispatch(deleteTaskSuccess(id, type))
+        dispatch(deleteTaskSuccess(id, type));
     } catch (error: any) {
-        console.error(error.message)
-        dispatch(deleteTaskFailure(error.message))
+        toast.error(error.data.message[0]);
+        dispatch(deleteTaskFailure(error.message));
     }
 }

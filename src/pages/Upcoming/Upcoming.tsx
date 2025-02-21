@@ -46,7 +46,7 @@ const Upcoming: React.FC = () => {
   }, [dispatch])
 
   const handleAddTask = () => {
-    navigate("/todo/add-task")
+    navigate("/todo/add-task");
   };
   const handleOpenTask = (task: any, type: string): void => {
     setType(type);
@@ -104,7 +104,7 @@ const Upcoming: React.FC = () => {
                                 month: "2-digit",
                                 day: "2-digit",
                               }).format(new Date(item.due_date))
-                              .replace(/\//g, "-")
+                                .replace(/\//g, "-")
                               : "No Due Date"}
                           </p>
                         </div>}
@@ -210,5 +210,4 @@ const Upcoming: React.FC = () => {
     </div>
   )
 }
-
-export default Upcoming
+export default Upcoming;

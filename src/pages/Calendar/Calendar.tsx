@@ -13,24 +13,23 @@ import { getCalendarTask } from '../../State/Calendar/Action';
 const localizer = momentLocalizer(moment)
 const formattedDate = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
 
-
 const MyCalendar: React.FC = () => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
-  const { calendarTaskReducer } = useSelector((store: any) => store)
+  const { calendarTaskReducer } = useSelector((store: any) => store);
 
   useEffect(() => {
     const today = new Date();
     const startDate = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), 1, 0, 0, 0, 0)).toISOString();
     const endDate = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() + 1, 0, 23, 59, 59, 999)).toISOString();
-    dispatch(getCalendarTask({ startDate, endDate }))
-  }, [])
+    dispatch(getCalendarTask({ startDate, endDate }));
+  }, []);
   const handleNavigate = (date: any, view: any) => {
     if (view === "month") {
       const startDate = moment.utc(date).startOf("month").format("YYYY-MM-DDT00:00:00.000[Z]");
       const endDate = moment.utc(date).endOf("month").format("YYYY-MM-DDT23:59:59.999[Z]");
       dispatch(getCalendarTask({ startDate, endDate }));
     }
-  };
+  }
 
   return (
     <div className='main-calendar'>
@@ -49,5 +48,4 @@ const MyCalendar: React.FC = () => {
     </div>
   )
 }
-
 export default MyCalendar

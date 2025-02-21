@@ -3,7 +3,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './SignUp.css';
 import { useFormik } from 'formik';
 import { signupValidation } from '../../validations/signup.validate';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../State/Auth/Action';
 import { RootState } from '../../store';
@@ -11,11 +11,8 @@ import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { toast } from 'react-toastify';
 
-
-
 const SignUp: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { authReducer } = useSelector((store: RootState) => store)
   const navigate = useNavigate();
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const formik = useFormik({
@@ -30,16 +27,15 @@ const SignUp: React.FC = () => {
       try {
         const result = await dispatch(register(values));
         if (result.success) {
-          toast.success("User register successfully.")
-          navigate("/todo/upcoming")
+          toast.success("User register successfully.");
+          navigate("/todo/upcoming");
         } else {
           toast.error(result.message || "Registration failed. Please try again.")
         }
-      } catch (error) {
-        console.error("Unexpected error during registration:", error);
-        toast.error('An unexpected error occurred. Please try again later.')
+      } catch (error: any) {
+        toast.error(error.data.message[0]);
       }
-    },
+    }
   });
 
   return (
@@ -120,5 +116,4 @@ const SignUp: React.FC = () => {
     </form>
   )
 }
-
 export default SignUp;
