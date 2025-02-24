@@ -42,13 +42,13 @@
     }
 
     .profile-input {
-        height: 8vh;
-        width: 60vw;
+        height: 10vh;
+        width: 70vw;
     }
 
     .code-input {
         border: 1px solid #cbc9c9;
-        height: auto;
+        height: 10vh;
         width: 25vw;
     }
 
@@ -68,5 +68,8 @@
 
     .user-save-btn {
         width: 50%;
+    }
+    .phone-numbe-input {
+        margin: 0;
     }
 }

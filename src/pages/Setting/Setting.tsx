@@ -153,7 +153,7 @@ const Setting: React.FC = () => {
                                 },
                                 "& .MuiInputBase-input": {
                                     height: "100%",
-                                    padding: "10px",
+                                    padding: "15px",
                                 },
                             }}
                             InputProps={{
@@ -190,7 +190,7 @@ const Setting: React.FC = () => {
                                 },
                                 "& .MuiInputBase-input": {
                                     height: "100%",
-                                    padding: "10px",
+                                    padding: "15px",
                                 },
                             }}
                             InputProps={{
@@ -227,7 +227,7 @@ const Setting: React.FC = () => {
                                 },
                                 "& .MuiInputBase-input": {
                                     height: "100%",
-                                    padding: "10px",
+                                    padding: "15px",
                                 },
                             }}
                             InputProps={{
@@ -335,7 +335,7 @@ const Setting: React.FC = () => {
                                     name="phone_number"
                                     value={formik.values.phone_number}
                                     onChange={formik.handleChange}
-                                    className='profile-input border-radius-10 ml-2 pl-3'
+                                    className='phone-numbe-input profile-input border-radius-10 ml-2 pl-3'
                                 />
                             </div>
                             {formik.touched.gender && formik.errors.gender && (
