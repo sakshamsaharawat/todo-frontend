@@ -10,13 +10,13 @@
 .profile-input {
     outline: none;
     border: 1px solid rgb(203, 201, 201);
-    height: 6vh;
+    height: 7vh;
     width: 55vh;
 }
 
 .code-input {
     border: 1px solid rgb(203, 201, 201);
-    height: 6vh;
+    height: 7vh;
 }
 
 @media screen and (max-width: 1000px) {
@@ -42,13 +42,13 @@
     }
 
     .profile-input {
-        height: 10vh;
+        height: 8vh;
         width: 70vw;
     }
 
     .code-input {
         border: 1px solid #cbc9c9;
-        height: 10vh;
+        height: 8vh;
         width: 25vw;
     }
 

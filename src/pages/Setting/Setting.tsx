@@ -135,7 +135,7 @@ const Setting: React.FC = () => {
                     <div className='input-container'>
                         <h4>First Name</h4>
                         <TextField
-                            className='profile-input'
+                            className='profile-input mt-4'
                             name='first_name'
                             value={formik.values.first_name}
                             onChange={formik.handleChange}
@@ -175,7 +175,7 @@ const Setting: React.FC = () => {
                             name="last_name"
                             value={formik.values.last_name}
                             onChange={formik.handleChange}
-                            className='profile-input'
+                            className='profile-input mt-5'
                             sx={{
                                 height: "10px",
                                 "& .MuiOutlinedInput-root": {
@@ -212,7 +212,7 @@ const Setting: React.FC = () => {
                             name="email"
                             value={formik.values.email}
                             onChange={formik.handleChange}
-                            className='profile-input'
+                            className='profile-input mt-4'
                             sx={{
                                 height: "10px",
                                 "& .MuiOutlinedInput-root": {
@@ -242,7 +242,7 @@ const Setting: React.FC = () => {
                             <span className="text-error">{formik.errors.email}</span>
                         )}
                     </div>
-                    <div className='mt-3'>
+                    <div className='mt-4'>
                         <h4>Country</h4>
                         <select
                             name="country"
@@ -259,7 +259,7 @@ const Setting: React.FC = () => {
                             <span className="text-error">{formik.errors.country}</span>
                         )}
                     </div>
-                    <div className='mt-3'>
+                    <div className='mt-4'>
                         <h4>City</h4>
                         <input
                             type='text'
@@ -272,7 +272,7 @@ const Setting: React.FC = () => {
                             <span className="text-error">{formik.errors.city}</span>
                         )}
                     </div>
-                    <div className='mt-3'>
+                    <div className='mt-4'>
                         <h4>Date of birth</h4>
                         <input
                             type='date'
