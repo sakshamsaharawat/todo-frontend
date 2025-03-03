@@ -32,18 +32,11 @@ const AddTask: React.FC = () => {
         },
         validationSchema: AddTaskValidation,
         onSubmit: async (values) => {
-            try {
-                const payload = { ...values };
-                if (!payload?.list_id) {
-                    delete payload?.list_id;
-                }
-                dispatch(createTask(payload));
-                toast.success("Task created successfully.");
-                navigate(-1);
-            } catch (error: any) {
-                toast.error(error.data.message[0] || "Failed to create task.");
-            }
-        },
+            const payload = { ...values, list_id: values.list_id ? values.list_id : undefined };
+            dispatch(createTask(payload));
+            toast.success("Task created successfully.");
+            navigate(-1);
+        }
     });
     const handleDelete = (item: TagItem): void => {
         formik.setFieldValue("tag_ids", formik.values.tag_ids.filter(tag => tag !== item._id));
@@ -111,8 +104,8 @@ const AddTask: React.FC = () => {
                             {listReducer?.lists.map((item) => (
                                 <option
                                     key={item?._id}
-                                    value={item?._id} // Store the _id in the value of the option
-                                    label={item?.title} // Show the title on UI
+                                    value={item?._id}
+                                    label={item?.title}
                                 >
                                 </option>
                             ))}

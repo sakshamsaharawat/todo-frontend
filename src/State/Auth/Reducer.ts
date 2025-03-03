@@ -47,7 +47,6 @@ export const authReducer = (state: UserInitialState = initialState, action: any)
                 error: null
             }
         case LOGIN_SUCCESS:
-            localStorage.setItem("token", action.payload.token);
             return {
                 ...state,
                 user: action.payload,
@@ -65,7 +64,7 @@ export const authReducer = (state: UserInitialState = initialState, action: any)
         case UPDATE_USER_SUCCESS:
             return {
                 ...state,
-                user: {...action.payload} ,
+                user: { ...action.payload },
                 isLoading: false,
                 error: null
             }

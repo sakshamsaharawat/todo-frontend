@@ -3,7 +3,7 @@ import { CREATE_LIST_FAILURE, CREATE_LIST_REQUEST, CREATE_LIST_SUCCESS, GET_LIST
 import { ListResponse } from "./interface/get-list.interface";
 import { ListData } from "./interface/create-list.interface";
 import axiosInstance from "../../utils/axiosInstance";
-import { toast } from "react-toastify";
+import { showError } from "../../utils/showErrors";
 
 const createListRequest = () => ({ type: CREATE_LIST_REQUEST });
 const createListSuccess = (listData: ListData) => ({ type: CREATE_LIST_SUCCESS, payload: listData });
@@ -18,7 +18,7 @@ export const CreateList = (listData: ListData) => async (dispatch: Dispatch) => 
 
     } catch (error: any) {
         dispatch(createListFailure(error.message));
-        toast.error(error.data.message[0]);
+        showError(error.data.message);
         if (error?.status === 401) {
             return {
                 success: false,
@@ -26,7 +26,6 @@ export const CreateList = (listData: ListData) => async (dispatch: Dispatch) => 
                 isAuthError: true,
             };
         }
-
         return {
             success: false,
             message: error?.response?.data?.message || "List creation failed.",
@@ -45,6 +44,7 @@ export const getList = () => async (dispatch: Dispatch) => {
         dispatch(getListSuccess(response.data.data));
     } catch (error: any) {
         dispatch(getListFailure(error.message));
-        toast.error(error.data.message[0]);
+        showError(error.data.message);
+
     }
 }

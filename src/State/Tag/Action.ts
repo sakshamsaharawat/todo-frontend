@@ -5,6 +5,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { CREATE_LIST_FAILURE, CREATE_LIST_REQUEST, CREATE_LIST_SUCCESS } from "../List/Action.type";
 import { TagData } from "./interface/create-tag.interface";
 import { toast } from "react-toastify";
+import { showError } from "../../utils/showErrors";
 
 const createTagRequest = () => ({ type: CREATE_LIST_REQUEST });
 const createTagSuccess = (tagData: TagData) => ({ type: CREATE_LIST_SUCCESS, payload: tagData });
@@ -43,6 +44,6 @@ export const getTag = () => async (dispatch: Dispatch) => {
         dispatch(getTagSuccess(response.data.data));
     } catch (error: any) {
         dispatch(getTagFailure(error.message));
-        toast.error(error.data.message[0]);
+        showError(error.data.message);
     }
 } 

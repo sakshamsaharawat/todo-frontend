@@ -3,7 +3,7 @@ import { CREATE_STICKY_WALL_FAILURE, CREATE_STICKY_WALL_REQUEST, CREATE_STICKY_W
 import { CreateStickywall } from './interface/create-stickywall.interface';
 import axiosInstance from '../../utils/axiosInstance';
 import { stickywallItem } from './interface/get-stickywall.interface';
-import { toast } from 'react-toastify';
+import { showError } from '../../utils/showErrors';
 
 const createStickyWallRequest = () => ({ type: CREATE_STICKY_WALL_REQUEST });
 const createStickyWallSucsess = (stickyWallData: CreateStickywall) => ({ type: CREATE_STICKY_WALL_SUCCESS, payload: stickyWallData });
@@ -14,9 +14,10 @@ export const createStickyWall = (stickyWallData: CreateStickywall) => async (dis
     try {
         const response = await axiosInstance.post("stickywall/create", stickyWallData);
         dispatch(createStickyWallSucsess(response.data.data));
+        return {success: true}
     } catch (error: any) {
         dispatch(createStickyWallFailure(error.message));
-        toast.error(error.data.message[0]);
+       showError(error.data.message);
     }
 }
 
@@ -31,6 +32,7 @@ export const getStickyWall = () => async (dispatch: Dispatch) => {
         dispatch(getStickyWallSuccess(response.data.data));
     } catch (error: any) {
         dispatch(getStickyWallFailure(error.message));
-        toast.error(error.data.message[0]);
+        showError(error.message.data);
+
     }
-}
+} 

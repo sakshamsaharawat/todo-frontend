@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { createStickyWall } from '../../State/stickyWall/Action';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { AddStcikywallValidation } from '../../validations/Add-stickywall.validate';
 
 const quillModules = {
     toolbar: [
@@ -40,14 +41,12 @@ const AddStickywall: React.FC = () => {
             description: "",
             color_code: ""
         },
+        validationSchema: AddStcikywallValidation,
         onSubmit: async (values) => {
-            try {
-                dispatch(createStickyWall(values));
+            const payload = await dispatch(createStickyWall(values));
+            if (payload?.success) {
                 toast.success("StickyWall created successfully.");
                 navigate(-1);
-            } catch (error: any) {
-                console.error("Error creating StickyWall:", error);
-                toast.error(error.message || "Failed to create StickyWall.");
             }
         },
     });

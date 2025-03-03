@@ -9,7 +9,6 @@ import { register } from '../../State/Auth/Action';
 import { RootState } from '../../store';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import { toast } from 'react-toastify';
 
 const SignUp: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -24,16 +23,9 @@ const SignUp: React.FC = () => {
     },
     validationSchema: signupValidation,
     onSubmit: async (values) => {
-      try {
-        const result = await dispatch(register(values));
-        if (result.success) {
-          toast.success("User register successfully.");
-          navigate("/todo/upcoming");
-        } else {
-          toast.error(result.message || "Registration failed. Please try again.")
-        }
-      } catch (error: any) {
-        toast.error(error.data.message[0]);
+      const result = await dispatch(register(values));
+      if (result.success) {
+        navigate("/todo/upcoming");
       }
     }
   });

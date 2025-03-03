@@ -345,8 +345,8 @@ const Setting: React.FC = () => {
                     </div>
                 </div>
                 <div className='user-profile-btn mt-3 d-flex justify-content-end'>
-                    <button type="button" className='user-cancel-btn cancel-btn border-radius-5'>Cancel</button>
-                    <button type="submit" className='user-save-btn submit-btn border-radius-5 ml-2'>Save</button>
+                    <button type="button" className='user-cancel-btn cancel-btn border-radius-5'>Delete Account</button>
+                    <button type="submit" className='user-save-btn submit-btn border-radius-5 ml-2'>Update Account</button>
                 </div>
             </form>
         </div>

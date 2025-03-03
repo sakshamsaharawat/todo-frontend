@@ -5,6 +5,7 @@ import { LoginData } from './interface/login-interface';
 import axiosInstance from '../../utils/axiosInstance';
 import { UserUpdateData } from './interface/updateUser.interface';
 import { toast } from 'react-toastify';
+import { showError } from '../../utils/showErrors';
 
 const registerRequest = () => ({ type: REGISTER_REQUEST });
 const registerSuccess = (user: object, token: string) => ({ type: REGISTER_SUCCESS, payload: { user, token } });
@@ -16,12 +17,12 @@ export const register = (userData: UserData) => async (dispatch: Dispatch) => {
         const response = await axiosInstance.post("/user/signup", userData);
         localStorage.setItem("jwt", response.data.token);
         dispatch(registerSuccess(response.data.data, response.data.token))
-        return { success: true, message: 'User registered successfully.' };
-
+        toast.success(response.data.message)
+        return { success: true }
     } catch (error: any) {
-        dispatch(registerFailure(error.message));
-        toast.error(error.data.message[0]);
-        return { success: false, message: error.message || 'Registration failed.' };
+        dispatch(registerFailure(error.data.message));
+        showError(error.data.message);
+        return { success: false, message: error.data.message };
     }
 }
 
@@ -44,8 +45,8 @@ export const login = (UserData: LoginData) => async (dispatch: Dispatch) => {
 
     } catch (error: any) {
         dispatch(loginFailure(error));
-        toast.error(error.data.message[0]);
-        return { success: false, message: error.message || "Login Failed" }
+        showError(error.data.message);
+        return { success: false, message: error.message }
     }
 }
 
@@ -62,7 +63,7 @@ export const getUser = () => async (dispatch: Dispatch) => {
 
     } catch (error: any) {
         dispatch(getUserFailure(error.message));
-        toast.error(error.data.message[0]);
+        showError(error.data.message);
     }
 }
 
@@ -73,11 +74,11 @@ const logoutFailure = (error: any) => ({ type: LOGOUT_FAILURE, payload: error })
 export const logout = () => async (dispatch: Dispatch) => {
     dispatch(logoutRequest());
     try {
-        localStorage.getItem("jwt");
         localStorage.removeItem("jwt");
         dispatch(logoutSuccess());
     } catch (error: any) {
         dispatch(logoutFailure(error.message));
+        showError(error.data.message);
     }
 };
 

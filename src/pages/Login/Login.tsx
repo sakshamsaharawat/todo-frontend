@@ -22,18 +22,11 @@ const Login: React.FC = () => {
         },
         validationSchema: loginValidation,
         onSubmit: async (values) => {
-            try {
-                const result = await dispatch(login(values));
-                if (result.success) {
-                    toast.success("login successfully");
-                    dispatch(getUser());
-                    navigate("/todo/upcoming");
-                } else {
-                    throw new Error("Login failed. Please try again.");
-                }
-            } catch (error: any) {
-                console.error(error);
-                toast.error(error.message || "Login failed.");
+            const result = await dispatch(login(values));
+            if (result.success) {
+                toast.success("login successfully");
+                dispatch(getUser());
+                navigate("/todo/upcoming");
             }
         }
     });

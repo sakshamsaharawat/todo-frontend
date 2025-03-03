@@ -21,7 +21,6 @@ import { AddList } from '../../pages';
 import { logout } from '../../State/Auth/Action';
 import { getTag } from '../../State/Tag/Action';
 import AddTag from '../../pages/Tag/Add-Tag';
-import { toast } from 'react-toastify';
 
 const menu: { name: string, path: string, icon: any }[] = [
     { name: "Upcoming", path: "/todo/upcoming", icon: <KeyboardDoubleArrowRightIcon className='todo-icon' /> },
@@ -32,7 +31,6 @@ const menu: { name: string, path: string, icon: any }[] = [
 
 const Navbar: React.FC = ({ }) => {
     const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
-    const { user, jwt } = useSelector((store: any) => store.authReducer);
     const { listReducer } = useSelector((store: RootState) => store);
     const { tagReducer } = useSelector((store: RootState) => store)
     const navigate = useNavigate();
@@ -46,7 +44,7 @@ const Navbar: React.FC = ({ }) => {
     useEffect(() => {
         dispatch(getList());
         dispatch(getTag());
-    }, [dispatch, user, jwt, navigate]);
+    }, [dispatch, navigate]);
 
     useEffect(() => {
         if (listReducer?.error || tagReducer?.error) {
@@ -55,12 +53,8 @@ const Navbar: React.FC = ({ }) => {
     }, [listReducer, tagReducer]);
 
     const handleLogout = async () => {
-        try {
-            await dispatch(logout())
-            navigate("/login")
-        } catch (error: any) {
-            toast.error("logout error:", error.data.message[0])
-        }
+        await dispatch(logout())
+        navigate("/login")
     }
     const handleSetting = () => {
         navigate("/todo/setting")
