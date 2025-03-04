@@ -3,13 +3,9 @@ import * as Yup from "yup";
 export const updateUserValidation = Yup.object({
     first_name: Yup.string()
         .trim()
-        .required("First Name is required")
-        .matches(/^\S*$/, "First Name cannot contain spaces.")
         .min(3, "First Name must be at least 3 characters"),
     last_name: Yup.string()
         .trim()
-        .required("Last Name is required")
-        .matches(/^\S*$/, "Last Name cannot contain spaces.")
         .min(3, "Last Name must be at least 3 characters"),
     email: Yup.string()
         .trim()
@@ -20,13 +16,13 @@ export const updateUserValidation = Yup.object({
         .trim()
         .matches(/^\+\d{1,4}$/, "Invalid phone code format"),
     phone_number: Yup.string()
+        .matches(/^\d{7,15}$/, "Phone number must be between 7 to 15 digits")
         .optional()
-        .trim()
-        .matches(/^\d{7,15}$/, "Phone number must be between 7 to 15 digits"),
+        .trim(),
     gender: Yup.string()
         .optional()
         .trim()
-        .oneOf(["male", "female", "other"], "Invalid gender"),
+        .oneOf(["male", "female", "prefer no to say"], "Invalid gender"),
     country: Yup.string()
         .optional()
         .trim()

@@ -44,7 +44,7 @@ const Navbar: React.FC = ({ }) => {
     useEffect(() => {
         dispatch(getList());
         dispatch(getTag());
-    }, [dispatch, navigate]);
+    }, [dispatch]);
 
     useEffect(() => {
         if (listReducer?.error || tagReducer?.error) {

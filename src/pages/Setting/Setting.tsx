@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "./setting.css";
 import { countries } from './Data/Country.list';
 import { countryPhoneCodes } from './Data/Country.code';
-import { Avatar, IconButton, InputAdornment, TextField } from '@mui/material';
+import { Avatar, IconButton, InputAdornment, Modal, TextField } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
 import EmailIcon from '@mui/icons-material/Email';
@@ -15,12 +15,17 @@ import { RootState } from '../../store';
 import { AnyAction } from 'redux';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { getUser, updateUser } from '../../State/Auth/Action';
+import { deleteUser, getUser, updateUser } from '../../State/Auth/Action';
+import { removeKeysByValues } from '../../utils/removeEmptyKeys';
+import { useNavigate } from 'react-router-dom';
+import { ConfirmDeleteModal } from './UserDelete/User-delete';
 
 const Setting: React.FC = () => {
     const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
     const authReducer = useSelector((state: RootState) => state.authReducer);
     const [profileImageUrl, setProfileImageUrl] = useState("");
+    const navigate = useNavigate();
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     useEffect(() => {
         dispatch(getUser());
@@ -75,15 +80,24 @@ const Setting: React.FC = () => {
         enableReinitialize: true,
         validationSchema: updateUserValidation,
         onSubmit: async (values) => {
-            try {
-                const updatedValues = { ...values, image_url: profileImageUrl };
-                dispatch(updateUser(updatedValues));
+            console.log("values------", values)
+            const cleanData = removeKeysByValues({ ...values, image_url: profileImageUrl }, [null, "", undefined, 0])
+            const payload = await dispatch(updateUser(cleanData));
+            if (payload?.success) {
                 toast.success("Profile updated successfully.");
-            } catch (error: any) {
-                toast.error(error.data.message[0]);
             }
         }
-    })
+    })  
+
+    const handleDeleteUser = () => setShowDeleteModal(true)
+    const handleConfirmDelete = async () => {
+        const payload = await dispatch(deleteUser());
+        if (payload?.success) {
+            setShowDeleteModal(false);
+            toast.success("Account deleted successfully.");
+            navigate("/login");
+        }
+    }
 
     return (
         <div className='p-5'>
@@ -165,7 +179,7 @@ const Setting: React.FC = () => {
                             }}
                         />
                         {formik.touched.first_name && formik.errors.first_name && (
-                            <span className="text-error">{formik.errors.first_name}</span>
+                            <span className="text-error d-flex mt-5 flex-direction-column">{formik.errors.first_name}</span>
                         )}
                     </div>
                     <div className='input-container'>
@@ -202,7 +216,7 @@ const Setting: React.FC = () => {
                             }}
                         />
                         {formik.touched.last_name && formik.errors.last_name && (
-                            <span className="text-error">{formik.errors.last_name}</span>
+                            <span className="text-error d-flex mt-5 flex-direction-column">{formik.errors.last_name}</span>
                         )}
                     </div>
                     <div className='input-container'>
@@ -212,7 +226,7 @@ const Setting: React.FC = () => {
                             name="email"
                             value={formik.values.email}
                             onChange={formik.handleChange}
-                            className='profile-input mt-4'
+                            className='profile-input mt-5'
                             sx={{
                                 height: "10px",
                                 "& .MuiOutlinedInput-root": {
@@ -239,10 +253,10 @@ const Setting: React.FC = () => {
                             }}
                         />
                         {formik.touched.email && formik.errors.email && (
-                            <span className="text-error">{formik.errors.email}</span>
+                            <span className="text-error d-flex mt-5 flex-direction-column">{formik.errors.email}</span>
                         )}
                     </div>
-                    <div className='mt-4'>
+                    <div className='input-container mt-5'>
                         <h4>Country</h4>
                         <select
                             name="country"
@@ -256,10 +270,10 @@ const Setting: React.FC = () => {
                             ))}
                         </select>
                         {formik.touched.country && formik.errors.country && (
-                            <span className="text-error">{formik.errors.country}</span>
+                            <span className="text-error d-flex mt-5 flex-direction-column">{formik.errors.country}</span>
                         )}
                     </div>
-                    <div className='mt-4'>
+                    <div className='input-container mt-5'>
                         <h4>City</h4>
                         <input
                             type='text'
@@ -269,23 +283,23 @@ const Setting: React.FC = () => {
                             className='profile-input border-radius-10 pl-3'
                         />
                         {formik.touched.city && formik.errors.city && (
-                            <span className="text-error">{formik.errors.city}</span>
+                            <span className="text-error d-flex mt- flex-direction-column">{formik.errors.city}</span>
                         )}
                     </div>
-                    <div className='mt-4'>
+                    <div className='input-container mt-5'>
                         <h4>Date of birth</h4>
                         <input
                             type='date'
                             name="dob"
                             value={formik.values.dob}
                             onChange={formik.handleChange}
-                            className='profile-input border-radius-10 pl-3'
+                            className='profile-input border-radius-10 p-3'
                         />
                         {formik.touched.dob && formik.errors.dob && (
-                            <span className="text-error">{formik.errors.dob}</span>
+                            <span className="text-error d-flex flex-direction-column">{formik.errors.dob}</span>
                         )}
                     </div>
-                    <div>
+                    <div className='input-container'>
                         <h4>Address</h4>
                         <input
                             type='text'
@@ -295,10 +309,10 @@ const Setting: React.FC = () => {
                             className='profile-input border-radius-10 pl-3'
                         />
                         {formik.touched.address && formik.errors.address && (
-                            <span className="text-error">{formik.errors.address}</span>
+                            <span className="text-error d-flex flex-direction-column">{formik.errors.address}</span>
                         )}
                     </div>
-                    <div>
+                    <div className='input-container'>
                         <h4>Gender</h4>
                         <select
                             name="gender"
@@ -311,10 +325,10 @@ const Setting: React.FC = () => {
                             <option value="prefer no to say">Prefer No To Say</option>
                         </select>
                         {formik.touched.gender && formik.errors.gender && (
-                            <span className="text-error">{formik.errors.gender}</span>
+                            <span className="text-error d-flex flex-direction-column">{formik.errors.gender}</span>
                         )}
                     </div>
-                    <div>
+                    <div className='input-container'>
                         <h4>Phone Number</h4>
                         <div className='phoneno-input d-flex'>
                             <select className='code-input border-radius-10'
@@ -330,7 +344,7 @@ const Setting: React.FC = () => {
                                         {code.label}</option>
                                 ))}
                             </select>
-                            <div>
+                            <div className='input-container'>
                                 <input
                                     name="phone_number"
                                     value={formik.values.phone_number}
@@ -338,17 +352,33 @@ const Setting: React.FC = () => {
                                     className='phone-numbe-input profile-input border-radius-10 ml-2 pl-3'
                                 />
                             </div>
-                            {formik.touched.gender && formik.errors.gender && (
-                                <span className="text-error">{formik.errors.gender}</span>
-                            )}
                         </div>
+                        {formik.touched.phone_number && formik.errors.phone_number && (
+                            <span className="text-error d-flex flex-direction-column">{formik.errors.phone_number}</span>
+                        )}
                     </div>
                 </div>
                 <div className='user-profile-btn mt-3 d-flex justify-content-end'>
-                    <button type="button" className='user-cancel-btn cancel-btn border-radius-5'>Delete Account</button>
+                    <button
+                        type="button"
+                        className='user-cancel-btn cancel-btn border-radius-5'
+                        onClick={() => handleDeleteUser()}
+                    >
+                        Delete Account
+                    </button>
                     <button type="submit" className='user-save-btn submit-btn border-radius-5 ml-2'>Update Account</button>
                 </div>
             </form>
+            {showDeleteModal && (
+                <Modal open={showDeleteModal}>
+                    <div className="delete-modal border-radius-10">
+                        <ConfirmDeleteModal
+                            onConfirm={handleConfirmDelete}
+                            onCancel={() => setShowDeleteModal(false)}
+                        />
+                    </div>
+                </Modal>
+            )}
         </div>
     )
 }

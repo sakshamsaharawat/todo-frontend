@@ -1,4 +1,5 @@
-import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, UPDATE_USER_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS } from "./ActionType"
+import { DELETE_TASK_SUCCESS } from "../AddTask/ActionTypes";
+import { DELETE_USER_REQUEST, DELETE_USER_SUCCESS, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, UPDATE_USER_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS } from "./ActionType"
 import { UserInitialState } from "./interface/user-state.interface";
 
 const initialState: UserInitialState = {
@@ -38,6 +39,13 @@ export const authReducer = (state: UserInitialState = initialState, action: any)
                 isLoading: true,
                 error: null
             }
+        case DELETE_USER_REQUEST:
+            return {
+                ...state,
+                user: state.user,
+                isLoading: true,
+                error: null
+            }
         case REGISTER_SUCCESS:
             return {
                 ...state,
@@ -69,6 +77,13 @@ export const authReducer = (state: UserInitialState = initialState, action: any)
                 error: null
             }
 
+        case DELETE_USER_SUCCESS:
+            return {
+                ...state,
+                user: null,
+                isLoading: false,
+                error: null
+            }
         case REGISTER_FAILURE:
             return {
                 ...state,

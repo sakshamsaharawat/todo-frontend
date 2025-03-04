@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { UserData } from './interface/user-interface';
-import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE } from './ActionType';
+import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE, DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE } from './ActionType';
 import { LoginData } from './interface/login-interface';
 import axiosInstance from '../../utils/axiosInstance';
 import { UserUpdateData } from './interface/updateUser.interface';
@@ -91,8 +91,25 @@ export const updateUser = (userData: UserUpdateData) => async (dispatch: Dispatc
     try {
         const response = await axiosInstance.post("user/update", userData);
         dispatch(updateSuccess(response.data.data));
+        return { success: true }
     } catch (error: any) {
         dispatch(updateFailure(error.message));
-        toast.error(error.data.message[0]);
+        showError(error.data.message);
+    }
+}
+
+const deleteRequest = () => ({ type: DELETE_USER_REQUEST });
+const deleteSuccess = () => ({ type: DELETE_USER_SUCCESS });
+const deleteFailure = (error: any) => ({ type: DELETE_USER_FAILURE, payload: error });
+
+export const deleteUser = () => async (dispatch: Dispatch) => {
+    dispatch(deleteRequest());
+    try {
+        await axiosInstance.delete(`user`);
+        dispatch(deleteSuccess());
+        return { success: true }
+    } catch (error: any) {
+        dispatch(deleteFailure(error.message));
+        showError(error.data.message);
     }
 }

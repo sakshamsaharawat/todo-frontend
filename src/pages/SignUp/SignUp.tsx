@@ -101,7 +101,7 @@ const SignUp: React.FC = () => {
             Sign up
           </button>
           <p className='mt-4 d-flex justify-content-center align-item-center font-size'>
-            Already have an account ? <a href='/login'>Sign in</a>
+            Already have an account ? <a href='/login'>&nbsp;Sign in</a>
           </p>
         </div>
       </div>
