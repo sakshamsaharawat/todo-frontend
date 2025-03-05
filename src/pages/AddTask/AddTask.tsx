@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { Chip } from '@mui/material';
 import { TagItem } from '../../State/Tag/interface/get-tag.interface';
 import { CreateTask } from './interface/Add-Task.interface';
+import { removeKeysByValues } from '../../utils/removeEmptyKeys';
 
 const AddTask: React.FC = () => {
     const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
@@ -32,10 +33,12 @@ const AddTask: React.FC = () => {
         },
         validationSchema: AddTaskValidation,
         onSubmit: async (values) => {
-            const payload = { ...values, list_id: values.list_id ? values.list_id : undefined };
-            dispatch(createTask(payload));
-            toast.success("Task created successfully.");
-            navigate(-1);
+            const cleanData = removeKeysByValues({ ...values }, [null, "", undefined])
+            const payload = await dispatch(createTask(cleanData));
+            if (payload?.success) {
+                toast.success("Task created successfully.");
+                navigate(-1);
+            }
         }
     });
     const handleDelete = (item: TagItem): void => {
@@ -137,8 +140,8 @@ const AddTask: React.FC = () => {
                 </form>
                 <div>
                 </div>
-            </div >
-        </div >
+            </div>
+        </div>
     )
 }
 export default AddTask;

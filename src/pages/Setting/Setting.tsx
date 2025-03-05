@@ -80,14 +80,13 @@ const Setting: React.FC = () => {
         enableReinitialize: true,
         validationSchema: updateUserValidation,
         onSubmit: async (values) => {
-            console.log("values------", values)
             const cleanData = removeKeysByValues({ ...values, image_url: profileImageUrl }, [null, "", undefined, 0])
             const payload = await dispatch(updateUser(cleanData));
             if (payload?.success) {
                 toast.success("Profile updated successfully.");
             }
         }
-    })  
+    })
 
     const handleDeleteUser = () => setShowDeleteModal(true)
     const handleConfirmDelete = async () => {

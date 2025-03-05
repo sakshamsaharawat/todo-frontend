@@ -10,13 +10,10 @@ import { useDispatch } from "react-redux";
 import { CreateList } from "../../State/List/Action";
 import { toast } from 'react-toastify';
 import { AddListProps } from "./interface/list.interface";
-import { useNavigate } from "react-router-dom";
 
 const AddList: React.FC<AddListProps> = ({ closeModal }) => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const [color, setColor] = useState("");
-  const navigate = useNavigate()
-
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -24,35 +21,12 @@ const AddList: React.FC<AddListProps> = ({ closeModal }) => {
     },
     validationSchema: AddListValidation,
     onSubmit: async (values) => {
-      try {
-        const result = await dispatch(CreateList(values));
-        if (result.success) {
-          toast.success("List created successfully.");
-          closeModal();
-        } else {
-          toast.error(result.message);
-
-          if (result.isAuthError) {
-            toast.error(result.message);
-            navigate("/login");
-          }
-          else if (result.message.includes("List already exists")) {
-            toast.error("This List already exists. Please use a different name.");
-          }
-          else {
-            toast.error(result.message || "List creation failed. Please try again.");
-          }
-        }
-      } catch (error: any) {
-        console.error("Unexpected error during List creation:", error);
-        toast.error("An unexpected error occurred. Please try again later.");
-        if (error.response?.data?.message) {
-          toast.error(error.response.data.message);
-        } else {
-          toast.error("An unexpected error occurred. Please try again later.");
-        }
+      const result = await dispatch(CreateList(values));
+      if (result.success) {
+        toast.success("List created successfully.");
+        closeModal();
       }
-    },
+    }
   });
 
   return (

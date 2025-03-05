@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { Chip } from '@mui/material';
 import { TagItem } from '../../State/Tag/interface/get-tag.interface';
 import { TaskDrawerProps } from './type/task-drawer.type';
+import { removeKeysByValues } from '../../utils/removeEmptyKeys';
 
 const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetails, type }) => {
   const { listReducer } = useSelector((store: RootState) => store);
@@ -31,13 +32,12 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
     },
     validationSchema: UpdateTaskValidation,
     onSubmit: async (values) => {
-      try {
-        dispatch(updateTask(values, taskDetails._id, type));
+      const cleanData = removeKeysByValues({ ...values, id: taskDetails._id, type }, [null, "", undefined, 0])
+      const id = taskDetails._id;
+      const payload = await dispatch(updateTask(cleanData, id, type));
+      if (payload?.success) {
         toast.success("Task Updated successfully.");
         toggleDrawer(false)
-      } catch (error: any) {
-        console.error("Error updating task:", error);
-        toast.error(error.message || "Failed to update task.");
       }
     },
   });

@@ -10,14 +10,11 @@ import { toast } from 'react-toastify';
 import { HexColorPicker } from 'react-colorful';
 import { AddTagProps } from './interface/tag.interface';
 import './Add-Tag.css';
-import { useNavigate } from 'react-router-dom';
 import { getList } from '../../State/List/Action';
 
 const AddTag: React.FC<AddTagProps> = ({ closeModal }) => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
-  const navigate = useNavigate();
   const [color, setColor] = useState("");
-
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -25,29 +22,12 @@ const AddTag: React.FC<AddTagProps> = ({ closeModal }) => {
     },
     validationSchema: AddTagValidation,
     onSubmit: async (values) => {
-      try {
-        const result = await dispatch(createTag(values));
-        if (result.success) {
-          toast.success("Tag created successfully.");
-          dispatch(getTag());
-          dispatch(getList());
-          closeModal();
-        } else {
-
-          if (result.isAuthError) {
-            toast.error(result.message);
-            navigate("/login");
-          }
-          else if (result.message.includes("Tag already exists")) {
-            toast.error("This tag already exists. Please use a different name.");
-          }
-          else {
-            toast.error(result.message || "Tag creation failed. Please try again.");
-          }
-        }
-      } catch (error) {
-        console.error("Unexpected error during tag creation:", error);
-        toast.error("An unexpected error occurred. Please try again later.");
+      const result = await dispatch(createTag(values));
+      if (result.success) {
+        toast.success("Tag created successfully.");
+        dispatch(getTag());
+        dispatch(getList());
+        closeModal();
       }
     }
   });

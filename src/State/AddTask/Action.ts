@@ -1,15 +1,15 @@
 import { Dispatch } from 'redux';
-import { CREATE_LIST_SUCCESS, } from "../List/Action.type";
-import { CREATE_TASK_FAILURE, CREATE_TASK_REQUEST, DELETE_TASK_FAILURE, DELETE_TASK_REQUEST, DELETE_TASK_SUCCESS, GET_TASK_FAILURE, GET_TASK_REQUEST, UPDATE_TASK_FAILURE, UPDATE_TASK_REQUEST, UPDATE_TASK_SUCCESS } from "./ActionTypes";
+import { CREATE_TASK_FAILURE, CREATE_TASK_REQUEST, CREATE_TASK_SUCCESS, DELETE_MANY_TASK_FAILURE, DELETE_MANY_TASK_REQUEST, DELETE_MANY_TASK_SUCCESS, DELETE_TASK_FAILURE, DELETE_TASK_REQUEST, DELETE_TASK_SUCCESS, GET_TASK_FAILURE, GET_TASK_REQUEST, UPDATE_TASK_FAILURE, UPDATE_TASK_REQUEST, UPDATE_TASK_SUCCESS } from "./ActionTypes";
 import { TaskData } from "./interface/create-task.interface";
 import axiosInstance from '../../utils/axiosInstance';
 import { TaskResponse } from './interface/get-task.interface';
 import { UpdateTaskData } from './interface/update-task.interface';
 import { UpdateTaskPayload } from '../../pages/Task/interface/update-task.interface';
 import { showError } from '../../utils/showErrors';
+import { DeleteManyTaskData } from './interface/delete-many-task.interface';
 
 const createTaskRequest = () => ({ type: CREATE_TASK_REQUEST });
-const createTaskSuccess = (taskData: TaskData) => ({ type: CREATE_LIST_SUCCESS, payload: taskData });
+const createTaskSuccess = (taskData: TaskData) => ({ type: CREATE_TASK_SUCCESS, payload: taskData });
 const createTaskFailure = (error: string) => ({ type: CREATE_TASK_FAILURE, payload: error });
 
 export const createTask = (taskData: TaskData) => async (dispatch: Dispatch) => {
@@ -17,6 +17,7 @@ export const createTask = (taskData: TaskData) => async (dispatch: Dispatch) => 
     try {
         const response = await axiosInstance.post("task/create", taskData);
         dispatch(createTaskSuccess(response.data.data));
+        return { success: true }
     } catch (error: any) {
         dispatch(createTaskFailure(error.message));
         showError(error.data.message);
@@ -51,6 +52,7 @@ export const updateTask = (taskData: UpdateTaskData, id: string, type: string) =
         }
         const response = await axiosInstance.post("task/update", payload);
         dispatch(updateTaskSuccess(response.data.data, type));
+        return { success: true }
     } catch (error: any) {
         dispatch(updateTaskFailure(error.message));
         showError(error.data.message);
@@ -68,6 +70,22 @@ export const deleteTask = (id: string, type: string) => async (dispatch: Dispatc
         dispatch(deleteTaskSuccess(id, type));
     } catch (error: any) {
         dispatch(deleteTaskFailure(error.message));
+        showError(error.data.message);
+    }
+}
+
+const deleteManyTaskRequest = () => ({ type: DELETE_MANY_TASK_REQUEST });
+const deleteManyTaskSuccess = (deleteManyTAskData: DeleteManyTaskData, type: string) =>
+    ({ type: DELETE_MANY_TASK_SUCCESS, payload: deleteManyTAskData, listType: type });
+const deleteManyTaskFailure = (error: string) => ({ type: DELETE_MANY_TASK_FAILURE, payload: error });
+
+export const deleteManyTask = (deleteManyTAskData: DeleteManyTaskData, type: string) => async (dispatch: Dispatch) => {
+    dispatch(deleteManyTaskRequest());
+    try {
+        await axiosInstance.delete("task/", { data: deleteManyTAskData });
+        dispatch(deleteManyTaskSuccess(deleteManyTAskData, type));
+    } catch (error: any) {
+        dispatch(deleteManyTaskFailure(error.message));
         showError(error.data.message);
     }
 }

@@ -42,9 +42,9 @@ export const getList = () => async (dispatch: Dispatch) => {
     try {
         const response = await axiosInstance.get("list");
         dispatch(getListSuccess(response.data.data));
+        return { success: true }
     } catch (error: any) {
         dispatch(getListFailure(error.message));
         showError(error.data.message);
-
     }
 }
