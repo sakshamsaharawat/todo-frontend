@@ -89,7 +89,7 @@ const Navbar: React.FC = ({ }) => {
                                     <h6 className='primary-color'>TASKS</h6>
                                     {menu.map((item) => (
                                         <div className='d-flex just justify-content-space-between mt-1 cursor-pointer
-                                       justify-content-center'
+                                       justify-content-center hover'
                                             key={item.name}
                                             onClick={() => navigate(item.path)}
                                         >
@@ -106,7 +106,7 @@ const Navbar: React.FC = ({ }) => {
                                 <h6 className='primary-color mt-2'>LISTS</h6>
                                 <div className='list-content'>
                                     {Array.isArray(listReducer?.lists) && listReducer?.lists?.map((item: any) => (
-                                        <div className='d-flex justify-content-space-between align-item-center mt-1 font-size'>
+                                        <div className='d-flex justify-content-space-between align-item-center mt-1 font-size hover'>
                                             <div className='d-flex align-item-center mt-1 ml-1'>
                                                 <div className='menu-list-option-content' style={{ backgroundColor: item?.color_code }}></div>
                                                 <p className='ml-2 cursor-pointer'>{item?.title}</p>

@@ -38,14 +38,12 @@
 .today-sub-section {
     height: 300px;
     gap: 15px;
-    padding-left: 15px;
 }
 
 .this-week-tomoarrow-container {
     overflow-y: scroll;
     width: 50%;
     border: 2px solid whitesmoke;
-    border-radius: 10px;
 }
 
 .today-sub-section-title {
@@ -66,6 +64,15 @@
         height: 50% !important;
         width: 100%;
     }
+
+    .upcoming-btn {
+        column-gap: 1vh;
+    }
+
+    .upcoming-input-btn {
+        width: 100%;
+        margin: 0px;
+    }
 }
 
 @media (max-width: 320px) {
@@ -78,5 +85,17 @@
     .this-week-tomoarrow-container {
         height: 50% !important;
         width: 100%;
+    }
+
+    .upcoming-btn {
+        align-items: center;
+        flex-direction: column;
+        border: 2px solid red;
+        row-gap: 1vh;
+    }
+
+    .upcoming-input-btn {
+        width: 100%;
+        margin: 0px;
     }
 }

@@ -253,6 +253,13 @@
     }
 }
 
+.cancel-btn:disabled {
+    background-color: #ccc !important;
+    color: #666 !important;
+    cursor: not-allowed;
+    border: 1px solid #aaa;
+}
+
 .main-heading-color {
     color: var(---main-heading-color);
     font-weight: 1000 !important;
@@ -279,7 +286,7 @@
 }
 
 .primary-color {
-    color: var(--primary-color) !important; 
+    color: var(--primary-color) !important;
 }
 
 .flex-direction-column {
@@ -288,4 +295,15 @@
 
 .no-task-image {
     height: 20vh;
+}
+
+.delete-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 80%;
+    width: 90%;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

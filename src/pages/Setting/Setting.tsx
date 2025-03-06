@@ -18,7 +18,7 @@ import { useSelector } from 'react-redux';
 import { deleteUser, getUser, updateUser } from '../../State/Auth/Action';
 import { removeKeysByValues } from '../../utils/removeEmptyKeys';
 import { useNavigate } from 'react-router-dom';
-import { ConfirmDeleteModal } from './UserDelete/User-delete';
+import { ConfirmDeleteModal } from '../../components/common/ConfrimDeleteModal';
 
 const Setting: React.FC = () => {
     const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
@@ -372,6 +372,8 @@ const Setting: React.FC = () => {
                 <Modal open={showDeleteModal}>
                     <div className="delete-modal border-radius-10">
                         <ConfirmDeleteModal
+                            description='Do you really want to delete your account? This process cannot be undone.'
+                            title="Are You sure?"
                             onConfirm={handleConfirmDelete}
                             onCancel={() => setShowDeleteModal(false)}
                         />

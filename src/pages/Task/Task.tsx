@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
 import './Task.css';
@@ -12,14 +12,16 @@ import { useFormik } from 'formik';
 import UpdateTaskValidation from '../../validations/update-task.validate';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
-import { Chip } from '@mui/material';
+import { Chip, Modal } from '@mui/material';
 import { TagItem } from '../../State/Tag/interface/get-tag.interface';
 import { TaskDrawerProps } from './type/task-drawer.type';
 import { removeKeysByValues } from '../../utils/removeEmptyKeys';
+import { ConfirmDeleteModal } from '../../components/common/ConfrimDeleteModal';
 
 const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetails, type }) => {
   const { listReducer } = useSelector((store: RootState) => store);
   const { tagReducer } = useSelector((store: RootState) => store);
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
 
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const formik = useFormik<UpdateTask>({
@@ -37,7 +39,7 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
       const payload = await dispatch(updateTask(cleanData, id, type));
       if (payload?.success) {
         toast.success("Task Updated successfully.");
-        toggleDrawer(false)
+        toggleDrawer(false);
       }
     },
   });
@@ -60,7 +62,7 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
 
   const handleTaskDelete = async () => {
     try {
-      await dispatch(deleteTask(taskDetails._id, type));
+      await dispatch(deleteTask(taskDetails._id));
       toast.success("Task deleted successfully.");
       toggleDrawer(false);
     } catch (error: any) {
@@ -116,6 +118,7 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
                 formik.setFieldValue("list_id", e.target.value);
               }}
             >
+              <option value="">Select List</option>
               {listReducer.lists.map((item) => (
                 <option key={item._id} value={item._id}>{item?.title}</option>
               ))}
@@ -173,7 +176,7 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
           </div>
           <div className='task-footer d-flex justify-content-end'>
             <button type="button" className='cancel-btn border-radius-5 width-full'
-              onClick={() => handleTaskDelete()}
+              onClick={() => setShowDeleteModal(true)}
             >
               Delete Task
             </button>
@@ -182,6 +185,18 @@ const TaskDrawer: React.FC<TaskDrawerProps> = ({ isOpen, toggleDrawer, taskDetai
             </button>
           </div>
         </div>
+        {showDeleteModal && (
+          <Modal open={showDeleteModal}>
+            <div className='delete-modal border-radius-10'>
+              <ConfirmDeleteModal
+                title='Are you sure?'
+                description='Do you really want to delete your Task? This process cannot be undone.'
+                onConfirm={() => handleTaskDelete()}
+                onCancel={() => setShowDeleteModal(false)}
+              />
+            </div>
+          </Modal>
+        )}
       </form>
     </Drawer>
   );

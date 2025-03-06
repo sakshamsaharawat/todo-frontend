@@ -44,6 +44,10 @@ const AddTask: React.FC = () => {
     const handleDelete = (item: TagItem): void => {
         formik.setFieldValue("tag_ids", formik.values.tag_ids.filter(tag => tag !== item._id));
     };
+
+    const handleCancel = () => {
+        navigate(-1)
+    }
     return (
         <div>
             <div className='mt-2'>
@@ -134,7 +138,10 @@ const AddTask: React.FC = () => {
                         </div>
                     </div>
                     <div className='d-flex justify-content-end mt-5'>
-                        <button className='add-task-btn cancel-btn border-radius-5' type='button'>Cancel</button>
+                        <button className='add-task-btn cancel-btn border-radius-5'
+                            type='button'
+                            onClick={() => handleCancel()}
+                        >Cancel</button>
                         <button className='add-task-btn submit-btn border-radius-5 ml-2' type="submit">Save</button>
                     </div>
                 </form>
