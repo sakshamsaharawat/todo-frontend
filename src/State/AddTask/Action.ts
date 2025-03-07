@@ -33,6 +33,7 @@ export const getTask = (payload: { startDate: string, endDate: string }, type: s
     dispatch(getTaskRequest());
     try {
         const response = await axiosInstance.get(`task?start_date=${payload.startDate}&end_date=${payload.endDate}`);
+        console.log("response------", response.data)
         dispatch(getTaskSuccess(response.data.data, type));
     } catch (error: any) {
         dispatch(getTaskFailure(error.message));

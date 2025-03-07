@@ -7,6 +7,10 @@ export interface ListItem {
     createdAt: string;
     updatedAt: string;
 }
+export interface ListCount {
+    _id: string;
+    count: number
+}
 export interface ListResponse {
     data: ListItem[];
 }

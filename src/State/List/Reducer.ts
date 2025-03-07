@@ -24,6 +24,7 @@ export const listReducer = (state: InitialState = initialState, action: any): In
                 error: null
             }
         case GET_LIST_SUCCESS:
+            console.log(" list-re-action.payload----", action.payload)
             return {
                 ...state,
                 isLoading: false,

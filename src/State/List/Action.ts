@@ -34,14 +34,18 @@ export const CreateList = (listData: ListData) => async (dispatch: Dispatch) => 
 }
 
 const getListRequest = () => ({ type: GET_LIST_REQUEST });
-const getListSuccess = (list: ListResponse[]) => ({ type: GET_LIST_SUCCESS, payload: list });
+const getListSuccess = (list: ListResponse[], listCount: string | number[]) => ({ type: GET_LIST_SUCCESS, payload:{ list, listCount} });
 const getListFailure = (error: any) => ({ type: GET_LIST_FAILURE, payload: error });
 
 export const getList = () => async (dispatch: Dispatch) => {
     dispatch(getListRequest());
     try {
         const response = await axiosInstance.get("list");
-        dispatch(getListSuccess(response.data.data));
+        console.log("list-response", response)
+        const { data, listCount } = response.data
+        console.log("listCount-------", listCount)
+        console.log("data-------", data)
+        dispatch(getListSuccess(data, listCount));
         return { success: true }
     } catch (error: any) {
         dispatch(getListFailure(error.message));

@@ -32,6 +32,9 @@ const menu: { name: string, path: string, icon: any }[] = [
 const Navbar: React.FC = ({ }) => {
     const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
     const { listReducer } = useSelector((store: RootState) => store);
+    console.log("listReducer-------", listReducer?.lists)
+    console.log("listcount-------", listReducer?.lists?.listCount)
+
     const { tagReducer } = useSelector((store: RootState) => store)
     const navigate = useNavigate();
     const [isDrawerOpen, setIsDrawerOpen] = useState(true);
@@ -105,15 +108,22 @@ const Navbar: React.FC = ({ }) => {
                             <div className='b-bottom-ws'>
                                 <h6 className='primary-color mt-2'>LISTS</h6>
                                 <div className='list-content'>
-                                    {Array.isArray(listReducer?.lists) && listReducer?.lists?.map((item: any) => (
-                                        <div className='d-flex justify-content-space-between align-item-center mt-1 font-size hover'>
-                                            <div className='d-flex align-item-center mt-1 ml-1'>
-                                                <div className='menu-list-option-content' style={{ backgroundColor: item?.color_code }}></div>
-                                                <p className='ml-2 cursor-pointer'>{item?.title}</p>
+                                    {Array.isArray(listReducer?.lists?.list) && listReducer?.lists?.list?.map((item: any) => {
+                                        const listCountItem = listReducer.lists.listCount.find(
+                                            (countItem: any) => countItem._id === item._id
+                                        );
+                                        return (
+                                            <div className='d-flex justify-content-space-between align-item-center mt-1 font-size hover'>
+                                                <div className='d-flex align-item-center mt-1 ml-1'>
+                                                    <div className='menu-list-option-content' style={{ backgroundColor: item?.color_code }}></div>
+                                                    <p className='ml-2 cursor-pointer'>{item?.title}</p>
+                                                </div>
+                                                <div className='menu-notification d-flex justify-content-center align-item-center font-size cursor-pointer'>
+                                                    {listCountItem?.count > 0 ? listCountItem.count : ""}
+                                                </div>
                                             </div>
-                                            <div className='menu-notification d-flex justify-content-center align-item-center font-size cursor-pointer'>12</div>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                                 <div>
                                     <div className='add-list-btn d-flex font-size align-item-center mt-1 mb-2 border-radius-5 cursor-pointer'
